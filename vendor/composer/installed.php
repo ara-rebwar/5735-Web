@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => 'v8.5.11',
-    'version' => '8.5.11.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '0ac04119dba41c0e028de0e0ef0f84d18b6fe9c5',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -440,12 +440,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => 'v8.5.11',
-      'version' => '8.5.11.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '0ac04119dba41c0e028de0e0ef0f84d18b6fe9c5',
     ),
     'laravel/sail' => 
     array (
@@ -760,8 +760,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -1243,6 +1243,15 @@
       array (
       ),
       'reference' => 'b43b05cf43c1b6d849478965062b6ef73e223bb5',
+    ),
+    'twilio/sdk' => 
+    array (
+      'pretty_version' => '6.18.0',
+      'version' => '6.18.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '158c2af294f4e35a5583303da81cf66c7751f720',
     ),
     'vlucas/phpdotenv' => 
     array (
