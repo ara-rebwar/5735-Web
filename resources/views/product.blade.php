@@ -14,7 +14,7 @@
       </div>
 
 
-      <form  action="{{route('insertProduct')}}" method="post">
+      <form  action="{{route('insertProduct')}}" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="form-container">
           <!-- //row0 -->
