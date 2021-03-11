@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\DB;
 class MarketController extends Controller
 {
   public function show(){
-    return view('market');
+    return view('markets');
   }
+//  public function show1(){
+//
+//      return view('market');
+//  }
   public function insert(Request $request){
     $market=new market();
     $media =new media();
@@ -19,8 +23,16 @@ class MarketController extends Controller
     $media->thumb=$request->marketThumb;
     $media->size=$request->marketimageSize;
     $media->icon=$request->marketIcon;
+
+    $file=$request->file('marketURL');
+    $ext=$file->getClientOriginalExtension();
+    $fileName=time().'.'.$ext;
+    $file->move('images/market_image/',$fileName);
+    $media->url=$fileName;
+
+
     $media->save();
-    $mediaID=DB::select('select id from media where name = ? and url = ?  ',[$request->marketImageName,$request->marketURL]);
+    $mediaID=DB::select('select id from media where name = ?  and thumb = ? and icon = ? and size = ?   ',[$request->marketImageName,$request->marketThumb,$request->marketIcon,$request->marketimageSize]);
     $market->name=$request->marketName;
     $market->image=$mediaID[0]->id;
     $market->rate=$request->marketRate;
@@ -47,10 +59,8 @@ class MarketController extends Controller
     for ($a=0;$a<count($data);$a++){
         $data[$a]->image=$media[$a];
     }
-
     return response()->json($data);
   }
-
   public function fetchAllData($id){
     $data=DB::select("select products.id,products.name,price,discountPrice,image,products.description,ingredients,capacity,unit,packageItemsCount,featured,deliverable,market,products.created_at,products.updated_at from products inner join media on media.id=products.image and products.market= ? ",[$id]);
     $media=DB::select("select media.id,media.url,media.thumb,media.size,media.icon from products inner join media on media.id=products.image and products.market = ?  ",[$id]);

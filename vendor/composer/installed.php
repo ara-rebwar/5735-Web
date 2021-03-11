@@ -6,11 +6,20 @@
     'aliases' => 
     array (
     ),
-    'reference' => '0ac04119dba41c0e028de0e0ef0f84d18b6fe9c5',
+    'reference' => 'c1611fcd5d0cd8a3fb9af8af19292ba097c9ea29',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
   array (
+    'almasaeed2010/adminlte' => 
+    array (
+      'pretty_version' => 'v3.1.0-rc',
+      'version' => '3.1.0.0-RC',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '17aea0e4ef1491a0ae6c3aaa14e81803244b59f2',
+    ),
     'asm89/stack-cors' => 
     array (
       'pretty_version' => 'v2.0.2',
@@ -445,7 +454,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '0ac04119dba41c0e028de0e0ef0f84d18b6fe9c5',
+      'reference' => 'c1611fcd5d0cd8a3fb9af8af19292ba097c9ea29',
     ),
     'laravel/sail' => 
     array (
@@ -464,6 +473,15 @@
       array (
       ),
       'reference' => 'daae1c43f1300fe88c05d83db6f3d8f76677ad88',
+    ),
+    'laravel/ui' => 
+    array (
+      'pretty_version' => 'v3.2.0',
+      'version' => '3.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a1f82c6283c8373ea1958b8a27c3d5c98cade351',
     ),
     'league/commonmark' => 
     array (

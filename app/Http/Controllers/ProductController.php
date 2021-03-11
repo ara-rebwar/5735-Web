@@ -12,19 +12,31 @@ class ProductController extends Controller
   public function show(){
     $market=market::all();
 
-    return view('product',compact('market'));
+    return view('products',compact('market'));
   }
+//    public function show1(){
+//        $market=market::all();
+//
+//        return view('products',compact('market'));
+//    }
   public function insert(Request $request){
     $product = new product();
     $media =new media();
 
     $media->name=$request->productImageName;
-    $media->url=$request->productURL;
     $media->thumb=$request->productThumb;
     $media->icon=$request->productIcon;
     $media->size=$request->productimageSize;
+
+      $file=$request->file('productURL');
+      $ext=$file->getClientOriginalExtension();
+      $fileName=time().'.'.$ext;
+      $file->move('images/product_image/',$fileName);
+      $media->url=$fileName;
+
+
     $media->save();
-    $mediaID=DB::select('select id from media where name = ? and url = ?  ',[$request->productImageName,$request->productURL]);
+    $mediaID=DB::select('select id from media where name = ? and thumb = ? and size = ? and icon = ? ',[$request->productImageName,$request->productThumb,$request->productimageSize,$request->productIcon]);
 
     $product->name=$request->productName;
     $product->price=$request->productPrice;

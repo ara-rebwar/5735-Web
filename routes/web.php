@@ -16,11 +16,21 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/market',[MarketController::class,'show'])->name('showMarket');
 Route::post('/market',[MarketController::class,'insert'])->name('insertMarket');
 
 Route::get('/product',[ProductController::class,'show'])->name('showProduct');
+
 Route::post('/product',[ProductController::class,'insert'])->name('insertProduct');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/slides',[App\Http\Controllers\SlideController::class, 'show'])->name('showSlides');
+Route::get('/slides/{id}',[App\Http\Controllers\SlideController::class, 'selectProduct'])->name('showproductId');
+Route::post('/slides',[App\Http\Controllers\SlideController::class, 'insert'])->name('insertSlides');
