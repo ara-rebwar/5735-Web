@@ -28,6 +28,7 @@ class MarketController extends Controller
     $ext=$file->getClientOriginalExtension();
     $fileName=time().'.'.$ext;
     $file->move('images/market_image/',$fileName);
+    $fileName='http://phplaravel-559223-1799886.cloudwaysapps.com/images/market_image/'.$fileName;
     $media->url=$fileName;
 
 
@@ -68,5 +69,67 @@ class MarketController extends Controller
         $data[$a]->image=$media[$a];
     }
     return response()->json($data);
+  }
+
+  public function showMarketList(){
+      $marketList=DB::select('select * from markets ');
+      return view('marketList',compact('marketList'));
+  }
+
+  public function ShowEditMarket($id){
+      $marketInfo=DB::select('select *,markets.name as marketName,markets.id as marketId,media.id as imageId from markets,media where image=media.id and markets.id = ? ',[$id]);
+      return view('editMarket',compact('marketInfo'));
+  }
+
+
+
+  public function updateMarket(Request $request,$id){
+      $media =media::find($request->mediaId);
+
+
+      $media->name=$request->marketImageName;
+      $media->thumb=$request->marketThumb;
+      $media->icon=$request->marketIcon;
+      $media->size=$request->marketimageSize;
+
+
+
+
+      $file=$request->file('marketURL');
+      $ext=$file->getClientOriginalExtension();
+      $fileName=time().'.'.$ext;
+      $file->move('images/market_image/',$fileName);
+      $fileName='http://phplaravel-559223-1799886.cloudwaysapps.com/images/market_image/'.$fileName;
+      $media->url=$fileName;
+      $media->save();
+      $market=market::find($request->marketId);
+
+      $market->name=$request->marketName;
+      $market->rate=$request->marketRate;
+      $market->address=$request->marketAddress;
+      $market->description=$request->marketDescription;
+      $market->phone=$request->marketPhone;
+      $market->mobile=$request->marketMobile;
+      $market->information=$request->marketInformation;
+      $market->deliveryFee=$request->marketDeliveryFee;
+      $market->adminCommission=$request->marketAdminCommission;
+      $market->defaultTax=$request->marketDefaultTax;
+      $market->latitude=$request->marketLatitude;
+      $market->longitude=$request->marketLongitude;
+      $market->closed=$request->marketClosed;
+      $market->availableForDelivery=$request->marketAvailableForDelivery;
+      $market->deliveryRange=$request->marketDeliveryRange;
+      $market->distance=$request->marketDistance;
+
+      $market->save();
+
+
+
+
+      return redirect(route('showEditMarketID',$request->marketId))->with('updateMarketMsg','Information Updated Successfully');
+
+
+
+
   }
 }

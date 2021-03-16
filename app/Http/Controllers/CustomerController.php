@@ -18,15 +18,22 @@ class CustomerController extends Controller
  {
    $customer =new customer();
    $customer->name=$request->name;
-   $customer->email=$request->email;
+   $customer->password=$request->password;
+   $customer->phone=$request->phone;
+   $customer->device_token=$request->device_token;
+   $customer->api_token=$request->api_token;
+   $customer->location=$request->location;
+
    $customer->save();
 
    $randomNumber = rand(100000,999999);
    $phone=$request->phone;
-   $customer->phone=$phone;
+//   $customer->phone=$phone;
    $customer->randomNumber=$randomNumber;
    event(new confirmationMSGEvent($randomNumber,$phone));
 
     return response()->json($customer);
+
+
  }
 }

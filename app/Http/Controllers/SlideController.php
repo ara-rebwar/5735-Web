@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\market;
+use App\Models\product;
 use Illuminate\Http\Request;
 use App\Models\slide;
 use App\Models\media;
@@ -39,6 +41,7 @@ class SlideController extends Controller
         $ext=$file->getClientOriginalExtension();
         $fileName=time().'.'.$ext;
         $file->move('images/slides_image/',$fileName);
+        $fileName='http://phplaravel-559223-1799886.cloudwaysapps.com/images/slides_image/'.$fileName;
         $media->url=$fileName;
         $media->save();
         $data=DB::select('select id from media where name= ?  and  url = ? ',[$request->slideImageName,$fileName]);
@@ -66,5 +69,19 @@ class SlideController extends Controller
         $data=DB::select('select products.id,products.name,products.market from products where products.market = ? ',[$id]);
 
         return json_encode($data);
+    }
+
+
+    public function showSlideList(){
+        $slideList=DB::select('select slides.id as slideId,products.name as slideProduct, markets.name as slideMarket ,text ,slides.order from slides inner join products on products.id=slides.product inner join markets on markets.id=slides.market inner join media on media.id = slides.media ');
+        return view('slideList',compact('slideList'));
+    }
+
+    public function showEditSlideID($id){
+        $data['market']=market::all();
+//        $data['product']=product::all();
+        $data['slide']=DB::select('select *,media.name as imageName,slides.market as slideMarket from slides inner join markets on markets.id =slides.market inner join media on slides.media=media.id and slides.id = ?  ',[$id]);
+
+        return view('editSlide',compact('data'));
     }
 }

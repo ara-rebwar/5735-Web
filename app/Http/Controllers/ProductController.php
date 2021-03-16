@@ -32,6 +32,7 @@ class ProductController extends Controller
       $ext=$file->getClientOriginalExtension();
       $fileName=time().'.'.$ext;
       $file->move('images/product_image/',$fileName);
+      $fileName='http://phplaravel-559223-1799886.cloudwaysapps.com/images/product_image/'.$fileName;
       $media->url=$fileName;
 
 
@@ -54,6 +55,57 @@ class ProductController extends Controller
     $product->save();
 
     return redirect(route('showProduct'))->with('successProductMsg','product inserted successfully');
+
+
+  }
+
+
+
+  public function showProductList(){
+      $productList=DB::select('select *,products.id as productId,products.name as productName from products,markets where market=markets.id');
+      return view('productList',compact('productList'));
+  }
+
+  public function showEditProduct($id){
+      $data['markets']=market::all();
+      $data['product']=DB::select('select *,products.id as productId,products.name as productName,media.name as imageName,media.id as imageId from products inner join media on products.image=media.id inner join  markets on markets.id=products.market  and products.id = ? ' ,[$id]);
+        return view('editProduct',compact('data'));
+  }
+
+  public function updateProductId(Request $request,$id){
+
+      $media=media::find($request->mediaId);
+      $media->name=$request->productImageName;
+      $media->thumb=$request->productThumb;
+      $media->icon=$request->productIcon;
+      $media->size=$request->productimageSize;
+
+      $file=$request->file('productURL');
+      $ext=$file->getClientOriginalExtension();
+      $fileName=time().'.'.$ext;
+      $file->move('images/product_image/',$fileName);
+      $fileName='http://phplaravel-559223-1799886.cloudwaysapps.com/images/product_image/'.$fileName;
+      $media->url=$fileName;
+
+      $media->save();
+
+
+
+    $product=product::find($id);
+    $product->name=$request->productName;
+    $product->price=$request->productPrice;
+    $product->discountPrice=$request->productDiscountPrice;
+    $product->description=$request->productDescription;
+    $product->ingredients=$request->productIngredients;
+    $product->packageItemsCount=$request->productPackageItemsCount;
+    $product->capacity=$request->productCapacity;
+    $product->unit=$request->productUnit;
+    $product->featured=$request->productFeatured;
+    $product->deliverable=$request->productDeliverable;
+    $product->market=$request->productMarket;
+    $product->save();
+
+    return redirect(route('showEditProductID',$id))->with('updateProductMsg','Information Updated Successfully');
 
 
   }
