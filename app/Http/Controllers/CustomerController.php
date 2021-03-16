@@ -36,4 +36,9 @@ class CustomerController extends Controller
 
 
  }
+
+ public function selectAll($id){
+      $customer=customer::find($id);
+      return response()->json($customer);
+ }
 }
