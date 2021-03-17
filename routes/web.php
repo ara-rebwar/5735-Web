@@ -26,8 +26,6 @@ Route::get('/marketList',[MarketController::class,'showMarketList'])->name('show
 Route::get('/EditMarket/{id}',[MarketController::class,'ShowEditMarket'])->name('showEditMarketID');
 Route::POST('/EditMarket/{id}',[MarketController::class,'updateMarket'])->name('updateMarketID');
 
-
-
 //product Routes
 Route::get('/product',[ProductController::class,'show'])->name('showProduct');
 Route::post('/product',[ProductController::class,'insert'])->name('insertProduct');

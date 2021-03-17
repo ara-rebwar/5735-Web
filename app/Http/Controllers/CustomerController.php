@@ -14,23 +14,28 @@ class CustomerController extends Controller
     {
         //
     }
+
+
+    public function sendRandomCode(Request $request){
+      $phone=$request->phone;
+        $randomNumber = rand(100000,999999);
+        event(new confirmationMSGEvent($randomNumber,$phone));
+        return $randomNumber;
+    }
   public function insert(Request $request)
  {
    $customer =new customer();
    $customer->name=$request->name;
-   $customer->password=$request->password;
+   $customer->password="uuhiuhi";
    $customer->phone=$request->phone;
    $customer->device_token=$request->device_token;
    $customer->api_token=$request->api_token;
-   $customer->location=$request->location;
+   $customer->location="hbjhj";
 
    $customer->save();
 
-   $randomNumber = rand(100000,999999);
-   $phone=$request->phone;
-//   $customer->phone=$phone;
-   $customer->randomNumber=$randomNumber;
-   event(new confirmationMSGEvent($randomNumber,$phone));
+   
+
 
     return response()->json($customer);
 
