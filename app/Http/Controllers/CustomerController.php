@@ -34,10 +34,10 @@ class CustomerController extends Controller
 
    $customer->save();
 
-   
 
 
-    return response()->json($customer);
+
+    return $customer->id;
 
 
  }
