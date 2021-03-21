@@ -27,7 +27,17 @@ class SlideController extends Controller
     }
 
     public function insert(Request $request){
-
+        $request->validate([
+            'slideDescription'=>'required|string',
+            'slideMarket'=>'required',
+            'slideProduct'=>'required',
+            'slideOrderNumber'=>'required|numeric',
+            'slideImageName'=>'required|string',
+            'slideImageThumb'=>'required|string',
+            'slideImageIcon'=>'required|string',
+            'slideImageSize'=>'required|numeric',
+            'slideImage'=>'required',
+        ]);
         $media = new media();
         $slide= new slide();
 
@@ -73,7 +83,7 @@ class SlideController extends Controller
 
 
     public function showSlideList(){
-        $slideList=DB::select('select slides.id as slideId,products.name as slideProduct, markets.name as slideMarket ,text ,slides.order from slides inner join products on products.id=slides.product inner join markets on markets.id=slides.market inner join media on media.id = slides.media ');
+        $slideList=DB::select('select slides.id as slideId,products.name as slideProduct, markets.name as slideMarket ,text ,slides.order,media.id as mediaId from slides inner join products on products.id=slides.product inner join markets on markets.id=slides.market inner join media on media.id = slides.media ');
         return view('slideList',compact('slideList'));
     }
 
@@ -83,5 +93,27 @@ class SlideController extends Controller
         $data['slide']=DB::select('select *,media.name as imageName,slides.market as slideMarket from slides inner join markets on markets.id =slides.market inner join media on slides.media=media.id and slides.id = ?  ',[$id]);
 
         return view('editSlide',compact('data'));
+    }
+    protected function delete(Request $request)
+    {
+        $id=$request->slideId;
+        $mediaId=$request->mediaId;
+
+
+        $media=media::destroy($mediaId);
+        $slide=slide::destroy($id);
+        return redirect(route('showSlideList'))->with('deleteSlideMsg','Slide Deleted Successfully');
+
+    }
+
+
+    public function selectAll(){
+        $slides=slide::all();
+        return response()->json($slides);
+    }
+
+    public function selectSlideById($id){
+        $slide=slide::find($id);
+        return response()->json($slide);
     }
 }

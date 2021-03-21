@@ -54,6 +54,7 @@
                                         ?>
 
                                     </select>
+                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideMarket'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Select Product</label>
@@ -61,18 +62,22 @@
                                         <option disabled selected >None</option>
 
                                     </select>
+                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideProduct'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group">
                                     <label> Description</label>
                                     <input type="text"  class="form-control" placeholder="Write Description" name="slideDescription">
+                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideDescription'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group">
                                     <label> Image Name</label>
                                     <input type="text"  class="form-control" placeholder="Enter Image Name" name="slideImageName">
+                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideImageName'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group">
                                     <label>Image Thumb</label>
                                     <input type="text"  class="form-control" placeholder="Enter Image Thumb" name="slideImageThumb">
+                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideImageThumb'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group">
                                     <label> Image </label>
@@ -80,18 +85,22 @@
                                         <input type="file" class="custom-file-input" id="exampleInputFile" name="slideImage">
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                     </div>
+                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideImage'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group">
                                     <label> Image Size</label>
                                     <input type="text"  class="form-control" placeholder="Enter Image Size" name="slideImageSize">
+                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideImageSize'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group">
                                     <label> Icon</label>
                                     <input type="text"  class="form-control" placeholder="Enter Image Icon" name="slideImageIcon">
+                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideImageIcon'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group">
                                     <label> Order Number</label>
                                     <input type="text"  class="form-control" placeholder="Enter Order Number" name="slideOrderNumber">
+                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideOrderNumber'){{$message}}@enderror</label>
                                 </div>
 
 

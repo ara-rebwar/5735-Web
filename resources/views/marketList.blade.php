@@ -17,9 +17,9 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    @if(session('marketSuccessMsg'))
+    @if(session('deleteMarketMsg'))
         <div class="alert alert-success" style="margin:1% 1.4%;">
-            {{session('marketSuccessMsg')}}
+            {{session('deleteMarketMsg')}}
         </div>
     @endif
     <!-- Main content -->
@@ -61,7 +61,14 @@
                                             <td>{{$marketList[$a]->phone}}</td>
 
                                             <td> <a  href="{{route('showEditMarketID',$marketList[$a]->id)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
-                                            <td><span class="btn btn-danger"><i class="fa fa-trash"></i></span></td>
+                                            <td>
+                                                <form action="{{route('deleteMarket')}}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="marketId" value="{{$marketList[$a]->id}}}}">
+                                                    <input type="hidden" name="mediaId" value="{{$marketList[$a]->mediaId}}}}">
+                                                    <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
+                                                </form>
+                                            </td>
                                         </tr>
                                         <?php  $a++; }
                                         ?>

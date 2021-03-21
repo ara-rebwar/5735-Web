@@ -16,6 +16,30 @@ class MarketController extends Controller
 //      return view('market');
 //  }
   public function insert(Request $request){
+
+      $request->validate([
+         'marketName' =>'required|string',
+         'marketRate' =>'required|numeric',
+         'marketAddress' =>'required|string',
+         'marketDescription' =>'required|string',
+         'marketPhone' =>'required|numeric|min:11|max:11',
+         'marketMobile' =>'required|numeric|min:11|max:11',
+         'marketInformation' =>'required|string',
+         'marketDeliveryFee' =>'required|numeric',
+         'marketAdminCommission' =>'required|numeric',
+         'marketDefaultTax' =>'required|numeric',
+         'marketLatitude' =>'required|numeric',
+         'marketLongitude' =>'required|numeric',
+         'marketClosed' =>'required',
+         'marketAvailableForDelivery' =>'required',
+         'marketDeliveryRange' =>'required|numeric',
+         'marketImageName' =>'required|string',
+         'marketDistance' =>'required|numeric',
+         'marketURL' =>'required',
+         'marketThumb' =>'required|string',
+         'marketimageSize' =>'required|numeric',
+         'marketIcon' =>'required'
+      ]);
     $market=new market();
     $media =new media();
     $media->name=$request->marketImageName;
@@ -72,18 +96,43 @@ class MarketController extends Controller
   }
 
   public function showMarketList(){
-      $marketList=DB::select('select * from markets ');
+      $marketList=DB::select('select *,media.id as mediaId from markets inner join media on media.id=markets.image');
       return view('marketList',compact('marketList'));
   }
 
   public function ShowEditMarket($id){
-      $marketInfo=DB::select('select *,markets.name as marketName,markets.id as marketId,media.id as imageId from markets,media where image=media.id and markets.id = ? ',[$id]);
+      $marketInfo=DB::select('select *,markets.name as marketName,markets.id as marketId,media.id as imageId from markets inner join media on media.id = markets.image and markets.id= ?  ',[$id]);
       return view('editMarket',compact('marketInfo'));
   }
 
 
 
   public function updateMarket(Request $request,$id){
+
+      $request->validate([
+          'marketName' =>'required|string',
+          'marketRate' =>'required|numeric',
+          'marketAddress' =>'required|string',
+          'marketDescription' =>'required|string',
+          'marketPhone' =>'required|numeric|min:11|max:11',
+          'marketMobile' =>'required|numeric|min:11|max:11',
+          'marketInformation' =>'required|string',
+          'marketDeliveryFee' =>'required|numeric',
+          'marketAdminCommission' =>'required|numeric',
+          'marketDefaultTax' =>'required|numeric',
+          'marketLatitude' =>'required|numeric',
+          'marketLongitude' =>'required|numeric',
+          'marketClosed' =>'required',
+          'marketAvailableForDelivery' =>'required',
+          'marketDeliveryRange' =>'required|numeric',
+          'marketImageName' =>'required|string',
+          'marketDistance' =>'required|numeric',
+          'marketURL' =>'required',
+          'marketThumb' =>'required|string',
+          'marketimageSize' =>'required|numeric',
+          'marketIcon' =>'required'
+      ]);
+
       $media =media::find($request->mediaId);
 
 
@@ -127,6 +176,39 @@ class MarketController extends Controller
 
 
       return redirect(route('showEditMarketID',$request->marketId))->with('updateMarketMsg','Information Updated Successfully');
+
+
+
+
+  }
+
+  public function delete(Request $request){
+//      $marketId=$request->marketId;
+//      $mediaId=$request->mediaId;
+//
+////      $product=DB::delete('delete from products where products.market = ? ',[$marketId]);
+//      $slideImage=DB::select('select media from slides where slides.market = ? ',[$marketId]);
+//      $a=0;
+//      while($a<count($slideImage)){
+//
+//          DB::delete('delete from media where media.id =  ? ',[$slideImage[$a]->media]);
+//      }
+//
+//
+//
+////
+////    $productImage=DB::select('select image from products where products.market = ? ',[$marketId]);
+////    DB::delete('delete from products where products.market = ? ',[$marketId]);
+////    $media=DB::delete('delete from media where media.id = ? ',[$productImage]);
+////
+////
+////
+////    DB::delete('delete from markets where id = ? ',[$marketId]);
+////    DB::delete('delete from media where id = ? ',[$marketMediaId]);
+//
+//    return redirect(route('showMarketList'))->with('deleteMarketMsg','Market Deleted Successfully');
+
+
 
 
 

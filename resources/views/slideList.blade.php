@@ -17,9 +17,9 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    @if(session('marketSuccessMsg'))
+    @if(session('deleteSlideMsg'))
         <div class="alert alert-success" style="margin:1% 1.4%;">
-            {{session('marketSuccessMsg')}}
+            {{session('deleteSlideMsg')}}
         </div>
     @endif
     <!-- Main content -->
@@ -62,7 +62,14 @@
 
 
                                     <td> <a  href="{{route('showEditSlideID',$slideList[$a]->slideId)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
-                                    <td><span class="btn btn-danger"><i class="fa fa-trash"></i></span></td>
+                                    <td>
+                                        <form action="{{route('deleteSlide')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="slideId" value="{{$slideList[$a]->slideId}}">
+                                            <input type="hidden" name="mediaId" value="{{$slideList[$a]->mediaId}}">
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 <?php  $a++; }
                                 ?>

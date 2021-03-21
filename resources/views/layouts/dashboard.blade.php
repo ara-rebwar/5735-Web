@@ -160,6 +160,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-store"></i>
+                            <p>
+                                Settings
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('showSlides')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Profile</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item nav-link" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    <i class="far fa-circle nav-icon"></i>
+
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
+
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

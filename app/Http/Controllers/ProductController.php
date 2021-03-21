@@ -20,6 +20,24 @@ class ProductController extends Controller
 //        return view('products',compact('market'));
 //    }
   public function insert(Request $request){
+      $request->validate([
+          'productName'=>'required|string',
+          'productPrice'=>'required|numeric',
+          'productDiscountPrice'=>'required|numeric',
+          'productDescription'=>'required|string',
+          'productIngredients'=>'required|string',
+          'productCapacity'=>'required|numeric',
+          'productUnit'=>'required|numeric',
+          'productPackageItemsCount'=>'required|numeric',
+          'productFeatured'=>'required',
+          'productDeliverable'=>'required',
+          'productMarket'=>'required',
+          'productImageName'=>'required|string',
+          'productThumb'=>'required|string',
+          'productIcon'=>'required|string',
+          'productimageSize'=>'required|string',
+          'productURL'=>'required'
+      ]);
     $product = new product();
     $media =new media();
 
@@ -62,7 +80,7 @@ class ProductController extends Controller
 
 
   public function showProductList(){
-      $productList=DB::select('select *,products.id as productId,products.name as productName from products,markets where market=markets.id');
+      $productList=DB::select('select *,products.id as productId,products.name as productName,media.id as mediaId from products inner join markets on markets.id=market inner join media on media.id = products.image');
       return view('productList',compact('productList'));
   }
 
@@ -73,6 +91,25 @@ class ProductController extends Controller
   }
 
   public function updateProductId(Request $request,$id){
+
+      $request->validate([
+          'productName'=>'required|string',
+          'productPrice'=>'required|numeric',
+          'productDiscountPrice'=>'required|numeric',
+          'productDescription'=>'required|string',
+          'productIngredients'=>'required|string',
+          'productCapacity'=>'required|numeric',
+          'productUnit'=>'required|numeric',
+          'productPackageItemsCount'=>'required|numeric',
+          'productFeatured'=>'required',
+          'productDeliverable'=>'required',
+          'productMarket'=>'required',
+          'productImageName'=>'required|string',
+          'productThumb'=>'required|string',
+          'productIcon'=>'required|string',
+          'productimageSize'=>'required|string',
+          'productURL'=>'required'
+      ]);
 
       $media=media::find($request->mediaId);
       $media->name=$request->productImageName;
@@ -108,5 +145,13 @@ class ProductController extends Controller
     return redirect(route('showEditProductID',$id))->with('updateProductMsg','Information Updated Successfully');
 
 
+  }
+
+  public function delete(Request $request){
+      $pid=$request->productId;
+      $mediaId=$request->mediaId;
+      $product=product::destroy($pid);
+      $media=media::destroy($mediaId);
+      return redirect(route('showProductList'))->with('deleteProductMsg','Product Deleted Successfully');
   }
 }

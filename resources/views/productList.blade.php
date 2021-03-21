@@ -17,9 +17,9 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    @if(session('marketSuccessMsg'))
+    @if(session('deleteProductMsg'))
         <div class="alert alert-success" style="margin:1% 1.4%;">
-            {{session('marketSuccessMsg')}}
+            {{session('deleteProductMsg')}}
         </div>
     @endif
     <!-- Main content -->
@@ -63,7 +63,14 @@
                                     <td>{{$productList[$a]->ingredients}}</td>
 
                                     <td> <a  href="{{route('showEditProductID',$productList[$a]->productId)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
-                                    <td><span class="btn btn-danger"><i class="fa fa-trash"></i></span></td>
+                                    <td>
+                                        <form action="{{route('deleteProduct')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="productId" value="{{$productList[$a]->productId}}">
+                                            <input type="hidden" name="mediaId" value="{{$productList[$a]->mediaId}}">
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 <?php  $a++; }
                                 ?>
