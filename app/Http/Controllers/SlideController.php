@@ -111,17 +111,18 @@ class SlideController extends Controller
 //        $slides=DB::select('select *,products.name as productName,markets.name as marketName,media.name as imageName from slides inner join products on products.id=slides.product inner join markets on markets.id=slides.market inner join media on media.id=slides.media');
 //        return response()->json($slides);
         $i=0;
-        $data['slide']=DB::select('select * from slides');
-        while($i<count($data['slide'])){
+        $data=slide::all();
+        while($i<count($data)){
 
-            $data['slide'][$i]->media=DB::select('select * from media where id = ? ',[$data['slide'][$i]->media]);
-            $data['slide'][$i]->product=DB::select('select * from products where id = ? ',[$data['slide'][$i]->product]);
-            $data['slide'][$i]->market=DB::select('select * from markets where id = ? ',[$data['slide'][$i]->market]);
+//            $media=DB::select('select * from media where id = ? ',[$data[$i]->media]);
+            $data[$i]->media=media::find($data[$i]->media);
+            $data[$i]->product=product::find($data[$i]->product);
+            $data[$i]->market=market::find($data[$i]->market);
 
             $i++;
         }
 
-        return $data;
+        return response()->json($data);
 
     }
 
