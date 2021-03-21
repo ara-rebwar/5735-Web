@@ -54,17 +54,17 @@
                                         $a=0;
                                         while ($a<count($marketList)){  ?>
                                         <tr>
-                                            <td>{{$marketList[$a]->id}}</td>
+                                            <td>{{$marketList[$a]->marketId}}</td>
                                             <td>{{$marketList[$a]->name}}</td>
                                             <td>{{$marketList[$a]->address}}</td>
                                             <td>{{$marketList[$a]->rate}}</td>
                                             <td>{{$marketList[$a]->phone}}</td>
 
-                                            <td> <a  href="{{route('showEditMarketID',$marketList[$a]->id)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
+                                            <td> <a  href="{{route('showEditMarketID',$marketList[$a]->marketId)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
                                             <td>
                                                 <form action="{{route('deleteMarket')}}" method="post">
                                                     @csrf
-                                                    <input type="hidden" name="marketId" value="{{$marketList[$a]->id}}}}">
+                                                    <input type="hidden" name="marketId" value="{{$marketList[$a]->marketId}}}}">
                                                     <input type="hidden" name="mediaId" value="{{$marketList[$a]->mediaId}}}}">
                                                     <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
                                                 </form>

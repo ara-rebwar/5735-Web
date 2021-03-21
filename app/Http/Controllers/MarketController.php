@@ -22,8 +22,8 @@ class MarketController extends Controller
          'marketRate' =>'required|numeric',
          'marketAddress' =>'required|string',
          'marketDescription' =>'required|string',
-         'marketPhone' =>'required|numeric|min:11|max:11',
-         'marketMobile' =>'required|numeric|min:11|max:11',
+         'marketPhone' =>'required|numeric',
+         'marketMobile' =>'required|numeric',
          'marketInformation' =>'required|string',
          'marketDeliveryFee' =>'required|numeric',
          'marketAdminCommission' =>'required|numeric',
@@ -96,7 +96,7 @@ class MarketController extends Controller
   }
 
   public function showMarketList(){
-      $marketList=DB::select('select *,media.id as mediaId from markets inner join media on media.id=markets.image');
+      $marketList=DB::select('select *,media.id as mediaId,markets.id as marketId from markets inner join media on media.id=markets.image');
       return view('marketList',compact('marketList'));
   }
 
@@ -183,8 +183,8 @@ class MarketController extends Controller
   }
 
   public function delete(Request $request){
-//      $marketId=$request->marketId;
-//      $mediaId=$request->mediaId;
+      $marketId=$request->marketId;
+      $mediaId=$request->mediaId;
 //
 ////      $product=DB::delete('delete from products where products.market = ? ',[$marketId]);
 //      $slideImage=DB::select('select media from slides where slides.market = ? ',[$marketId]);
@@ -206,12 +206,39 @@ class MarketController extends Controller
 ////    DB::delete('delete from markets where id = ? ',[$marketId]);
 ////    DB::delete('delete from media where id = ? ',[$marketMediaId]);
 //
-//    return redirect(route('showMarketList'))->with('deleteMarketMsg','Market Deleted Successfully');
 
 
 
 
+        $slideMediaId=DB::select('select media from slides where market = ? ',[$marketId]);
+        $s=0;
+        DB::delete('delete from slides where market = ? ',[$marketId]);
+        while($s<count($slideMediaId)){
+
+            DB::delete('delete from media where id = ? ',[$slideMediaId[$s]->media]);
+            $s++;
+        }
+
+        $productMediaId=DB::select('select image from products where market = ? ',[$marketId]);
+
+        $p=0;
+        DB::delete('delete from products where market = ? ',[$marketId]);
+        while($p<count($productMediaId)){
+
+            DB::delete('delete from media where id  = ? ',[$productMediaId[$p]->image]);
+            $p++;
+        }
 
 
+        $marketMediaId=DB::select('select image from markets where id = ? ',[$marketId]);
+        $m=0;
+        DB::delete('delete from markets where id = ? ',[$marketId]);
+        while($m<count($marketMediaId)){
+            DB::delete('delete from media where id = ? ',[$marketMediaId[$m]->image]);
+            $m++;
+        }
+      //market
+      //media
+          return redirect(route('showMarketList'))->with('deleteMarketMsg','Market Deleted Successfully');
   }
 }

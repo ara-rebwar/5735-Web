@@ -108,7 +108,7 @@ class SlideController extends Controller
 
 
     public function selectAll(){
-        $slides=slide::all();
+        $slides=DB::select('select *,products.name as productName,markets.name as marketName,media.name as imageName from slides inner join products on products.id=slides.product inner join markets on markets.id=slides.market inner join media on media.id=slides.media');
         return response()->json($slides);
     }
 
