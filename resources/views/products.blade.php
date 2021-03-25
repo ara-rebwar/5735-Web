@@ -104,14 +104,14 @@
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productDeliverable'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Admin Commission</label>
-                                        <select class="form-control" name="productMarket">
+                                        <label for="exampleInputEmail1">Market</label>
+                                        <select class="form-control" name="productMarket" id="productMarket">
                                             <option disabled selected>Select Market</option>
                                             <?php
                                             $a=0;
 
-                                            while ($a < count($market)) {  ?>
-                                            <option value="<?php echo $market[$a]->id; ?>"><?php echo $market[$a]->name; ?></option>
+                                            while ($a < count($data['market'])) {  ?>
+                                            <option value="<?php echo $data['market'][$a]->id; ?>"><?php echo $data['market'][$a]->name; ?></option>
                                             <?php $a++; }
                                             ?>
 
@@ -173,9 +173,25 @@
 {{--                                </div>--}}
                                 <div class="row">
 
-                                    <div class="form-group" style="width:100%;margin:0% 1.3%;">
+                                    <div class="form-group" style="width:47%;margin:0% 1.3%;">
                                         <label for="exampleInputEmail1">Image Size</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Size" name="productimageSize">
+                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productimageSize'){{$message}}@enderror</label>
+                                    </div>
+                                    <div class="form-group" style="width:47%;margin:0% 1.3%;">
+                                        <label for="exampleInputEmail1">Select Category</label>
+                                        <select name="category" id="category" class="form-control">
+                                            <option disabled selected>Select Category</option>
+{{--                                            <?php--}}
+{{--                                            $a=0;--}}
+
+{{--                                            while ($a < count($data['type'])) {  ?>--}}
+{{--                                            <option value="<?php echo $data['type'][$a]->id; ?>"><?php echo $data['type'][$a]->types; ?></option>--}}
+{{--                                            <?php $a++; }--}}
+{{--                                            ?>--}}
+
+
+                                        </select>
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productimageSize'){{$message}}@enderror</label>
                                     </div>
                                 </div>
@@ -233,5 +249,38 @@
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
+
+    <script>
+        $(document).ready(function(e){
+            $('#productMarket').on('change',function (e){
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var id=$("#productMarket").val();
+                $.ajax({
+                    url:"/product/{id}",
+                    type:"GET",
+                    data:{data:id},
+                    success:function(data){
+                        var data = JSON.parse(data);
+                        if (data != "") {
+                            $('#category').empty();
+                            $('#category').append("<option disabled selected > None</option>");
+                            for (var a = 0; a < data.length; a++) {
+                                $('#category').append("<option value=" + data[a].mcId + ">" + data[a].category_name + "</option>");
+                            }
+                        }else{
+                            $('#category').empty();
+                            $('#category').append("<option disabled selected > None</option>");
+                        }
+                    }
+                });
+
+            });
+        });
+    </script>
 
 @endsection

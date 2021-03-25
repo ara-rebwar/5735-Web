@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\market;
@@ -10,9 +11,11 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
   public function show(){
-    $market=market::all();
+    $data['market']=market::all();
+    $data['type']=Type::all();
 
-    return view('products',compact('market'));
+
+    return view('products',compact('data'));
   }
 //    public function show1(){
 //        $market=market::all();
@@ -36,7 +39,8 @@ class ProductController extends Controller
           'productThumb'=>'required|string',
           'productIcon'=>'required|string',
           'productimageSize'=>'required|string',
-          'productURL'=>'required'
+          'productURL'=>'required',
+          'category'=>'required'
       ]);
     $product = new product();
     $media =new media();
@@ -69,7 +73,7 @@ class ProductController extends Controller
     $product->featured=(int)$request->productFeatured;
     $product->Deliverable=(int)$request->productDeliverable;
     $product->market=(int)$request->productMarket;
-
+    $product->category=(int)$request->category;
     $product->save();
 
     return redirect(route('showProduct'))->with('successProductMsg','product inserted successfully');
@@ -153,5 +157,12 @@ class ProductController extends Controller
       $product=product::destroy($pid);
       $media=media::destroy($mediaId);
       return redirect(route('showProductList'))->with('deleteProductMsg','Product Deleted Successfully');
+  }
+
+
+  public function showMarketCategory($id){
+      $id=$_GET['data'];
+      $cats=DB::select('select *,m_c_s.id as mcId from m_c_s inner join categories on categories.id=m_c_s.cid and mid= ? ',[$id]);
+      return json_encode($cats);
   }
 }

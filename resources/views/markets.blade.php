@@ -176,6 +176,45 @@
 
 
 
+                                <div class="row justify-content-start  h-100">
+                                    <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                        <div class="form-group">
+                                            <select class="mul-select form-control" multiple="true" style="width: 100%" name="category[]">
+                                              <?php
+                                              $a=0;
+                                              while ($a<count($data['category'])){?>
+
+
+                                                  <option value="{{$data['category'][$a]->id}}">{{$data['category'][$a]->category_name}}</option>
+
+
+
+                                              <?php $a++;}
+
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group " style="width: 50%;">
+                                        <select name="type" class="form-control" >
+                                            <option disabled selected>Select Type</option>
+                                            <?php
+                                            $a=0;
+                                            while ($a<count($data['type'])){?>
+
+
+                                            <option value="{{$data['type'][$a]->id}}">{{$data['type'][$a]->types}}</option>
+
+                                            <?php $a++;}
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+
+
 
                             {{--                            <div class="form-group">--}}
 {{--                                <label for="exampleInputPassword1">Password</label>--}}
@@ -213,5 +252,6 @@
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
+
 
 @endsection

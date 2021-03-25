@@ -6,15 +6,18 @@ use Illuminate\Http\Request;
 use App\Models\market;
 use App\Models\media;
 use Illuminate\Support\Facades\DB;
+use App\Models\MC;
+use App\Models\Category;
+use App\Models\Type;
 class MarketController extends Controller
 {
+
   public function show(){
-    return view('markets');
+      $data['category']=Category::all();
+      $data['type']=Type::all();
+    return view('markets',compact('data'));
   }
-//  public function show1(){
-//
-//      return view('market');
-//  }
+
   public function insert(Request $request){
 
       $request->validate([
@@ -38,10 +41,19 @@ class MarketController extends Controller
          'marketURL' =>'required',
          'marketThumb' =>'required|string',
          'marketimageSize' =>'required|numeric',
-         'marketIcon' =>'required'
+         'marketIcon' =>'required',
+          'category'=>'required'
       ]);
     $market=new market();
     $media =new media();
+
+    $mc=new MC();
+    $i=0;
+    $mcId=count($mc::all());
+    $cats=$request->category;
+
+
+
     $media->name=$request->marketImageName;
     $media->url=$request->marketURL;
     $media->thumb=$request->marketThumb;
@@ -75,7 +87,20 @@ class MarketController extends Controller
     $market->availableForDelivery=(int) $request->marketAvailableForDelivery;
     $market->deliveryRange=$request->marketDeliveryRange;
     $market->distance=$request->marketDistance;
+    $market->type=$request->type;
+
     $market->save();
+
+      while($i<count($cats)){
+          $mc=new MC();
+          $mcId++;
+          $mc->id=$mcId;
+          $mc->mid=$market->id;
+          $mc->cid=$cats[$i];
+          $mc->save();
+          $i++;
+
+    }
     return redirect(route('showMarket'))->with('marketSuccessMsg','information inserted');
   }
   public function selectAll(){
