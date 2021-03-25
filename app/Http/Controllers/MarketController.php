@@ -266,4 +266,20 @@ class MarketController extends Controller
       //media
           return redirect(route('showMarketList'))->with('deleteMarketMsg','Market Deleted Successfully');
   }
+
+
+
+  public function updateClosed(Request $request){
+      $id=$request->id;
+      $closed=$request->closed;
+
+      $market=market::find($id);
+      if ($closed){
+          $market->closed=0;
+      }else{
+          $market->closed=1;
+      }
+      $market->save();
+      return "updated";
+  }
 }

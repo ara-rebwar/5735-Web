@@ -28,3 +28,4 @@ Route::get('/markets/{id}',[MarketController::class,'fetchAllData']);
 Route::get('/Customer/{id}',[CustomerController::class,'selectAll']);
 Route::get('/slide',[SlideController::class,'selectAll']);
 Route::get('/slide/{id}',[SlideController::class,'selectSlideById']);
+Route::post('/opened',[MarketController::class,'updateClosed']);
