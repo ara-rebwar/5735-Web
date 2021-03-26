@@ -34,4 +34,6 @@ Route::get('/slide/{id}',[SlideController::class,'selectSlideById']);
 Route::post('/opened',[MarketController::class,'updateClosed']);
 Route::post('/user',[AccountController::class,'authenticate']);
 Route::post('/type',[TypeController::class,'selectTypeId']);
+Route::post('/types',[TypeController::class,'selectAllApi']);
 Route::post('/category',[CategoryController::class,'selectCategoryId']);
+Route::post('/categories',[CategoryController::class,'selectAllApi']);

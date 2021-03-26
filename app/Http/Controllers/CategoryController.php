@@ -54,4 +54,8 @@ class CategoryController extends Controller
             return  -1;
         }
     }
+
+    public function selectAllApi(){
+        return Category::all();
+    }
 }
