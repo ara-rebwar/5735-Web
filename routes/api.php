@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MarketController;
 use App\Http\Controllers\SlideController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +32,6 @@ Route::get('/Customer/{id}',[CustomerController::class,'selectAll']);
 Route::get('/slide',[SlideController::class,'selectAll']);
 Route::get('/slide/{id}',[SlideController::class,'selectSlideById']);
 Route::post('/opened',[MarketController::class,'updateClosed']);
+Route::post('/user',[AccountController::class,'authenticate']);
+Route::post('/type',[TypeController::class,'selectTypeId']);
+Route::post('/category',[CategoryController::class,'selectCategoryId']);

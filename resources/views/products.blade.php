@@ -270,7 +270,7 @@
                             $('#category').empty();
                             $('#category').append("<option disabled selected > None</option>");
                             for (var a = 0; a < data.length; a++) {
-                                $('#category').append("<option value=" + data[a].mcId + ">" + data[a].category_name + "</option>");
+                                $('#category').append("<option value=" + data[a].cid + ">" + data[a].category_name + "</option>");
                             }
                         }else{
                             $('#category').empty();

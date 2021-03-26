@@ -47,5 +47,15 @@ class AccountController extends Controller
         $account->save();
         return redirect(route('showEditAccount',$request->accountId))->with('updateAccountMsg','Account Updated Successfully');
     }
+    public function authenticate(Request $request){
+        $username=$request->username;
+        $password=$request->password;
 
+        $data=DB::select('select * from accounts where username = ?  and password = ? ',[$username,$password]);
+        if ($data){
+            return $data[0]->market;
+        }else{
+            return -1;
+        }
+    }
 }

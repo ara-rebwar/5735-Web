@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
+
 class CategoryController extends Controller
 {
     public function index(){
@@ -41,5 +43,15 @@ class CategoryController extends Controller
     public function delete(Request $request){
        Category::destroy($request->categoryId);
         return redirect(route('showCategoryList'))->with('deleteCategoryMsg','Category Deleted Successfully');
+    }
+
+    public function selectCategoryId(Request $request){
+        $id=$request->id;
+        $data=DB::select('select category_name from categories where id = ? ',[$id]);
+        if ($data){
+            return $data[0]->category_name;
+        }else{
+            return  -1;
+        }
     }
 }
