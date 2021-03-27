@@ -52,8 +52,12 @@ class AccountController extends Controller
         $password=$request->password;
 
         $data=DB::select('select * from accounts where username = ?  and password = ? ',[$username,$password]);
+
         if ($data){
-            return $data[0]->market;
+
+            $info['id']=$data[0]->id;
+            $info['market']=$data[0]->market;
+            return $info;
         }else{
             return -1;
         }
