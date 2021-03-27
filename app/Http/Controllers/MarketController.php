@@ -104,7 +104,7 @@ class MarketController extends Controller
     return redirect(route('showMarket'))->with('marketSuccessMsg','information inserted');
   }
   public function selectAll(){
-    $data=DB::select("select markets.id,markets.name,image,rate,address,description,phone,mobile,information,deliveryFee,adminCommission,defaultTax,latitude,longitude,closed,availableForDelivery,deliveryRange,distance from markets inner join media on markets.image=media.id");
+    $data=DB::select("select markets.id,markets.name,image,rate,address,description,phone,mobile,information,deliveryFee,adminCommission,defaultTax,latitude,longitude,closed,availableForDelivery,deliveryRange,distance,type from markets inner join media on markets.image=media.id");
     $media=DB::select("select media.id, media.url,media.thumb,media.icon,media.size from markets inner join media on markets.id = media.id");
     for ($a=0;$a<count($data);$a++){
         $data[$a]->image=$media[$a];
@@ -112,7 +112,7 @@ class MarketController extends Controller
     return response()->json($data);
   }
   public function fetchAllData($id){
-    $data=DB::select("select products.id,products.name,price,discountPrice,image,products.description,ingredients,capacity,unit,packageItemsCount,featured,deliverable,market,products.created_at,products.updated_at from products inner join media on media.id=products.image and products.market= ? ",[$id]);
+    $data=DB::select("select products.id,products.name,price,discountPrice,image,products.description,ingredients,capacity,unit,packageItemsCount,featured,deliverable,market,products.created_at,products.updated_at,category from products inner join media on media.id=products.image and products.market= ? ",[$id]);
     $media=DB::select("select media.id,media.url,media.thumb,media.size,media.icon from products inner join media on media.id=products.image and products.market = ?  ",[$id]);
     for ($a=0;$a<count($data);$a++){
         $data[$a]->image=$media[$a];
