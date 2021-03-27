@@ -27,7 +27,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/index',[CustomerController::class,'insert']);
 Route::post('/Code',[CustomerController::class,'sendRandomCode']);
 Route::get('/markets',[MarketController::class,'selectAll']);
-Route::get('/markets/{id}',[MarketController::class,'fetchAllData']);
+Route::get('/markets/{id}',[MarketController::class,'selectmarketId']);
+Route::get('/productsfrommarket/{id}',[MarketController::class,'fetchAllData']);
 Route::get('/Customer/{id}',[CustomerController::class,'selectAll']);
 Route::get('/slide',[SlideController::class,'selectAll']);
 Route::get('/slide/{id}',[SlideController::class,'selectSlideById']);

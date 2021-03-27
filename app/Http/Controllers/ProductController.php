@@ -26,14 +26,8 @@ class ProductController extends Controller
       $request->validate([
           'productName'=>'required|string',
           'productPrice'=>'required|numeric',
-          'productDiscountPrice'=>'required|numeric',
           'productDescription'=>'required|string',
           'productIngredients'=>'required|string',
-          'productCapacity'=>'required|numeric',
-          'productUnit'=>'required|numeric',
-          'productPackageItemsCount'=>'required|numeric',
-          'productFeatured'=>'required',
-          'productDeliverable'=>'required',
           'productMarket'=>'required',
           'productImageName'=>'required|string',
           'productThumb'=>'required|string',
@@ -63,15 +57,15 @@ class ProductController extends Controller
 
     $product->name=$request->productName;
     $product->price=$request->productPrice;
-    $product->discountprice=$request->productDiscountPrice;
+    $product->discountprice=-1;
     $product->image=$mediaID[0]->id;
     $product->description=$request->productDescription;
     $product->ingredients=$request->productIngredients;
-    $product->capacity=$request->productCapacity;
-    $product->unit=$request->productUnit;
-    $product->packageItemsCount=$request->productPackageItemsCount;
-    $product->featured=(int)$request->productFeatured;
-    $product->Deliverable=(int)$request->productDeliverable;
+    $product->capacity="hi";
+    $product->unit="hi";
+    $product->packageItemsCount="hi";
+    $product->featured=0;
+    $product->Deliverable=0;
     $product->market=(int)$request->productMarket;
     $product->category=(int)$request->category;
     $product->save();
@@ -99,14 +93,8 @@ class ProductController extends Controller
       $request->validate([
           'productName'=>'required|string',
           'productPrice'=>'required|numeric',
-          'productDiscountPrice'=>'required|numeric',
           'productDescription'=>'required|string',
           'productIngredients'=>'required|string',
-          'productCapacity'=>'required|numeric',
-          'productUnit'=>'required|numeric',
-          'productPackageItemsCount'=>'required|numeric',
-          'productFeatured'=>'required',
-          'productDeliverable'=>'required',
           'productMarket'=>'required',
           'productImageName'=>'required|string',
           'productThumb'=>'required|string',
@@ -135,14 +123,14 @@ class ProductController extends Controller
     $product=product::find($id);
     $product->name=$request->productName;
     $product->price=$request->productPrice;
-    $product->discountPrice=$request->productDiscountPrice;
+    $product->discountPrice=-1;
     $product->description=$request->productDescription;
     $product->ingredients=$request->productIngredients;
-    $product->packageItemsCount=$request->productPackageItemsCount;
-    $product->capacity=$request->productCapacity;
-    $product->unit=$request->productUnit;
-    $product->featured=$request->productFeatured;
-    $product->deliverable=$request->productDeliverable;
+    $product->packageItemsCount="hi";
+    $product->capacity="hi";
+    $product->unit="hi";
+    $product->featured=0;
+    $product->deliverable=0;
     $product->market=$request->productMarket;
     $product->save();
 
