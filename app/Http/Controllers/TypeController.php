@@ -24,8 +24,8 @@ class TypeController extends Controller
         return Type::all();
     }
 
-    public function selectMarketID(Request $request){
-        $id=$request->id;
+    public function selectMarketID($id){
+        
 
         $data['market']=DB::select('select * from markets where type = ? ',[$id]);
         $a=0;

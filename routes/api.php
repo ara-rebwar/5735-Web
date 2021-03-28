@@ -38,4 +38,4 @@ Route::post('/type',[TypeController::class,'selectTypeId']);
 Route::post('/types',[TypeController::class,'selectAllApi']);
 Route::post('/category',[CategoryController::class,'selectCategoryId']);
 Route::post('/categories',[CategoryController::class,'selectAllApi']);
-Route::post('/market_type',[TypeController::class,'selectMarketID']);
+Route::get('/market_type/{id}',[TypeController::class,'selectMarketID']);
