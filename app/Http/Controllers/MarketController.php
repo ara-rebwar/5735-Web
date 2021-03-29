@@ -112,10 +112,18 @@ class MarketController extends Controller
     return response()->json($data);
   }
   public function fetchAllData($id){
-    $data=DB::select("select *,products.image as productImage from products where id = ? ",[$id]);
-    $data[0]->image=media::find($data[0]->image);
+//    $data=DB::select("select *,products.image as productImage from products where id = ? ",[$id]);
+//    $data[0]->image=media::find($data[0]->image);
+//
+//    return $data;
 
-    return $data;
+      $data=DB::select('select * from products where market = ? ',[$id]);
+      $a=0;
+      while($a<count($data)){
+          $data[$a]->media=media::find($data[$a]->image);
+      }
+      return $data;
+
   }
 
   public function showMarketList(){
