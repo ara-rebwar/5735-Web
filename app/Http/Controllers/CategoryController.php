@@ -72,12 +72,9 @@ class CategoryController extends Controller
             return  -1;
         }
     }
-
     public function selectAllApi(){
         return Category::all();
     }
-
-
     public function marketCategoryID($id){
         $data=DB::select('select * from m_c_s where mid = ?',[$id]);
 //        $data[0]->cid=Category::find($data[0]->cid);
@@ -92,7 +89,6 @@ class CategoryController extends Controller
             }
             $a++;
         }
-
         return $data;
     }
 }

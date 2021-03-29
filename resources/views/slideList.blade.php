@@ -26,16 +26,11 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Slide List</h3>
                         </div>
-
-
-
-                        <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
@@ -59,8 +54,6 @@
                                     <td>{{$slideList[$a]->slideMarket}}</td>
                                     <td>{{$slideList[$a]->text}}</td>
                                     <td>{{$slideList[$a]->order}}</td>
-
-
                                     <td> <a  href="{{route('showEditSlideID',$slideList[$a]->slideId)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
                                     <td>
                                         <form action="{{route('deleteSlide')}}" method="post">
@@ -71,17 +64,10 @@
                                         </form>
                                     </td>
                                 </tr>
-                                <?php  $a++; }
-                                ?>
-
+                                <?php  $a++; } ?>
                             </table>
                         </div>
-                        <!-- /.card-body -->
-
-
-
                     </div>
-                    <!-- /.card -->
                 </div>
 
 
