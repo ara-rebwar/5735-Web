@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use App\Models\media;
+use App\Models\MC;
 
 class CategoryController extends Controller
 {
@@ -78,6 +79,20 @@ class CategoryController extends Controller
 
 
     public function marketCategoryID($id){
+        $data=DB::select('select * from m_c_s where mid = ?',[$id]);
+//        $data[0]->cid=Category::find($data[0]->cid);
+        $a=0;
+        while($a<count($data)){
+            $data[$a]->cid=Category::find($data[$a]->cid);
+            if ($data[$a]->cid->image != null){
+                $imageID=$data[$a]->cid->image;
+                $data[$a]->cid->image=media::find($imageID);
+            }else{
+                $data[$a]->cid->image = null;
+            }
+            $a++;
+        }
 
+        return $data;
     }
 }
