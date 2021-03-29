@@ -6,6 +6,7 @@ use App\Http\Controllers\MarketController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TypeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,7 @@ use App\Http\Controllers\CategoryController;
 Route::get('/', function () {
     return view('auth.login');
 });
-//market Routes
+//--------------------------------------------Market Route-------------------------------------------------//
 Route::get('/market',[MarketController::class,'show'])->name('showMarket');
 Route::post('/market',[MarketController::class,'insert'])->name('insertMarket');
 Route::get('/marketList',[MarketController::class,'showMarketList'])->name('showMarketList');
@@ -29,7 +30,7 @@ Route::POST('/EditMarket/{id}',[MarketController::class,'updateMarket'])->name('
 Route::post('/marketList',[MarketController::class,'delete'])->name('deleteMarket');
 
 
-//product Routes
+//--------------------------------------------Product Route-------------------------------------------------//
 Route::get('/product',[ProductController::class,'show'])->name('showProduct');
 Route::post('/product',[ProductController::class,'insert'])->name('insertProduct');
 Route::get('/productList',[ProductController::class,'showProductList'])->name('showProductList');
@@ -42,7 +43,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Slide Routes
+//--------------------------------------------Slide Route-------------------------------------------------//
 Route::get('/slides',[App\Http\Controllers\SlideController::class, 'show'])->name('showSlides');
 Route::get('/slideList',[SlideController::class,'showSlideList'])->name('showSlideList');
 Route::get('/EditSlide/{id}',[SlideController::class,'showEditSlideID'])->name('showEditSlideID');
@@ -50,7 +51,7 @@ Route::post('/slideList',[SlideController::class,'delete'])->name('deleteSlide')
 
 
 
-//categories
+//--------------------------------------------Category Route-------------------------------------------------//
 Route::get('/categories',[CategoryController::class,'index'])->name('showCategory');
 Route::post('/categories',[CategoryController::class,'insert'])->name('insertCategory');
 Route::get('/categoryList',[CategoryController::class,'selectAll'])->name('showCategoryList');
@@ -72,7 +73,7 @@ Route::post('/slides',[App\Http\Controllers\SlideController::class, 'insert'])->
 
 
 
-
+//--------------------------------------------Account Route-------------------------------------------------//
 Route::get('/Accounts',[\App\Http\Controllers\AccountController::class,'index'])->name('showAccounts');
 Route::post('/Accounts',[\App\Http\Controllers\AccountController::class,'insert'])->name('insertAccount');
 Route::get('/AccountList',[\App\Http\Controllers\AccountController::class,'selectAll'])->name('showAccountList');
@@ -82,8 +83,14 @@ Route::post('/EditAccount',[\App\Http\Controllers\AccountController::class,'upda
 
 
 
+//--------------------------------------------Type Route-------------------------------------------------//
 
-
+Route::get('/type',[TypeController::class,'index'])->name('showType');
+Route::post('/type',[TypeController::class,'insertType'])->name('insertType');
+//Route::get('/TypeList',[\App\Http\Controllers\TypeController::class,'selectAll'])->name('showTypeList');
+//Route::post('/TypeList',[\App\Http\Controllers\TypeController::class,'delete'])->name('deleteType');
+//Route::get('/EditType/{id}',[\App\Http\Controllers\TypeController::class,'showEditType'])->name('showEditType');
+//Route::post('/EditType',[\App\Http\Controllers\TypeController::class,'updateType'])->name('updateType');
 
 
 

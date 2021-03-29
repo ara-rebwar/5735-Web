@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
+use App\Models\media;
 
 class CategoryController extends Controller
 {
@@ -13,11 +14,27 @@ class CategoryController extends Controller
     }
 
     public function insert(Request $request){
-        $request->validate([
-            'category'=>'required|string'
-        ]);
+
+//        $request->validate([
+//            'category'=>'required|string'
+//        ]);
+        $media = new media();
+        $media->name=$request->imageName;
+        $media->thumb=$request->thumb;
+        $media->icon=$request->icon;
+        $media->size=$request->size;
+
+        $file=$request->file('url');
+        $ext=$file->getClientOriginalExtension();
+        $fileName=time().'.'.$ext;
+        $file->move('images/types_image/',$fileName);
+        $fileName='http://phplaravel-559223-1799886.cloudwaysapps.com/images/market_image/'.$fileName;
+        $media->url=$fileName;
+        $media->save();
+
         $category=new Category();
         $category->category_name=$request->category;
+        $category->image=$media->id;
         $category->save();
         return redirect(route('showCategory'))->with('categorySuccessMsg','Category Inserted Successfully');
 
@@ -57,5 +74,10 @@ class CategoryController extends Controller
 
     public function selectAllApi(){
         return Category::all();
+    }
+
+
+    public function marketCategoryID($id){
+
     }
 }

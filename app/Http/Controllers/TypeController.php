@@ -10,6 +10,10 @@ use App\Models\Type;
 
 class TypeController extends Controller
 {
+
+    public function index(){
+        return view('types');
+    }
     public function selectTypeId(Request $request){
         $id=$request->id;
 
@@ -25,7 +29,7 @@ class TypeController extends Controller
     }
 
     public function selectMarketID($id){
-        
+
 
         $data['market']=DB::select('select * from markets where type = ? ',[$id]);
         $a=0;
@@ -36,5 +40,29 @@ class TypeController extends Controller
 
         return $data['market'];
 
+    }
+
+    public function insertType(Request $request){
+        $type =new Type();
+        $media=new media();
+        $media->name=$request->imageName;
+        $media->thumb=$request->thumb;
+        $media->icon=$request->icon;
+        $media->size=$request->size;
+
+        $file=$request->file('url');
+        $ext=$file->getClientOriginalExtension();
+        $fileName=time().'.'.$ext;
+        $file->move('images/types_image/',$fileName);
+        $fileName='http://phplaravel-559223-1799886.cloudwaysapps.com/images/market_image/'.$fileName;
+        $media->url=$fileName;
+
+        $media->save();
+
+        $type->types=$request->types;
+        $type->image=$media->id;
+        $type->save();
+
+        return redirect(route('showType'))->with('successTypeMsg','Type Inserted Successfully');
     }
 }

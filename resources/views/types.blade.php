@@ -26,23 +26,24 @@
     <div class="content">
         <div class="container-fluid">
 
-            @if(session('categorySuccessMsg'))
+            @if(session('successTypeMsg'))
                 <div class="alert alert-success">
-                    {{session('categorySuccessMsg')}}
+                    {{session('successTypeMsg')}}
                 </div>
             @endif
             <div class="card card-primary">
+
                 <div class="card-header">
                     <h3 class="card-title">Quick Example</h3>
                 </div>
-
+                <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" method="post" action="{{route('insertCategory')}}" enctype="multipart/form-data">
+                <form role="form" method="post" action="{{route('insertType')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Category Name</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Category" name="category">
+                            <label for="exampleInputEmail1">Type Name</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Type Name" name="types">
                         </div>
 
 
@@ -64,10 +65,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Image size</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Icon" name="size">
-                        </div>
-                        <div class="form-group">
                             <label for="exampleInputFile">Select Image</label>
                             <div class="input-group">
                                 <div class="custom-file">
@@ -77,7 +74,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.card-body -->
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
