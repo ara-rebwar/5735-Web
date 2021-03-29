@@ -53,12 +53,12 @@ class ProductController extends Controller
 
 
     $media->save();
-    $mediaID=DB::select('select id from media where name = ? and thumb = ? and size = ? and icon = ? ',[$request->productImageName,$request->productThumb,$request->productimageSize,$request->productIcon]);
+//    $mediaID=DB::select('select id from media where name = ? and thumb = ? and size = ? and icon = ? ',[$request->productImageName,$request->productThumb,$request->productimageSize,$request->productIcon]);
 
     $product->name=$request->productName;
     $product->price=$request->productPrice;
     $product->discountprice=-1;
-    $product->image=$mediaID[0]->id;
+    $product->image=$media->id;
     $product->description=$request->productDescription;
     $product->ingredients=$request->productIngredients;
     $product->capacity="hi";
