@@ -121,6 +121,7 @@ class MarketController extends Controller
       $a=0;
       while($a<count($data)){
           $data[$a]->media=media::find($data[$a]->image);
+          $a++;
       }
       return $data;
 
