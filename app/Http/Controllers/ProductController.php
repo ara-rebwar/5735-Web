@@ -36,41 +36,36 @@ class ProductController extends Controller
           'productURL'=>'required',
           'category'=>'required'
       ]);
-    $product = new product();
-    $media =new media();
+      $product = new product();
+      $media =new media();
 
-    $media->name=$request->productImageName;
-    $media->thumb=$request->productThumb;
-    $media->icon=$request->productIcon;
-    $media->size=$request->productimageSize;
-
+      $media->name=$request->productImageName;
+      $media->thumb=$request->productThumb;
+      $media->icon=$request->productIcon;
+      $media->size=$request->productimageSize;
       $file=$request->file('productURL');
       $ext=$file->getClientOriginalExtension();
       $fileName=time().'.'.$ext;
       $file->move('images/product_image/',$fileName);
       $fileName='http://phplaravel-559223-1799886.cloudwaysapps.com/images/product_image/'.$fileName;
       $media->url=$fileName;
-
-
-    $media->save();
+      $media->save();
 //    $mediaID=DB::select('select id from media where name = ? and thumb = ? and size = ? and icon = ? ',[$request->productImageName,$request->productThumb,$request->productimageSize,$request->productIcon]);
-
-    $product->name=$request->productName;
-    $product->price=$request->productPrice;
-    $product->discountprice=-1;
-    $product->image=$media->id;
-    $product->description=$request->productDescription;
-    $product->ingredients=$request->productIngredients;
-    $product->capacity="hi";
-    $product->unit="hi";
-    $product->packageItemsCount="hi";
-    $product->featured=0;
-    $product->Deliverable=0;
-    $product->market=(int)$request->productMarket;
-    $product->category=(int)$request->category;
-    $product->save();
-
-    return redirect(route('showProduct'))->with('successProductMsg','product inserted successfully');
+      $product->name=$request->productName;
+      $product->price=$request->productPrice;
+      $product->discountprice=-1;
+      $product->image=$media->id;
+      $product->description=$request->productDescription;
+      $product->ingredients=$request->productIngredients;
+      $product->capacity="hi";
+      $product->unit="hi";
+      $product->packageItemsCount="hi";
+      $product->featured=0;
+      $product->Deliverable=0;
+      $product->market=(int)$request->productMarket;
+      $product->category=(int)$request->category;
+      $product->save();
+      return redirect(route('showProduct'))->with('successProductMsg','product inserted successfully');
 
 
   }
@@ -87,7 +82,6 @@ class ProductController extends Controller
       $data['product']=DB::select('select *,products.id as productId,products.name as productName,media.name as imageName,media.id as imageId from products inner join media on products.image=media.id inner join  markets on markets.id=products.market  and products.id = ? ' ,[$id]);
         return view('editProduct',compact('data'));
   }
-
   public function updateProductId(Request $request,$id){
 
       $request->validate([
