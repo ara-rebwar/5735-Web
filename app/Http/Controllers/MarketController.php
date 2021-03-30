@@ -120,7 +120,7 @@ class MarketController extends Controller
       $data=DB::select('select * from products where market = ? ',[$id]);
       $a=0;
       while($a<count($data)){
-          $data[$a]->media=media::find($data[$a]->image);
+          $data[$a]->image=media::find($data[$a]->image);
           $a++;
       }
       return $data;
