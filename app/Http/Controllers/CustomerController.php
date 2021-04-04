@@ -24,6 +24,15 @@ class CustomerController extends Controller
     }
   public function insert(Request $request)
  {
+
+
+//     $request->validate([
+//         'name'=>'required|string',
+//         'password'=>'required',
+//         'phone'=>'required|max:11',
+//         'api_token'=>'required',
+//         'device_token'=>'required'
+//     ]);
    $customer =new customer();
    $customer->name=$request->name;
    $customer->password="uuhiuhi";
