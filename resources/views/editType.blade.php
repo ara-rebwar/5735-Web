@@ -17,9 +17,9 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    @if(session('slideInsertSuccessMsg'))
+    @if(session('updateTypeMsg'))
         <div class=" alert alert-success" style="margin:1% 1.4%;">
-            {{session('slideInsertSuccessMsg')}}
+            {{session('updateTypeMsg')}}
         </div>
     @endif
     <!-- Main content -->
@@ -34,40 +34,56 @@
             <div class="card card-primary">
 
                 <div class="card-header">
-                    <h3 class="card-title">Quick Example</h3>
+                    <h3 class="card-title">Edit Type Form</h3>
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form role="form" method="post" action="{{route('insertType')}}" enctype="multipart/form-data">
+                <form role="form" method="post" action="{{route('updateType')}}" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="typeID" value="{{$data[0]->typeId}}">
+                    <input type="hidden" name="mediaID" value="{{$data[0]->image}}">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Type Name</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Type Name" name="types">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Type Name" name="types" value="{{$data[0]->types}}">
                         </div>
-
                         <div class="form-group">
                             <label for=""> Has Product</label>
                             <select name="has_product" class="form-control">
-                                <option disabled selected>None</option>
-                                <option value="0">No</option>
+                                <option disabled >None</option>
+                                <?php
+                                if ($data[0]->has_product == 0){?>
+                                <option value="0" selected>No</option>
                                 <option value="1">Yes</option>
+                                <?php }else{?>
+                                <option value="0">No</option>
+                                <option value="1" selected>Yes</option>
+                          <?php      }
+                                ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Image Name</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Name" name="imageName">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Name" name="imageName" value="{{$data[0]->name}}" >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Image Thumb</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Thumb" name="thumb" value="{{$data[0]->thumb}}">
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Image Thumb</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Thumb" name="thumb">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Thumb" name="thumb" value="{{$data[0]->thumb}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Image Size</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Size" name="size" value="{{$data[0]->size}}">
                         </div>
 
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Image Icon</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Icon" name="icon">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Icon" name="icon" value="{{$data[0]->icon}}">
                         </div>
 
                         <div class="form-group">
@@ -78,6 +94,10 @@
                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
+                            <img src="{{$data[0]->url}}"  style="margin:15px 30px;width: 150px;height: 150px;">
                         </div>
                     </div>
 

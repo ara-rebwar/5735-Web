@@ -42,6 +42,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Type Name</th>
+                                    <th>Has Product</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -49,19 +50,25 @@
                                 <tbody>
                                 <?php
                                 $a=0;
-                                while ($a<count($slideList)){  ?>
+                                while ($a<count($typeList)){  ?>
                                 <tr>
-                                    <td>{{$slideList[$a]->slideId}}</td>
-                                    <td>{{$slideList[$a]->slideProduct}}</td>
-
-
-
-                                    <td> <a  href="{{route('showEditSlideID',$slideList[$a]->slideId)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
+                                    <td>{{$typeList[$a]->typeId}}</td>
+                                    <td>{{$typeList[$a]->types}}</td>
+                                    <td>
+                                        <?php
+                                        if ($typeList[$a]->has_product == 0){
+                                            echo 'No';
+                                        }else{
+                                            echo 'Yes';
+                                        }
+                                        ?>
+                                    </td>
+                                    <td> <a  href="{{route('showEditType',$typeList[$a]->typeId)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
                                     <td>
                                         <form action="{{route('deleteSlide')}}" method="post">
                                             @csrf
-                                            <input type="hidden" name="slideId" value="{{$slideList[$a]->slideId}}">
-                                            <input type="hidden" name="mediaId" value="{{$slideList[$a]->mediaId}}">
+                                            <input type="hidden" name="slideId"  >
+                                            <input type="hidden" name="mediaId" >
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </form>
                                     </td>

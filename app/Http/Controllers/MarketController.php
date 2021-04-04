@@ -287,7 +287,7 @@ class MarketController extends Controller
         $closed = $request->closed;
 
         $market = market::find($id);
-        if ($closed == "0") {
+        if ($closed == "no") {
             $market->closed = 0;
         } else {
             $market->closed = 1;

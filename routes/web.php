@@ -86,10 +86,10 @@ Route::post('/EditAccount',[\App\Http\Controllers\AccountController::class,'upda
 
 Route::get('/type',[TypeController::class,'index'])->name('showType');
 Route::post('/type',[TypeController::class,'insertType'])->name('insertType');
-//Route::get('/TypeList',[\App\Http\Controllers\TypeController::class,'selectAll'])->name('showTypeList');
+Route::get('/TypeList',[\App\Http\Controllers\TypeController::class,'selectAll'])->name('showTypeList');
 //Route::post('/TypeList',[\App\Http\Controllers\TypeController::class,'delete'])->name('deleteType');
-//Route::get('/EditType/{id}',[\App\Http\Controllers\TypeController::class,'showEditType'])->name('showEditType');
-//Route::post('/EditType',[\App\Http\Controllers\TypeController::class,'updateType'])->name('updateType');
+Route::get('/EditType/{id}',[\App\Http\Controllers\TypeController::class,'showEditType'])->name('showEditType');
+Route::post('/EditType',[\App\Http\Controllers\TypeController::class,'updateType'])->name('updateType');
 
 
 
