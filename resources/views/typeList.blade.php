@@ -67,7 +67,7 @@
                                     <td>
                                         <form action="{{route('deleteType')}}" method="post">
                                             @csrf
-                                            <input type="hidden" name="TypeId"  >
+                                            <input type="hidden" name="TypeId"  value="{{$typeList[$a]->typeId}}">
 
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </form>
