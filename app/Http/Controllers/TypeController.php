@@ -119,4 +119,14 @@ class TypeController extends Controller
 
 
     }
+
+
+    public function delete(Request $request){
+        $id=$request->TypeId;
+
+        Type::destroy($id);
+
+        //zyakrdni on delete cascade
+        return redirect(route('showTypeList'))->with('typeDeleteMsg','Type Deleted Successfully');
+    }
 }

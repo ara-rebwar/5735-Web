@@ -17,9 +17,9 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    @if(session('deleteSlideMsg'))
+    @if(session('typeDeleteMsg'))
         <div class="alert alert-success" style="margin:1% 1.4%;">
-            {{session('deleteSlideMsg')}}
+            {{session('typeDeleteMsg')}}
         </div>
     @endif
     <!-- Main content -->
@@ -65,10 +65,10 @@
                                     </td>
                                     <td> <a  href="{{route('showEditType',$typeList[$a]->typeId)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
                                     <td>
-                                        <form action="{{route('deleteSlide')}}" method="post">
+                                        <form action="{{route('deleteType')}}" method="post">
                                             @csrf
-                                            <input type="hidden" name="slideId"  >
-                                            <input type="hidden" name="mediaId" >
+                                            <input type="hidden" name="TypeId"  >
+
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </form>
                                     </td>
