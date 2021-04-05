@@ -30,7 +30,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Edit Product</h3>
+                            <h3 class="card-title">Edit Product Form</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -49,89 +49,35 @@
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Price" name="productPrice" value="{{$data['product'][0]->price}}">
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productPrice'){{$message}}@enderror</label>
                                     </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Discount Price</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Discount Price" name="productDiscountPrice" value="{{$data['product'][0]->discountPrice}}">
-                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productDiscountPrice'){{$message}}@enderror</label>
-                                    </div>
-                                </div>
-                                <div class="row">
+
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Description</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Description" name="productDescription" value="{{$data['product'][0]->description}}">
-                                          <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productDescription'){{$message}}@enderror</label>
-                                    </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Ingredients</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Ingredients" name="productIngredients" value="{{$data['product'][0]->ingredients}}">
-                                          <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productIngredients'){{$message}}@enderror</label>
-                                    </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Package Items Count</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Package Items Count" name="productPackageItemsCount" value="{{$data['product'][0]->packageItemsCount}}">
-                                          <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productPackageItemsCount'){{$message}}@enderror</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Capacity</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Capacity" name="productCapacity" value="{{$data['product'][0]->capacity}}">
-                                          <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productCapacity'){{$message}}@enderror</label>
-                                    </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Unit</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Unit" name="productUnit" value="{{$data['product'][0]->unit}}">
-                                          <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productUnit'){{$message}}@enderror</label>
-                                    </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Featured</label>
-                                        <select class="form-control" name="productFeatured">
-                                            <option disabled selected>Featured</option>
-                                            <?php
-                                            if($data['product'][0]->featured == 1){?>
-                                            <option value="1" selected>Yes</option>
-                                            <option value="0">No</option>
-                                            <?php   }else{?>
-                                            <option value="1">Yes</option>
-                                            <option value="0" selected>No</option>
-                                            <?php       }
-                                            ?>
-                                        </select>
-                                          <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productFeatured'){{$message}}@enderror</label>
+                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productDescription'){{$message}}@enderror</label>
                                     </div>
                                 </div>
                                 <div class="row">
 
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Deliverable</label>
-                                        <select class="form-control" name="productDeliverable">
-                                            <option disabled>Deliverable</option>
-                                            <?php
-                                                if($data['product'][0]->deliverable == 1){?>
-                                            <option value="1" selected>Yes</option>
-                                            <option value="0">No</option>
-                                             <?php   }else{?>
-                                            <option value="1" >Yes</option>
-                                            <option value="0" selected>No</option>
-                                          <?php       }
-                                            ?>
-                                        </select>
-                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productDeliverable'){{$message}}@enderror</label>
+                                        <label for="exampleInputEmail1">Ingredients</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Ingredients" name="productIngredients" value="{{$data['product'][0]->ingredients}}">
+                                          <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productIngredients'){{$message}}@enderror</label>
                                     </div>
+
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Select Market</label>
-                                        <select class="form-control" name="productMarket">
+                                        <select class="form-control" name="productMarket" id="productMarket">
                                             <option disabled >Select Market</option>
                                             <?php
                                             $a=0;
                                             while ($a < count($data['markets'])) {
-                                                if ($data['product'][0]->market == $data['markets'][$a]->id ){
-                                                ?>
+                                            if ($data['product'][0]->market == $data['markets'][$a]->id ){
+                                            ?>
                                             <option value="<?php echo $data['markets'][$a]->id; ?>" selected><?php echo $data['markets'][$a]->name; ?></option>
                                             <?php }else{  ?>
                                             <option value="<?php echo $data['markets'][$a]->id; ?>" ><?php echo $data['markets'][$a]->name; ?></option>
-                                        <?php }
-                                                $a++; }
+                                            <?php }
+                                            $a++; }
                                             ?>
                                         </select>
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productMarket'){{$message}}@enderror</label>
@@ -142,6 +88,7 @@
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productImageName'){{$message}}@enderror</label>
                                     </div>
                                 </div>
+
                                 <div class="row">
 
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
@@ -167,11 +114,21 @@
                                 </div>
                                 <div class="row">
 
-                                    <div class="form-group" style="width:100%;margin:0% 1.3%;">
+                                    <div class="form-group" style="width:47%;margin:0% 1.3%;">
                                         <label for="exampleInputEmail1">Image Size</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Size" name="productimageSize" value="{{$data['product'][0]->size}}">
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productimageSize'){{$message}}@enderror</label>
                                     </div>
+
+                                    <div class="form-group" style="width:47%;margin:0% 1.3%;">
+                                        <label for="exampleInputEmail1">Select Category</label>
+                                        <select name="category" id="category" class="form-control">
+                                            <option disabled selected>Select Category</option>
+                                        </select>
+                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productimageSize'){{$message}}@enderror</label>
+                                    </div>
+
+
                                 </div>
                             </div>
                             <div class="row">
@@ -192,5 +149,38 @@
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
+
+    <script>
+        $(document).ready(function(e){
+            $('#productMarket').on('change',function (e){
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var id=$("#productMarket").val();
+                $.ajax({
+                    url:"/product/{id}",
+                    type:"GET",
+                    data:{data:id},
+                    success:function(data){
+                        var data = JSON.parse(data);
+                        if (data != "") {
+                            $('#category').empty();
+                            $('#category').append("<option disabled selected > None</option>");
+                            for (var a = 0; a < data.length; a++) {
+                                $('#category').append("<option value=" + data[a].cid + ">" + data[a].category_name + "</option>");
+                            }
+                        }else{
+                            $('#category').empty();
+                            $('#category').append("<option disabled selected > None</option>");
+                        }
+                    }
+                });
+
+            });
+        });
+    </script>
 
 @endsection

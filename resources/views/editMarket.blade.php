@@ -30,7 +30,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Edit Market</h3>
+                            <h3 class="card-title">Edit Market Form</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -69,47 +69,11 @@
                                          <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketPhone'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Mobile</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Mobile" name="marketMobile" value="{{$marketInfo[0]->mobile}}">
-                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketMobile'){{$message}}@enderror</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Information</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Information" name="marketInformation" value="{{$marketInfo[0]->information}}">
-                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketInformation'){{$message}}@enderror</label>
-                                    </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Delivery Fee</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Delivery Fee" name="marketDeliveryFee" value="{{$marketInfo[0]->deliveryFee}}">
-                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketDeliveryFee'){{$message}}@enderror</label>
-                                    </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Admin Commission</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Admin Commission" name="marketAdminCommission" value="{{$marketInfo[0]->adminCommission}}">
-                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketAdminCommission'){{$message}}@enderror</label>
+                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketInformation'){{$message}}@enderror</label>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Default Tax</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Default Tax" name="marketDefaultTax" value="{{$marketInfo[0]->defaultTax}}">
-                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketDefaultTax'){{$message}}@enderror</label>
-                                    </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Latitude</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Latitude"  name="marketLatitude" value="{{$marketInfo[0]->latitude}}">
-                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketLatitude'){{$message}}@enderror</label>
-                                    </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Longitude</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Longitude"  name="marketLongitude" value="{{$marketInfo[0]->longitude}}">
-                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketLongitude'){{$message}}@enderror</label>
-                                    </div>
-                                </div>
-
-
                                 <div class="row">
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Closed</label>
@@ -126,35 +90,6 @@
                                             ?>
                                         </select>
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketClosed'){{$message}}@enderror</label>
-                                    </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Available For Delivery</label>
-                                        <select class="form-control" name="marketAvailableForDelivery">
-                                            <option disabled >Available for delivery</option>
-                                            <?php
-                                            if ($marketInfo[0]->availableForDelivery  == 1){  ?>
-                                            <option value="1" selected>Yes</option>
-                                            <option value="0">No</option>
-                                        <?php    }else{  ?>
-                                            <option value="1">Yes</option>
-                                            <option value="0" selected>No</option>
-                                        <?php    }
-                                            ?>
-
-                                        </select>
-                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketAvailableForDelivery'){{$message}}@enderror</label>
-                                    </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Delivery Range</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Delivery Range" name="marketDeliveryRange" value="{{$marketInfo[0]->deliveryRange}}">
-                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketDeliveryRange'){{$message}}@enderror</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Distance</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Distance" name="marketDistance" value="{{$marketInfo[0]->distance}}">
-                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketDistance'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Image Name</label>
@@ -174,6 +109,7 @@
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketURL'){{$message}}@enderror</label>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Thumb</label>

@@ -36,7 +36,7 @@ class MarketController extends Controller
             'marketThumb' => 'required|string',
             'marketimageSize' => 'required|numeric',
             'marketIcon' => 'required',
-            'category' => 'required'
+            'type'=>'required'
         ]);
         $market = new market();
         $media = new media();
@@ -81,22 +81,21 @@ class MarketController extends Controller
         $market->deliveryRange = -1;
         $market->distance = -1;
         $market->type = $request->type;
-
         $market->save();
-
-        while ($i < count($cats)) {
-            $mc = new MC();
-            $mcId++;
-            $mc->id = $mcId;
-            $mc->mid = $market->id;
-            $mc->cid = $cats[$i];
-            $mc->save();
-            $i++;
-
+        $has_product=Type::find($request->type);
+        if ($has_product->has_product == 1){
+            while ($i < count($cats)) {
+                $mc = new MC();
+                $mcId++;
+                $mc->id = $mcId;
+                $mc->mid = $market->id;
+                $mc->cid = $cats[$i];
+                $mc->save();
+                $i++;
+            }
         }
         return redirect(route('showMarket'))->with('marketSuccessMsg', 'information inserted');
     }
-
     public function selectmarketId($id)
     {
         $data = DB::select("select markets.id,markets.name,image,rate,address,description,phone,mobile,information,deliveryFee,adminCommission,defaultTax,latitude,longitude,closed,availableForDelivery,deliveryRange,distance,type from markets inner join media on markets.image=media.id and markets.id = ? ", [$id]);
@@ -106,7 +105,6 @@ class MarketController extends Controller
         }
         return response()->json($data);
     }
-
     public function selectAll()
     {
         $data = DB::select("select markets.id,markets.name,image,rate,address,description,phone,mobile,information,deliveryFee,adminCommission,defaultTax,latitude,longitude,closed,availableForDelivery,deliveryRange,distance,type from markets inner join media on markets.image=media.id");
@@ -159,20 +157,10 @@ class MarketController extends Controller
             'marketRate' => 'required|numeric',
             'marketAddress' => 'required|string',
             'marketDescription' => 'required|string',
-            'marketPhone' => 'required|numeric|min:11|max:11',
-            'marketMobile' => 'required|numeric|min:11|max:11',
+            'marketPhone' => 'required|numeric',
             'marketInformation' => 'required|string',
-            'marketDeliveryFee' => 'required|numeric',
-            'marketAdminCommission' => 'required|numeric',
-            'marketDefaultTax' => 'required|numeric',
-            'marketLatitude' => 'required|numeric',
-            'marketLongitude' => 'required|numeric',
             'marketClosed' => 'required',
-            'marketAvailableForDelivery' => 'required',
-            'marketDeliveryRange' => 'required|numeric',
             'marketImageName' => 'required|string',
-            'marketDistance' => 'required|numeric',
-            'marketURL' => 'required',
             'marketThumb' => 'required|string',
             'marketimageSize' => 'required|numeric',
             'marketIcon' => 'required'
@@ -188,14 +176,15 @@ class MarketController extends Controller
 
 
         $file = $request->file('marketURL');
-        $ext = $file->getClientOriginalExtension();
-        $fileName = time() . '.' . $ext;
-        $file->move('images/market_image/', $fileName);
-        $fileName = 'http://phplaravel-559223-1799886.cloudwaysapps.com/images/market_image/' . $fileName;
-        $media->url = $fileName;
+        if ($file){
+            $ext = $file->getClientOriginalExtension();
+            $fileName = time() . '.' . $ext;
+            $file->move('images/market_image/', $fileName);
+            $fileName = 'http://phplaravel-559223-1799886.cloudwaysapps.com/images/market_image/' . $fileName;
+            $media->url = $fileName;
+        }
         $media->save();
         $market = market::find($request->marketId);
-
         $market->name = $request->marketName;
         $market->rate = $request->marketRate;
         $market->address = $request->marketAddress;

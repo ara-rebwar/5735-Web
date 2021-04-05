@@ -30,7 +30,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Slide List</h3>
+                            <h3 class="card-title">Category List</h3>
                         </div>
 
 

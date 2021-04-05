@@ -30,7 +30,7 @@
                 <div class="col-md-12">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Add Market</h3>
+                        <h3 class="card-title">Add Market Form</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -66,47 +66,12 @@
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketPhone'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group" style="width:31%;margin:0% 1%;">
-                                    <label for="exampleInputEmail1">Mobile</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Mobile" name="marketMobile">
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketMobile'){{$message}}@enderror</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group" style="width:31%;margin:0% 1%;">
                                     <label for="exampleInputEmail1">Information</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Information" name="marketInformation">
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketInformation'){{$message}}@enderror</label>
                                 </div>
-                                <div class="form-group" style="width:31%;margin:0% 1%;">
-                                    <label for="exampleInputEmail1">Delivery Fee</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Delivery Fee" name="marketDeliveryFee">
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketDeliveryFee'){{$message}}@enderror</label>
-                                </div>
-                                <div class="form-group" style="width:31%;margin:0% 1%;">
-                                    <label for="exampleInputEmail1">Admin Commission</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Admin Commission" name="marketAdminCommission">
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketAdminCommission'){{$message}}@enderror</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group" style="width:31%;margin:0% 1%;">
-                                    <label for="exampleInputEmail1">Default Tax</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Default Tax" name="marketDefaultTax">
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketDefaultTax'){{$message}}@enderror</label>
-                                </div>
-                                <div class="form-group" style="width:31%;margin:0% 1%;">
-                                    <label for="exampleInputEmail1">Latitude</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Latitude"  name="marketLatitude">
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketLatitude'){{$message}}@enderror</label>
-                                </div>
-                                <div class="form-group" style="width:31%;margin:0% 1%;">
-                                    <label for="exampleInputEmail1">Longitude</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Longitude"  name="marketLongitude">
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketLongitude'){{$message}}@enderror</label>
-                                </div>
-                            </div>
 
-
+                            </div>
                             <div class="row">
                                 <div class="form-group" style="width:31%;margin:0% 1%;">
                                     <label for="exampleInputEmail1">Closed</label>
@@ -118,34 +83,13 @@
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketClosed'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group" style="width:31%;margin:0% 1%;">
-                                    <label for="exampleInputEmail1">Available For Delivery</label>
-                                    <select class="form-control" name="marketAvailableForDelivery">
-                                        <option disabled selected>Available for delivery</option>
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
-                                    </select>
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketAvailableForDelivery'){{$message}}@enderror</label>
-                                </div>
-                                <div class="form-group" style="width:31%;margin:0% 1%;">
-                                    <label for="exampleInputEmail1">Delivery Range</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Delivery Range" name="marketDeliveryRange">
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketDeliveryRange'){{$message}}@enderror</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group" style="width:31%;margin:0% 1%;">
-                                    <label for="exampleInputEmail1">Distance</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Distance" name="marketDistance">
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketDistance'){{$message}}@enderror</label>
-                                </div>
-                                <div class="form-group" style="width:31%;margin:0% 1%;">
                                     <label for="exampleInputEmail1">Image Name</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Name" name="marketImageName">
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketImageName'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group" style="width:31%;margin:0% 1%;">
-{{--                                    <label for="exampleInputEmail1">Image URL</label>--}}
-{{--                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Url" name="marketURL">--}}
+                                    {{--                                    <label for="exampleInputEmail1">Image URL</label>--}}
+                                    {{--                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Url" name="marketURL">--}}
                                     <label for="exampleInputEmail1">Market Image</label>
                                     <div class="input-group">
                                         <div class="custom-file">
@@ -156,6 +100,7 @@
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketURL'){{$message}}@enderror</label>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="form-group" style="width:31%;margin:0% 1%;">
                                     <label for="exampleInputEmail1">Thumb</label>
@@ -177,9 +122,24 @@
 
 
                                 <div class="row justify-content-start  h-100">
+                                    <div class="form-group " style="width: 50%;">
+                                        <select name="type" class="form-control" id="type_Selection" >
+                                            <option disabled selected>Select Type</option>
+                                            <?php
+                                            $a=0;
+                                            while ($a<count($data['type'])){?>
+
+
+                                            <option value="{{$data['type'][$a]->id}}" data-foo="{{$data['type'][$a]->has_product}}">{{$data['type'][$a]->types}}</option>
+
+                                            <?php $a++;}
+                                            ?>
+                                        </select>
+                                    </div>
+
                                     <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                         <div class="form-group">
-                                            <select class="mul-select form-control" multiple="true" style="width: 100%" name="category[]">
+                                            <select class="mul-select form-control" multiple="true" style="width: 100%" name="category[]" id="category_selection">
                                               <?php
                                               $a=0;
                                               while ($a<count($data['category'])){?>
@@ -195,20 +155,8 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group " style="width: 50%;">
-                                        <select name="type" class="form-control" >
-                                            <option disabled selected>Select Type</option>
-                                            <?php
-                                            $a=0;
-                                            while ($a<count($data['type'])){?>
 
 
-                                            <option value="{{$data['type'][$a]->id}}">{{$data['type'][$a]->types}}</option>
-
-                                            <?php $a++;}
-                                            ?>
-                                        </select>
-                                    </div>
                                 </div>
 
 
@@ -216,26 +164,6 @@
 
 
 
-                            {{--                            <div class="form-group">--}}
-{{--                                <label for="exampleInputPassword1">Password</label>--}}
-{{--                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group">--}}
-{{--                                <label for="exampleInputFile">File input</label>--}}
-{{--                                <div class="input-group">--}}
-{{--                                    <div class="custom-file">--}}
-{{--                                        <input type="file" class="custom-file-input" id="exampleInputFile">--}}
-{{--                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="input-group-append">--}}
-{{--                                        <span class="input-group-text" id="">Upload</span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-check">--}}
-{{--                                <input type="checkbox" class="form-check-input" id="exampleCheck1">--}}
-{{--                                <label class="form-check-label" for="exampleCheck1">Check me out</label>--}}
-{{--                            </div>--}}
                         </div>
                         <!-- /.card-body -->
 
@@ -252,6 +180,17 @@
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
-
+    <script>
+        $(document).ready(function (){
+            $('#type_Selection').on('change',function(){
+                var $data =$('#type_Selection option:selected').data('foo');
+                if ($data == "1"){
+                   $('#category_selection').attr('disabled',false);
+                }else{
+                    $('#category_selection').attr('disabled',true);
+                }
+            })
+        })
+    </script>
 
 @endsection
