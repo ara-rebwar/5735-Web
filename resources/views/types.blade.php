@@ -63,8 +63,10 @@
                             <label for="exampleInputEmail1">Image Thumb</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Thumb" name="thumb">
                         </div>
-
-
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Image Size</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Size" name="size">
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Image Icon</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Icon" name="icon">
