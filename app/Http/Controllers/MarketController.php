@@ -163,7 +163,8 @@ class MarketController extends Controller
             'marketImageName' => 'required|string',
             'marketThumb' => 'required|string',
             'marketimageSize' => 'required|numeric',
-            'marketIcon' => 'required'
+            'marketIcon' => 'required',
+            'type'=>'required'
         ]);
 
         $media = media::find($request->mediaId);
@@ -201,8 +202,11 @@ class MarketController extends Controller
         $market->availableForDelivery = 0;
         $market->deliveryRange = -1;
         $market->distance = -1;
+        $market->type=$request->type;
 
         $market->save();
+
+
 
 
         return redirect(route('showEditMarketID', $request->marketId))->with('updateMarketMsg', 'Information Updated Successfully');
@@ -214,27 +218,6 @@ class MarketController extends Controller
     {
         $marketId = $request->marketId;
         $mediaId = $request->mediaId;
-//
-////      $product=DB::delete('delete from products where products.market = ? ',[$marketId]);
-//      $slideImage=DB::select('select media from slides where slides.market = ? ',[$marketId]);
-//      $a=0;
-//      while($a<count($slideImage)){
-//
-//          DB::delete('delete from media where media.id =  ? ',[$slideImage[$a]->media]);
-//      }
-//
-//
-//
-////
-////    $productImage=DB::select('select image from products where products.market = ? ',[$marketId]);
-////    DB::delete('delete from products where products.market = ? ',[$marketId]);
-////    $media=DB::delete('delete from media where media.id = ? ',[$productImage]);
-////
-////
-////
-////    DB::delete('delete from markets where id = ? ',[$marketId]);
-////    DB::delete('delete from media where id = ? ',[$marketMediaId]);
-//
 
 
         $slideMediaId = DB::select('select media from slides where market = ? ', [$marketId]);

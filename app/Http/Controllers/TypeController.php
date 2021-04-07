@@ -18,9 +18,9 @@ class TypeController extends Controller
     public function selectTypeId(Request $request){
         $id=$request->id;
 
-        $data=DB::select('select types from types where id = ? ',[$id]);
+        $data=DB::select('select types,has_product from types where id = ? ',[$id]);
         if ($data){
-            return $data[0]->types;
+            return $data;
         }else{
             return -1;
         }
