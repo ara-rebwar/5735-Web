@@ -40,3 +40,4 @@ Route::post('/category',[CategoryController::class,'selectCategoryId']);
 Route::post('/categories',[CategoryController::class,'selectAllApi']);
 Route::get('/market_type/{id}',[TypeController::class,'selectMarketID']);
 Route::get('/market_category/{id}',[CategoryController::class,'marketCategoryID'])->name('marketCategoryID');
+Route::post('/is_by_5735',[MarketController::class,'UpdateIsBy5735']);

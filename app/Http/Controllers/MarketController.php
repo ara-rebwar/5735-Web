@@ -36,7 +36,8 @@ class MarketController extends Controller
             'marketThumb' => 'required|string',
             'marketimageSize' => 'required|numeric',
             'marketIcon' => 'required',
-            'type'=>'required'
+            'type'=>'required',
+            'is_by_5735'=>'required'
         ]);
         $market = new market();
         $media = new media();
@@ -81,6 +82,7 @@ class MarketController extends Controller
         $market->deliveryRange = -1;
         $market->distance = -1;
         $market->type = $request->type;
+        $market->is_by_5735=$request->is_by_5735;
         $market->save();
         $has_product=Type::find($request->type);
         if ($has_product->has_product == 1){
@@ -164,7 +166,8 @@ class MarketController extends Controller
             'marketThumb' => 'required|string',
             'marketimageSize' => 'required|numeric',
             'marketIcon' => 'required',
-            'type'=>'required'
+            'type'=>'required',
+            'is_by_5735'=>'required'
         ]);
 
         $media = media::find($request->mediaId);
@@ -203,7 +206,7 @@ class MarketController extends Controller
         $market->deliveryRange = -1;
         $market->distance = -1;
         $market->type=$request->type;
-
+        $market->is_by_5735=$request->is_by_5735;
         $market->save();
 
 
@@ -257,7 +260,6 @@ class MarketController extends Controller
     {
         $id = $request->id;
         $closed = $request->closed;
-
         $market = market::find($id);
         if ($closed == "no") {
             $market->closed = 0;
@@ -265,6 +267,24 @@ class MarketController extends Controller
             $market->closed = 1;
         }
         $market->save();
+        return "updated";
+    }
+
+
+    public function UpdateIsBy5735(Request $request){
+        $id=$request->id;
+        $is=$request->is;
+
+        $data=market::find($id);
+        if ($data){
+            if ($is == "yes"){
+                $data->is_by_5735=1;
+            }else{
+                $data->is_by_5735=0;
+            }
+
+        }
+        $data->save();
         return "updated";
     }
 }

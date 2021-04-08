@@ -127,6 +127,17 @@
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketimageSize'){{$message}}@enderror</label>
                                     </div>
                                 </div>
+                                <div class="row ">
+                                    <div class="form-group px-2" style="width: 100%;">
+                                        <label for="">Is_by_5735</label>
+                                        <select name="is_by_5735" id="" class="form-control">
+                                            <option disabled selected>None</option>
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
+                                        </select>
+                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('is_by_5735'){{$message}}@enderror</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <img src="{{$marketInfo[0]->url}}" alt="" style="margin:15px 30px;width: 150px;height: 150px;">
