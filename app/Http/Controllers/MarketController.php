@@ -100,8 +100,8 @@ class MarketController extends Controller
     }
     public function selectmarketId($id)
     {
-        $data = DB::select("select markets.id,markets.name,image,rate,address,description,phone,mobile,information,deliveryFee,adminCommission,defaultTax,latitude,longitude,closed,availableForDelivery,deliveryRange,distance,type from markets inner join media on markets.image=media.id and markets.id = ? ", [$id]);
-        $media = DB::select("select media.id, media.url,media.thumb,media.icon,media.size from markets inner join media on markets.id = media.id");
+        $data = DB::select("select * from markets inner join media on markets.image=media.id and markets.id = ? ", [$id]);
+        $media = DB::select("select media.id, media.url,media.thumb,media.icon,media.size from markets inner join media on markets.image = media.id");
         for ($a = 0; $a < count($data); $a++) {
             $data[$a]->image = $media[$a];
         }
@@ -109,12 +109,13 @@ class MarketController extends Controller
     }
     public function selectAll()
     {
-        $data = DB::select("select markets.id,markets.name,image,rate,address,description,phone,mobile,information,deliveryFee,adminCommission,defaultTax,latitude,longitude,closed,availableForDelivery,deliveryRange,distance,type from markets inner join media on markets.image=media.id");
-        $media = DB::select("select media.id, media.url,media.thumb,media.icon,media.size from markets inner join media on markets.id = media.id");
+        $data = DB::select("select * from markets ");
+        $media = DB::select("select media.id, media.url,media.thumb,media.icon,media.size from markets inner join media on markets.image = media.id");
         for ($a = 0; $a < count($data); $a++) {
             $data[$a]->image = $media[$a];
         }
         return response()->json($data);
+
     }
 
     public function fetchAllData($id)
