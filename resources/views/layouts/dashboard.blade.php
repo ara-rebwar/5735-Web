@@ -246,6 +246,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-store"></i>
                             <p>
+                                Address
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('showAddress')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add Address</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('showAddressList')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Address List</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-store"></i>
+                            <p>
                                 Settings
                                 <i class="fas fa-angle-left right"></i>
                             </p>

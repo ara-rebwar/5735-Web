@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\AddressController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -96,6 +97,14 @@ Route::post('/EditType',[\App\Http\Controllers\TypeController::class,'updateType
 
 
 
+//--------------------------------------------Address Route-------------------------------------------------//
+
+Route::get('/address',[AddressController::class,'index'])->name('showAddress');
+Route::post('/address',[AddressController::class,'insertAddress'])->name('insertAddress');
+Route::get('/AddressList',[AddressController::class,'selectAll'])->name('showAddressList');
+Route::post('/AddressList',[AddressController::class,'delete'])->name('deleteAddress');
+Route::get('/EditAddress/{id}',[AddressController::class,'showEditAddress'])->name('showEditAddress');
+Route::post('/EditAddress',[AddressController::class,'UpdateAddress'])->name('UpdateAddress');
 
 
 

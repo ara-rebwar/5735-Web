@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use Illuminate\Http\Request;
 use App\Models\market;
 use App\Models\Account;
@@ -61,5 +62,14 @@ class AccountController extends Controller
         }else{
             return -1;
         }
+    }
+
+    public function selectAllApi(){
+        $data = Address::all();
+        return $data;
+    }
+    public function selectAddressId(Request $request){
+        $data = Address::find($request->id);
+        return $data ;
     }
 }
