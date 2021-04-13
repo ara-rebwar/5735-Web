@@ -8,7 +8,7 @@ use App\Models\All_Address;
 class AllAddressController extends Controller
 {
     public function index(){
-        return view('AllAddress');
+        return view('allAddress');
     }
 
     public function insertLocation(Request $request){
