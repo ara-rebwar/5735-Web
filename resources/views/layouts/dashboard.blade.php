@@ -266,6 +266,106 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </ul>
                     </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-store"></i>
+                            <p>
+                                Location
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('showLocation')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add Location</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('showLocationList')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Location List</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-store"></i>
+                            <p>
+                                Location
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('showLocation')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add Location</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('showLocationList')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Location List</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-store"></i>
+                            <p>
+                                Update Type
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('showUpdateType')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add Update Type</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('showUpdateTypeList')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Update Type List</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-store"></i>
+                            <p>
+                                Update Date
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('showUpdatedDate')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add Update Date</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('showUpdatedDateList')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Update Date List</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-store"></i>

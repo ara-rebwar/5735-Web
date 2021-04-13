@@ -8,7 +8,11 @@ use App\Http\Controllers\SlideController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\AllAddressController;
+use App\Http\Controllers\UpdateTypeController;
+use App\Http\Controllers\UpdatedDateController;
 /*
+
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -108,9 +112,39 @@ Route::post('/EditAddress',[AddressController::class,'UpdateAddress'])->name('Up
 
 
 
+//--------------------------------------------Location Route-------------------------------------------------//
+
+// Location  =   All_Address
+Route::get('/location',[AllAddressController::class,'index'])->name('showLocation');
+Route::post('/location',[AllAddressController::class,'insertLocation'])->name('insertLocation');
+Route::get('/locationList',[AllAddressController::class,'selectAll'])->name('showLocationList');
+Route::post('locationList',[AllAddressController::class,'delete'])->name('deleteLocation');
+Route::get('/EditLocation/{id}',[AllAddressController::class,'showEditLocation'])->name('showEditLocation');
+Route::post('/EditLocation',[AllAddressController::class,'UpdateLocation'])->name('UpdateLocation');
 
 
 
+
+//--------------------------------------------Update Type Route-------------------------------------------------//
+Route::get('/updateType',[UpdateTypeController::class,'index'])->name('showUpdateType');
+Route::post('/updateType',[UpdateTypeController::class,'insertUpdateType'])->name('insertUpdateType');
+Route::get('/updateTypeList',[UpdateTypeController::class,'selectAll'])->name('showUpdateTypeList');
+Route::post('updateTypeList',[UpdateTypeController::class,'delete'])->name('deleteUpdateType');
+Route::get('/EditUpdateType/{id}',[UpdateTypeController::class,'showEditUpdateType'])->name('showEditUpdateType');
+Route::post('/EditUpdateType',[UpdateTypeController::class,'UpdateUpdateType'])->name('UpdateUpdateType');
+
+
+
+
+
+
+//--------------------------------------------Updated_date Route-------------------------------------------------//
+Route::get('/updatedDate',[UpdatedDateController::class,'index'])->name('showUpdatedDate');
+Route::post('/updateDate',[UpdatedDateController::class,'insertUpdateDate'])->name('insertUpdateDate');
+Route::get('/updateDateList',[UpdatedDateController::class,'selectAll'])->name('showUpdatedDateList');
+Route::post('/updateDateList',[UpdatedDateController::class,'delete'])->name('deleteUpdatedDate1');
+Route::get('/EditUpdateDate/{id}',[UpdatedDateController::class,'showEditUpdatedDate'])->name('showEditUpdatedDate');
+Route::post('/EditUpdateDate',[UpdatedDateController::class,'UpdateUpdateDate'])->name('UpdateUpdateDate');
 
 
 
