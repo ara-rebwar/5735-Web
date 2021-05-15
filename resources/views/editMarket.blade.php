@@ -34,43 +34,59 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" action="{{route('updateMarketID',$marketInfo[0]->marketId)}}" method="post" enctype="multipart/form-data">
+                        <form role="form" action="{{route('updateMarketID',$data['marketInfo'][0]->marketId)}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
-                            <input type="hidden" name="marketId" value="{{$marketInfo[0]->marketId}}">
-                            <input type="hidden" name="mediaId" value="{{$marketInfo[0]->imageId}}">
+                            <input type="hidden" name="marketId" value="{{$data['marketInfo'][0]->marketId}}">
+                            <input type="hidden" name="mediaId" value="{{$data['marketInfo'][0]->imageId}}">
 
                             <div class="card-body">
                                 <div class="row">
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Name</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Market Name" name="marketName" value="{{$marketInfo[0]->marketName}}">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Market Name" name="marketName" value="{{$data['marketInfo'][0]->marketName}}">
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketName'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Rate</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Rate" name="marketRate" value="{{$marketInfo[0]->rate}}">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Rate" name="marketRate" value="{{$data['marketInfo'][0]->rate}}">
                                          <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketRate'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Address</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Address" name="marketAddress" value="{{$marketInfo[0]->address}}">
+
+                                        <select name="marketAddress" id="" class="form-control">
+                                            <option disabled selected>None</option>
+                                            <?php
+                                            $aa=0;
+                                            while ($aa<count($data['address'])){
+                                                if ($data['marketInfo'][0]->address == $data['address'][$aa]->id){?>
+                                            <option value="{{$data['address'][$aa]->id}}" selected>{{$data['address'][$aa]->place1}}</option>
+                                           <?php     }else{?>
+                                            <option value="{{$data['address'][$aa]->id}}">{{$data['address'][$aa]->place1}}</option>
+                                       <?php     }
+                                                ?>
+
+
+                                            <?php    $aa++; }
+                                            ?>
+                                        </select>
                                          <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketAddress'){{$message}}@enderror</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Description</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Description" name="marketDescription" value="{{$marketInfo[0]->description}}">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Description" name="marketDescription" value="{{$data['marketInfo'][0]->description}}">
                                          <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketDescription'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Phone</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone" name="marketPhone" value="{{$marketInfo[0]->phone}}">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone" name="marketPhone" value="{{$data['marketInfo'][0]->phone}}">
                                          <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketPhone'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Information</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Information" name="marketInformation" value="{{$marketInfo[0]->information}}">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Information" name="marketInformation" value="{{$data['marketInfo'][0]->information}}">
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketInformation'){{$message}}@enderror</label>
                                     </div>
                                 </div>
@@ -80,7 +96,7 @@
                                         <select class="form-control" name="marketClosed">
                                             <option disabled selected>Closed</option>
                                             <?php
-                                            if ($marketInfo[0]->closed  == 1){  ?>
+                                            if ($data['marketInfo'][0]->closed  == 1){  ?>
                                             <option value="1" selected>Yes</option>
                                             <option value="0">No</option>
                                             <?php    }else{  ?>
@@ -93,7 +109,7 @@
                                     </div>
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Image Name</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Name" name="marketImageName" value="{{$marketInfo[0]->name}}">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Name" name="marketImageName" value="{{$data['marketInfo'][0]->name}}">
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketImageName'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
@@ -113,17 +129,17 @@
                                 <div class="row">
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Thumb</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Thumb" name="marketThumb" value="{{$marketInfo[0]->thumb}}">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Thumb" name="marketThumb" value="{{$data['marketInfo'][0]->thumb}}">
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketThumb'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Icon</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Icon" name="marketIcon" value="{{$marketInfo[0]->icon}}">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Icon" name="marketIcon" value="{{$data['marketInfo'][0]->icon}}">
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketIcon'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group" style="width:31%;margin:0% 1%;">
                                         <label for="exampleInputEmail1">Size</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Size" name="marketimageSize" value="{{$marketInfo[0]->size}}">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Size" name="marketimageSize" value="{{$data['marketInfo'][0]->size}}">
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketimageSize'){{$message}}@enderror</label>
                                     </div>
                                 </div>
@@ -140,7 +156,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <img src="{{$marketInfo[0]->url}}" alt="" style="margin:15px 30px;width: 150px;height: 150px;">
+                                <img src="{{$data['marketInfo'][0]->url}}" alt="" style="margin:15px 30px;width: 150px;height: 150px;">
                             </div>
                             <!-- /.card-body -->
 

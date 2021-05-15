@@ -30,7 +30,8 @@
                   <input type="text" name="marketRate" value=""class="form-control" placeholder="rate">
               </div>
               <div class="items">
-                  <input type="text" name="marketAddress" value="" class="form-control" placeholder="address">
+
+
               </div>
             </div>
             <!-- //row1 -->

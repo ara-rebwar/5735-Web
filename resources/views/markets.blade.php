@@ -50,7 +50,16 @@
                                 </div>
                                 <div class="form-group" style="width:31%;margin:0% 1%;">
                                     <label for="exampleInputEmail1">Address</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Address" name="marketAddress">
+                                    <select name="marketAddress" id="" class="form-control">
+                                        <option disabled selected>None</option>
+                                        <?php
+                                        $aa=0;
+                                        while ($aa<count($data['address'])){?>
+
+                                        <option value="{{$data['address'][$aa]->id}}">{{$data['address'][$aa]->place1}}</option>
+                                        <?php    $aa++; }
+                                        ?>
+                                    </select>
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketAddress'){{$message}}@enderror</label>
                                 </div>
                             </div>

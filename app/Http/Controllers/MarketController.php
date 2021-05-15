@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\All_Address;
 use Illuminate\Http\Request;
 use App\Models\market;
 use App\Models\media;
@@ -17,6 +18,7 @@ class MarketController extends Controller
     {
         $data['category'] = Category::all();
         $data['type'] = Type::all();
+        $data['address']=DB::select('select * from all__addresses');
         return view('markets', compact('data'));
     }
 
@@ -26,7 +28,7 @@ class MarketController extends Controller
         $request->validate([
             'marketName' => 'required|string',
             'marketRate' => 'required|numeric',
-            'marketAddress' => 'required|string',
+            'marketAddress' => 'required',
             'marketDescription' => 'required|string',
             'marketPhone' => 'required|numeric',
             'marketInformation' => 'required|string',
@@ -146,9 +148,9 @@ class MarketController extends Controller
     }
 
     public function ShowEditMarket($id)
-    {
-        $marketInfo = DB::select('select *,markets.name as marketName,markets.id as marketId,media.id as imageId from markets inner join media on media.id = markets.image and markets.id= ?  ', [$id]);
-        return view('editMarket', compact('marketInfo'));
+    {   $data['address']=All_Address::all();
+        $data['marketInfo']= DB::select('select *,markets.name as marketName,markets.id as marketId,media.id as imageId from markets inner join media on media.id = markets.image and markets.id= ?  ', [$id]);
+        return view('editMarket', compact('data'));
     }
 
 
@@ -158,7 +160,7 @@ class MarketController extends Controller
         $request->validate([
             'marketName' => 'required|string',
             'marketRate' => 'required|numeric',
-            'marketAddress' => 'required|string',
+            'marketAddress' => 'required',
             'marketDescription' => 'required|string',
             'marketPhone' => 'required|numeric',
             'marketInformation' => 'required|string',
