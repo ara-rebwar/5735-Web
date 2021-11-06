@@ -26,22 +26,37 @@ use App\Http\Controllers\UpdatedDateController;
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::get('firebase',[\App\Http\Controllers\FirebaseController::class,"index"])->name('showFirebase');
+
 //--------------------------------------------Market Route-------------------------------------------------//
+
 Route::get('/market',[MarketController::class,'show'])->name('showMarket');
+Route::get('/connection',[MarketController::class,'second']);
 Route::post('/market',[MarketController::class,'insert'])->name('insertMarket');
+Route::get('/productMarket/{id}',[MarketController::class,'showMarketProductsID'])->name('showMarketProductByID');
 Route::get('/marketList',[MarketController::class,'showMarketList'])->name('showMarketList');
 Route::get('/EditMarket/{id}',[MarketController::class,'ShowEditMarket'])->name('showEditMarketID');
 Route::POST('/EditMarket/{id}',[MarketController::class,'updateMarket'])->name('updateMarketID');
 Route::post('/marketList',[MarketController::class,'delete'])->name('deleteMarket');
-
+Route::get('/marketCategory',[\App\Http\Controllers\MarketCategoryController::class,'show'])->name('showMarketCategory');
+Route::get('/marketCategory/{id}',[\App\Http\Controllers\MarketCategoryController::class,'showMarketCategory'])->name('showMarketCategories');
+Route::post('/insertMarketCategory',[\App\Http\Controllers\MarketCategoryController::class,'insertMarketCategory'])->name('insertMarketCategory');
+Route::get('/discount/{id}',[MarketController::class,'showDiscount'])->name('showDiscount');
+Route::post('/discount',[\App\Http\Controllers\DiscountMarketController::class,'insertDiscount'])->name('insertDiscount');
+Route::get('/discountList/{id}',[\App\Http\Controllers\DiscountMarketController::class,'showDiscountList'])->name('showDiscountList');
+Route::get('/checkForimage',[\App\Http\Controllers\DiscountMarketController::class,'checkforimage']);
+Route::post('/deleteDiscount',[\App\Http\Controllers\DiscountMarketController::class,'deleteDiscount'])->name('deleteDiscount');
 //--------------------------------------------Product Route-------------------------------------------------//
-Route::get('/product',[ProductController::class,'show'])->name('showProduct');
+//Route::get('/product',[ProductController::class,'show'])->name('showProduct');
 Route::post('/product',[ProductController::class,'insert'])->name('insertProduct');
 Route::get('/productList',[ProductController::class,'showProductList'])->name('showProductList');
 Route::get('/EditProduct/{id}',[ProductController::class,'showEditProduct'])->name('showEditProductID');
-Route::post('/EditProduct/{id}',[ProductController::class,'updateProductId'])->name('updateProductId');
+Route::post('/EditProduct',[ProductController::class,'updateProductId'])->name('updateProductId');
 Route::post('/productList',[ProductController::class,'delete'])->name('deleteProduct');
 Route::get('/product/{id}',[ProductController::class,'showMarketCategory']);
+Route::get('/Products/{id}',[ProductController::class,'showProductByMarketId'])->name('showProductByMarketId');
+Route::get('/AddProduct/{id}',[ProductController::class,'showAddProduct'])->name('showAddProduct');
 
 Auth::routes();
 
@@ -50,7 +65,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //--------------------------------------------Slide Route-------------------------------------------------//
 Route::get('/slides',[App\Http\Controllers\SlideController::class, 'show'])->name('showSlides');
 Route::get('/slideList',[SlideController::class,'showSlideList'])->name('showSlideList');
-Route::get('/EditSlide/{id}',[SlideController::class,'showEditSlideID'])->name('showEditSlideID');
+Route::get('/EditSlideId/{id}/{market}/{product}',[SlideController::class,'showEditSlideID'])->name('showEditSlideID');
+Route::post('/updateSlide',[SlideController::class,'updateSlide'])->name('updateSlide');
 Route::post('/slideList',[SlideController::class,'delete'])->name('deleteSlide');
 
 

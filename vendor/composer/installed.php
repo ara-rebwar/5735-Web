@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'c1611fcd5d0cd8a3fb9af8af19292ba097c9ea29',
+    'reference' => 'd48720e160d487579db21c08d2077965b4ce2021',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -151,6 +151,15 @@
       ),
       'reference' => 'c073b2bd04d1c90e04dc1b787662b558dd65ade0',
     ),
+    'fig/http-message-util' => 
+    array (
+      'pretty_version' => '1.1.5',
+      'version' => '1.1.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9d94dc0154230ac39e5bf89398b324a86f63f765',
+    ),
     'filp/whoops' => 
     array (
       'pretty_version' => '2.9.2',
@@ -159,6 +168,15 @@
       array (
       ),
       'reference' => 'df7933820090489623ce0be5e85c7e693638e536',
+    ),
+    'firebase/php-jwt' => 
+    array (
+      'pretty_version' => 'v5.4.0',
+      'version' => '5.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd2113d9b2e0e349796e72d2a63cf9319100382d2',
     ),
     'fruitcake/laravel-cors' => 
     array (
@@ -169,6 +187,790 @@
       ),
       'reference' => '01de0fe5f71c70d1930ee9a80385f9cc28e0f63a',
     ),
+    'google/access-context-manager' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/analytics-admin' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.4.0',
+      ),
+    ),
+    'google/analytics-data' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.6.0',
+      ),
+    ),
+    'google/auth' => 
+    array (
+      'pretty_version' => 'v1.18.0',
+      'version' => '1.18.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '21dd478e77b0634ed9e3a68613f74ed250ca9347',
+    ),
+    'google/cloud' => 
+    array (
+      'pretty_version' => 'v0.165.0',
+      'version' => '0.165.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8fb46484f5301c5b78d41bb51403cd501b84cfc8',
+    ),
+    'google/cloud-access-approval' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-api-gateway' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-apigee-connect' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-appengine-admin' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-artifact-registry' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.1',
+      ),
+    ),
+    'google/cloud-asset' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.5.0',
+      ),
+    ),
+    'google/cloud-assured-workloads' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.4.0',
+      ),
+    ),
+    'google/cloud-automl' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.4.0',
+      ),
+    ),
+    'google/cloud-bigquery' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.22.2',
+      ),
+    ),
+    'google/cloud-bigquery-connection' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.5.0',
+      ),
+    ),
+    'google/cloud-bigquery-reservation' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.3.0',
+      ),
+    ),
+    'google/cloud-bigquery-storage' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.2.0',
+      ),
+    ),
+    'google/cloud-bigquerydatatransfer' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.2.4',
+      ),
+    ),
+    'google/cloud-bigtable' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.10.1',
+      ),
+    ),
+    'google/cloud-billing' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.3.0',
+      ),
+    ),
+    'google/cloud-billing-budgets' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-binary-authorization' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-build' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-channel' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.4.0',
+      ),
+    ),
+    'google/cloud-common-protos' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.1',
+      ),
+    ),
+    'google/cloud-compute' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.3.1',
+      ),
+    ),
+    'google/cloud-container' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.5.0',
+      ),
+    ),
+    'google/cloud-core' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.43.0',
+      ),
+    ),
+    'google/cloud-data-catalog' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.0.4',
+      ),
+    ),
+    'google/cloud-data-fusion' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-dataflow' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-datalabeling' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-dataproc' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '2.1.0',
+      ),
+    ),
+    'google/cloud-dataproc-metastore' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-datastore' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.12.4',
+      ),
+    ),
+    'google/cloud-datastore-admin' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.3.0',
+      ),
+    ),
+    'google/cloud-debugger' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.4.0',
+      ),
+    ),
+    'google/cloud-dialogflow' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.23.0',
+      ),
+    ),
+    'google/cloud-dlp' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.2.0',
+      ),
+    ),
+    'google/cloud-dms' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-domains' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-error-reporting' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.18.3',
+      ),
+    ),
+    'google/cloud-essential-contacts' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-eventarc' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-filestore' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-firestore' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.19.4',
+      ),
+    ),
+    'google/cloud-game-servers' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.3.1',
+      ),
+    ),
+    'google/cloud-gke-connect-gateway' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-gke-hub' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-iam-credentials' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-iap' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-iot' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.4.0',
+      ),
+    ),
+    'google/cloud-kms' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.12.0',
+      ),
+    ),
+    'google/cloud-language' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.25.0',
+      ),
+    ),
+    'google/cloud-life-sciences' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-logging' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.21.1',
+      ),
+    ),
+    'google/cloud-managed-identities' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-media-translation' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-memcache' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.5.0',
+      ),
+    ),
+    'google/cloud-monitoring' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.0.1',
+      ),
+    ),
+    'google/cloud-network-connectivity' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-network-management' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-notebooks' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-orchestration-airflow' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-org-policy' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-osconfig' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.3.0',
+      ),
+    ),
+    'google/cloud-oslogin' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.3.0',
+      ),
+    ),
+    'google/cloud-policy-troubleshooter' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-private-catalog' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-profiler' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-pubsub' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.33.0',
+      ),
+    ),
+    'google/cloud-recaptcha-enterprise' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.1.0',
+      ),
+    ),
+    'google/cloud-recommendations-ai' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.3.0',
+      ),
+    ),
+    'google/cloud-recommender' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.5.0',
+      ),
+    ),
+    'google/cloud-redis' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.3.0',
+      ),
+    ),
+    'google/cloud-resource-manager' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-resource-settings' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-retail' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-scheduler' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.5.4',
+      ),
+    ),
+    'google/cloud-secret-manager' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.7.0',
+      ),
+    ),
+    'google/cloud-security-center' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.3.0',
+      ),
+    ),
+    'google/cloud-security-private-ca' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.3.0',
+      ),
+    ),
+    'google/cloud-service-control' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.3.0',
+      ),
+    ),
+    'google/cloud-service-directory' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.6.0',
+      ),
+    ),
+    'google/cloud-service-management' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-service-usage' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-shell' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-spanner' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.44.0',
+      ),
+    ),
+    'google/cloud-speech' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.3.3',
+      ),
+    ),
+    'google/cloud-sql-admin' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-storage' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.24.1',
+      ),
+    ),
+    'google/cloud-storage-transfer' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.1.0',
+      ),
+    ),
+    'google/cloud-talent' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.15.3',
+      ),
+    ),
+    'google/cloud-tasks' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.9.1',
+      ),
+    ),
+    'google/cloud-text-to-speech' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.3.0',
+      ),
+    ),
+    'google/cloud-tpu' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-trace' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.4.0',
+      ),
+    ),
+    'google/cloud-translate' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.10.1',
+      ),
+    ),
+    'google/cloud-video-transcoder' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-videointelligence' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.12.3',
+      ),
+    ),
+    'google/cloud-vision' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.4.0',
+      ),
+    ),
+    'google/cloud-vpc-access' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.0',
+      ),
+    ),
+    'google/cloud-web-risk' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '1.1.0',
+      ),
+    ),
+    'google/cloud-web-security-scanner' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.7.0',
+      ),
+    ),
+    'google/cloud-workflows' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '0.2.1',
+      ),
+    ),
+    'google/common-protos' => 
+    array (
+      'pretty_version' => '1.3.1',
+      'version' => '1.3.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c348d1545fbeac7df3c101fdc687aba35f49811f',
+    ),
+    'google/crc32' => 
+    array (
+      'pretty_version' => 'v0.1.0',
+      'version' => '0.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a8525f0dea6fca1893e1bae2f6e804c5f7d007fb',
+    ),
+    'google/gax' => 
+    array (
+      'pretty_version' => 'v1.9.0',
+      'version' => '1.9.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '30ca2be6125c8936e74ad17ec2b495bb26697a59',
+    ),
+    'google/grpc-gcp' => 
+    array (
+      'pretty_version' => '0.1.5',
+      'version' => '0.1.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'bb9bdbf62f6ae4e73d5209d85b1d0a0b9855ff36',
+    ),
+    'google/protobuf' => 
+    array (
+      'pretty_version' => 'v3.17.3',
+      'version' => '3.17.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ae9282cf11dd2933b7e71a611f9590f07d53d3f3',
+    ),
     'graham-campbell/result-type' => 
     array (
       'pretty_version' => 'v1.0.1',
@@ -177,6 +979,15 @@
       array (
       ),
       'reference' => '7e279d2cd5d7fbb156ce46daada972355cea27bb',
+    ),
+    'grpc/grpc' => 
+    array (
+      'pretty_version' => '1.39.0',
+      'version' => '1.39.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '101485614283d1ecb6b2ad1d5b95dc82495931db',
     ),
     'guzzlehttp/guzzle' => 
     array (
@@ -438,6 +1249,42 @@
         0 => '*',
       ),
     ),
+    'kreait/clock' => 
+    array (
+      'pretty_version' => '1.1.0',
+      'version' => '1.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8f1fbc252e4e81298ae7c520597c25e9a6a0f454',
+    ),
+    'kreait/firebase-php' => 
+    array (
+      'pretty_version' => '5.20.1',
+      'version' => '5.20.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5c5c8f3e5d2ae07ed4e5e521392609b4f812b67c',
+    ),
+    'kreait/firebase-tokens' => 
+    array (
+      'pretty_version' => '1.16.0',
+      'version' => '1.16.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '563394ba948aee2e0c387a381f88c4aaeaa52138',
+    ),
+    'kreait/laravel-firebase' => 
+    array (
+      'pretty_version' => '3.1.0',
+      'version' => '3.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c00ec1e3ce30e07ccdd6ea08712d8c75d0998ff5',
+    ),
     'laravel/framework' => 
     array (
       'pretty_version' => 'v8.29.0',
@@ -454,7 +1301,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'c1611fcd5d0cd8a3fb9af8af19292ba097c9ea29',
+      'reference' => 'd48720e160d487579db21c08d2077965b4ce2021',
     ),
     'laravel/sail' => 
     array (
@@ -482,6 +1329,24 @@
       array (
       ),
       'reference' => 'a1f82c6283c8373ea1958b8a27c3d5c98cade351',
+    ),
+    'lcobucci/clock' => 
+    array (
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '353d83fe2e6ae95745b16b3d911813df6a05bfb3',
+    ),
+    'lcobucci/jwt' => 
+    array (
+      'pretty_version' => '4.0.3',
+      'version' => '4.0.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ae4165a76848e070fdac691e773243d10cd06ce1',
     ),
     'league/commonmark' => 
     array (
@@ -534,6 +1399,15 @@
       array (
         0 => '^1.0',
       ),
+    ),
+    'mtdowling/jmespath.php' => 
+    array (
+      'pretty_version' => '2.6.1',
+      'version' => '2.6.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9b87907a81b87bc76d19a7fb2d61e61486ee9edb',
     ),
     'myclabs/deep-copy' => 
     array (
@@ -701,6 +1575,15 @@
       ),
       'reference' => 'f661659747f2f87f9e72095bb207bceb0f151cb4',
     ),
+    'psr/cache' => 
+    array (
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd11b50ad223250cf17b86e38383413f5a6764bf8',
+    ),
     'psr/container' => 
     array (
       'pretty_version' => '1.0.0',
@@ -833,6 +1716,24 @@
       array (
         0 => '4.1.1',
       ),
+    ),
+    'riverline/multipart-parser' => 
+    array (
+      'pretty_version' => '2.0.8',
+      'version' => '2.0.8.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '2fe9026789754c1ff07c06047f0acc113e90933a',
+    ),
+    'rize/uri-template' => 
+    array (
+      'pretty_version' => '0.3.3',
+      'version' => '0.3.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6e0b97e00e0f36c652dd3c37b194ef07de669b82',
     ),
     'sebastian/cli-parser' => 
     array (

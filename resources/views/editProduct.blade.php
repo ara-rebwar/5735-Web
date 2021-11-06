@@ -58,13 +58,13 @@
                                 </div>
                                 <div class="row">
 
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
+                                    <div class="form-group  col-md-4" >
                                         <label for="exampleInputEmail1">Ingredients</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Ingredients" name="productIngredients" value="{{$data['product'][0]->ingredients}}">
                                           <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productIngredients'){{$message}}@enderror</label>
                                     </div>
 
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
+                                    <div class="form-group  col-md-4" >
                                         <label for="exampleInputEmail1">Select Market</label>
                                         <select class="form-control" name="productMarket" id="productMarket">
                                             <option disabled >Select Market</option>
@@ -82,16 +82,12 @@
                                         </select>
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productMarket'){{$message}}@enderror</label>
                                     </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Image Name</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Name" name="productImageName" value="{{$data['product'][0]->imageName}}">
-                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productImageName'){{$message}}@enderror</label>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
+{{--                                    <div class="form-group" style="width:31%;margin:0% 1%;">--}}
+{{--                                        <label for="exampleInputEmail1">Image Name</label>--}}
+{{--                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Name" name="productImageName" value="{{$data['product'][0]->imageName}}">--}}
+{{--                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productImageName'){{$message}}@enderror</label>--}}
+{{--                                    </div>--}}
+                                    <div class="form-group  col-md-4" >
                                         <label for="exampleInputEmail1">Image URL</label>
                                         <div class="input-group">
                                             <div class="custom-file">
@@ -101,34 +97,17 @@
                                         </div>
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productURL'){{$message}}@enderror</label>
                                     </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Image Thumb</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Thumb"  name="productThumb" value="{{$data['product'][0]->thumb}}" >
-                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productThumb'){{$message}}@enderror</label>
-                                    </div>
-                                    <div class="form-group" style="width:31%;margin:0% 1%;">
-                                        <label for="exampleInputEmail1">Icon</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Icon" name="productIcon" value="{{$data['product'][0]->icon}}">
-                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productIcon'){{$message}}@enderror</label>
-                                    </div>
                                 </div>
+
                                 <div class="row">
 
-                                    <div class="form-group" style="width:47%;margin:0% 1.3%;">
-                                        <label for="exampleInputEmail1">Image Size</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Size" name="productimageSize" value="{{$data['product'][0]->size}}">
-                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productimageSize'){{$message}}@enderror</label>
-                                    </div>
-
-                                    <div class="form-group" style="width:47%;margin:0% 1.3%;">
+                                    <div class="form-group  col-md-4" >
                                         <label for="exampleInputEmail1">Select Category</label>
                                         <select name="category" id="category" class="form-control">
                                             <option disabled selected>Select Category</option>
                                         </select>
-                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productimageSize'){{$message}}@enderror</label>
+                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('category'){{$message}}@enderror</label>
                                     </div>
-
-
                                 </div>
                             </div>
                             <div class="row">

@@ -38,9 +38,17 @@ Route::post('/type',[TypeController::class,'selectTypeId']);
 Route::post('/types',[TypeController::class,'selectAllApi']);
 Route::post('/category',[CategoryController::class,'selectCategoryId']);
 Route::post('/categories',[CategoryController::class,'selectAllApi']);
+Route::post('/checkCategoryImage',[CategoryController::class,'checkCategory']);
 Route::get('/market_type/{id}',[TypeController::class,'selectMarketID']);
 Route::get('/market_category/{id}',[CategoryController::class,'marketCategoryID'])->name('marketCategoryID');
 Route::post('/is_by_5735',[MarketController::class,'UpdateIsBy5735']);
 
 Route::get('/addresses',[AccountController::class,'selectAllApi']);
 Route::post('/addresses',[AccountController::class,'selectAddressId']);
+Route::post('/update_customer',[CustomerController::class,'updateCustomerAPI']);
+Route::post('/updateDates',[\App\Http\Controllers\UpdatedDateController::class,'getUpdateDate']);
+Route::get('/discount/{id}',[\App\Http\Controllers\DiscountMarketController::class,'showDiscountProduct']);
+Route::get('/firestoreApi/{string}',[\App\Http\Controllers\FirebaseController::class,'index']);
+
+Route::post('/addTask',[MarketController::class,'test']);
+

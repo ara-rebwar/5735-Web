@@ -39,7 +39,6 @@
                                 <tr>
                                     <th>#</th>
                                     <th>First Place</th>
-                                    <th>Second Place</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -51,7 +50,6 @@
                                 <tr>
                                     <td>{{$allLocationList[$a]->id}}</td>
                                     <td>{{$allLocationList[$a]->place1}}</td>
-                                    <td>{{$allLocationList[$a]->place2}}</td>
                                     <td> <a  href="{{route('showEditLocation',$allLocationList[$a]->id)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
                                     <td>
                                         <form action="{{route('deleteLocation')}}" method="post">

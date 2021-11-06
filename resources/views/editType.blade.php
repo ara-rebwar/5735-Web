@@ -46,47 +46,6 @@
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Type Name" name="types" value="{{$data[0]->types}}">
                         </div>
                         <div class="form-group">
-                            <label for=""> Has Product</label>
-                            <select name="has_product" class="form-control">
-                                <option disabled >None</option>
-                                <?php
-                                if ($data[0]->has_product == 0){?>
-                                <option value="0" selected>No</option>
-                                <option value="1">Yes</option>
-                                <?php }else{?>
-                                <option value="0">No</option>
-                                <option value="1" selected>Yes</option>
-                          <?php      }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Image Name</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Name" name="imageName" value="{{$data[0]->name}}" >
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Image Thumb</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Thumb" name="thumb" value="{{$data[0]->thumb}}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Image Thumb</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Thumb" name="thumb" value="{{$data[0]->thumb}}">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Image Size</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Size" name="size" value="{{$data[0]->size}}">
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Image Icon</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Icon" name="icon" value="{{$data[0]->icon}}">
-                        </div>
-
-                        <div class="form-group">
                             <label for="exampleInputFile">Select Image</label>
                             <div class="input-group">
                                 <div class="custom-file">
@@ -95,7 +54,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <img src="{{$data[0]->url}}"  style="margin:15px 30px;width: 150px;height: 150px;">
                         </div>

@@ -32,12 +32,9 @@
                 </div>
             @endif
             <div class="card card-primary">
-
                 <div class="card-header">
                     <h3 class="card-title">Add Type Form</h3>
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
                 <form role="form" method="post" action="{{route('insertType')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
@@ -45,33 +42,6 @@
                             <label for="exampleInputEmail1">Type Name</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Type Name" name="types">
                         </div>
-
-                        <div class="form-group">
-                            <label for=""> Has Product</label>
-                            <select name="has_product" class="form-control">
-                                <option disabled selected>None</option>
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Image Name</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Name" name="imageName">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Image Thumb</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Thumb" name="thumb">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Image Size</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Size" name="size">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Image Icon</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Icon" name="icon">
-                        </div>
-
                         <div class="form-group">
                             <label for="exampleInputFile">Select Image</label>
                             <div class="input-group">
@@ -82,7 +52,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

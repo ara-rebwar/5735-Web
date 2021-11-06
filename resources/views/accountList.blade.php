@@ -43,7 +43,6 @@
                                     <th>#</th>
                                     <th>Market Name</th>
                                     <th>Username</th>
-                                    <th>Password</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -56,7 +55,7 @@
                                     <td>{{$data[$a]->accountId}}</td>
                                     <td>{{$data[$a]->name}}</td>
                                     <td>{{$data[$a]->username}}</td>
-                                    <td>{{$data[$a]->password}}</td>
+
                                     <td> <a  href="{{route('showEditAccount',$data[$a]->accountId)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
                                     <td>
                                         <form action="{{route('deleteAccount')}}" method="post">

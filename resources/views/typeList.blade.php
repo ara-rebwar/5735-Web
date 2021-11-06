@@ -42,7 +42,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Type Name</th>
-                                    <th>Has Product</th>
+{{--                                    <th>Has Product</th>--}}
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -54,15 +54,15 @@
                                 <tr>
                                     <td>{{$typeList[$a]->typeId}}</td>
                                     <td>{{$typeList[$a]->types}}</td>
-                                    <td>
-                                        <?php
-                                        if ($typeList[$a]->has_product == 0){
-                                            echo 'No';
-                                        }else{
-                                            echo 'Yes';
-                                        }
-                                        ?>
-                                    </td>
+{{--                                    <td>--}}
+{{--                                        <?php--}}
+{{--                                        if ($typeList[$a]->has_product == 0){--}}
+{{--                                            echo 'No';--}}
+{{--                                        }else{--}}
+{{--                                            echo 'Yes';--}}
+{{--                                        }--}}
+{{--                                        ?>--}}
+{{--                                    </td>--}}
                                     <td> <a  href="{{route('showEditType',$typeList[$a]->typeId)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
                                     <td>
                                         <form action="{{route('deleteType')}}" method="post">

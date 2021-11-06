@@ -22,6 +22,11 @@
             {{session('deleteSlideMsg')}}
         </div>
     @endif
+    @if(session('slideupdateSuccessMsg'))
+        <div class=" alert alert-success" style="margin:1% 1.4%;">
+            {{session('slideupdateSuccessMsg')}}
+        </div>
+    @endif
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
@@ -54,7 +59,10 @@
                                     <td>{{$slideList[$a]->slideMarket}}</td>
                                     <td>{{$slideList[$a]->text}}</td>
                                     <td>{{$slideList[$a]->order}}</td>
-                                    <td> <a  href="{{route('showEditSlideID',$slideList[$a]->slideId)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
+
+                                    <td>
+                                        <a href="{{route('showEditSlideID',[$slideList[$a]->slideId,$slideList[$a]->market,$slideList[$a]->product])}}"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
+                                    </td>
                                     <td>
                                         <form action="{{route('deleteSlide')}}" method="post">
                                             @csrf

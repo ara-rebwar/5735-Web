@@ -65,4 +65,16 @@ class UpdatedDateController extends Controller
     }
 
 
+
+
+    //web api
+
+    public function getUpdateDate(Request $request){
+
+        $date = $request->date;
+        $data =DB::select('select * from updated_dates where updated_dates.date  > ? ',[$date]);
+        return json_encode($data);
+    }
+
+
 }

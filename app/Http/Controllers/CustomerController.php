@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\customer;
 use App\Events\confirmationMSGEvent;
+use Illuminate\Support\Facades\DB;
 
 
 class CustomerController extends Controller
@@ -35,17 +36,14 @@ class CustomerController extends Controller
 //     ]);
    $customer =new customer();
    $customer->name=$request->name;
-   $customer->password="uuhiuhi";
+//   $customer->password="uuhiuhi"
    $customer->phone=$request->phone;
+   $customer->alternative_number=$request->alternative_number;
    $customer->device_token=$request->device_token;
    $customer->api_token=$request->api_token;
-   $customer->location="hbjhj";
-
+   $customer->location=$request->location;
+   $customer->address=$request->address;
    $customer->save();
-
-
-
-
     return $customer->id;
 
 
@@ -55,4 +53,22 @@ class CustomerController extends Controller
       $customer=customer::find($id);
       return response()->json($customer);
  }
+
+     public function updateCustomerAPI(Request $request){
+
+          $customer =customer::where("phone",$request->phone)->first();
+
+//          return $customer;
+
+          $customer->name=$request->name;
+          $customer->password=$request->password;
+          $customer->phone=$request->phone;
+          $customer->alternative_number=$request->alternative_number;
+          $customer->location=$request->location;
+          $customer->address=$request->address;
+          $customer->device_token=$request->device_token;
+          $customer->api_token=$request->api_token;
+          $customer->save();
+          return 'updated';
+     }
 }

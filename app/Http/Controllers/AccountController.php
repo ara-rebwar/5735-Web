@@ -8,28 +8,27 @@ use App\Models\market;
 use App\Models\Account;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+
 class AccountController extends Controller
 {
     public function index(){
         $market=market::all();
         return view('accounts',compact('market'));
     }
-
     public function insert(Request $request){
         $account =new Account();
         $account->username=$request->username;
-        $account->password=$request->password;
         $account->market=$request->market;
+        $account->password = $request->password;
         $account->save();
         return redirect(route('showAccounts'))->with('successAccountMsg','Account Inserted Successfully');
     }
+
     public function selectAll(){
         $data=DB::select('select *,accounts.id as accountId from accounts inner join markets on markets.id=accounts.market');
         return view('accountList',compact('data'));
     }
-
     public function delete(Request $request){
-
         Account::destroy($request->accountId);
         return redirect(route('showAccountList'))->with('successDeleteAccount','Account Deleted Successfully');
     }
@@ -43,16 +42,16 @@ class AccountController extends Controller
     public function updateAccount(Request $request){
         $account=Account::find($request->accountId);
         $account->username=$request->username;
-        $account->password=$request->password;
+//        $account->password=$request->password;
         $account->market=$request->market;
         $account->save();
         return redirect(route('showEditAccount',$request->accountId))->with('updateAccountMsg','Account Updated Successfully');
     }
     public function authenticate(Request $request){
         $username=$request->username;
-        $password=$request->password;
+//        $password=$request->password;
 
-        $data=DB::select('select * from accounts where username = ?  and password = ? ',[$username,$password]);
+        $data=DB::select('select * from accounts where username = ?   ',[$username]);
 
         if ($data){
 

@@ -40,10 +40,10 @@
                             <label for="exampleInputEmail1">Username</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Username" name="username" value="{{$data['account'][0]->username}}">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" value="{{$data['account'][0]->password}}">
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            <label for="exampleInputPassword1">Password</label>--}}
+{{--                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" value="{{$data['account'][0]->password}}">--}}
+{{--                        </div>--}}
                         <div class="form-group">
                             <label for="exampleInputPassword1">Select Market</label>
                             <select name="market" class="form-control" >

@@ -19,23 +19,23 @@ class CategoryController extends Controller
 //        $request->validate([
 //            'category'=>'required|string'
 //        ]);
-        $media = new media();
-        $media->name=$request->imageName;
-        $media->thumb=$request->thumb;
-        $media->icon=$request->icon;
-        $media->size=$request->size;
+//        $media = new media();
+//        $media->name=$request->imageName;
+//        $media->thumb=$request->thumb;
+//        $media->icon=$request->icon;
+//        $media->size=$request->size;
 
-        $file=$request->file('url');
-        $ext=$file->getClientOriginalExtension();
-        $fileName=time().'.'.$ext;
-        $file->move('images/types_image/',$fileName);
-        $fileName='http://phplaravel-559223-1799886.cloudwaysapps.com/images/market_image/'.$fileName;
-        $media->url=$fileName;
-        $media->save();
+//        $file=$request->file('url');
+//        $ext=$file->getClientOriginalExtension();
+//        $fileName=time().'.'.$ext;
+//        $file->move('images/types_image/',$fileName);
+//        $fileName='http://localhost:8000/images/market_image/'.$fileName;
+//        $media->url=$fileName;
+//        $media->save();
 
         $category=new Category();
         $category->category_name=$request->category;
-        $category->image=$media->id;
+//        $category->image=$media->id;
         $category->save();
         return redirect(route('showCategory'))->with('categorySuccessMsg','Category Inserted Successfully');
 
@@ -73,22 +73,54 @@ class CategoryController extends Controller
         }
     }
     public function selectAllApi(){
-        return Category::all();
+        $categories = Category::all();
+        $a=0;
+        while($a<count($categories)){
+           if ($categories[$a]->image != null){
+               $categories[$a]->image = media::find($categories[$a]->image);
+           }
+        $a++;}
+        return $categories;
+
     }
     public function marketCategoryID($id){
-        $data=DB::select('select * from m_c_s where mid = ?',[$id]);
+        $data=DB::select('select * from market_categories where market_id = ?',[$id]);
 //        $data[0]->cid=Category::find($data[0]->cid);
         $a=0;
         while($a<count($data)){
-            $data[$a]->cid=Category::find($data[$a]->cid);
-            if ($data[$a]->cid->image != null){
-                $imageID=$data[$a]->cid->image;
-                $data[$a]->cid->image=media::find($imageID);
+            $data[$a]->category_id=Category::find($data[$a]->category_id);
+            if ($data[$a]->category_id->image != null){
+                $imageID=$data[$a]->category_id->image;
+                $data[$a]->category_id->image=media::find($imageID);
             }else{
-                $data[$a]->cid->image = null;
+                $data[$a]->category_id->image = null;
             }
             $a++;
         }
+        return $data;
+    }
+
+    public function checkCategory(Request $request){
+        $data =  DB::select('select * from market_categories where category_id    = ?' ,[$request->category_id,$request->market_id]);
+        $a=0;
+//        while($a<count($data)){
+//            $data[$a]->media_id= media::find($data[$a]->media_id);
+//
+//            $info=DB::select('select * from market_categories inner join products on products.market  =  market_categories.market_id where products.image is not null and market_categories.market_id  = ?  and market_categories.category_id = ? ',[$data[$a]->market_id,$data[$a]->category_id]);
+//            if ($data){
+//                $data[$a]->isImageUsable="true";
+//            }else{
+//                $data[$a]->isImageUsable="false";
+//            }
+//        $a++;}
+        $data[0]->media_id= media::find($data[0]->media_id);
+        $info=DB::select('select * from market_categories inner join products on products.market  =  market_categories.market_id where products.image is not null and market_categories.market_id  = ?  and market_categories.category_id = ? ',[$request->market_id,$request->category_id]);
+        if ($data){
+                $data[0]->isImageUsable="true";
+            }else{
+                $data[0]->isImageUsable="false";
+            }
+
         return $data;
     }
 }

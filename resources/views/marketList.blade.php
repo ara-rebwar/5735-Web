@@ -37,14 +37,16 @@
 
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example2" class="table table-bordered table-hover">
+                                    <table id="example2" class="table table-bordered table-hover" style="text-align: center">
                                         <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>Address</th>
-                                            <th>Rate</th>
-                                            <th>Phone</th>
+                                            <th>Mobile 1</th>
+                                            <th>Products</th>
+                                            <th>Category</th>
+                                            <th>Discount</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
@@ -57,9 +59,10 @@
                                             <td>{{$marketList[$a]->marketId}}</td>
                                             <td>{{$marketList[$a]->name}}</td>
                                             <td>{{$marketList[$a]->address}}</td>
-                                            <td>{{$marketList[$a]->rate}}</td>
-                                            <td>{{$marketList[$a]->phone}}</td>
-
+                                            <td>{{$marketList[$a]->mobile1}}</td>
+                                            <td><a href="{{route('showProductByMarketId',$marketList[$a]->marketId)}}" class="btn btn-dark"><i class="fa fa-list white"></i></a></td>
+                                            <td> <a  href="{{route('showMarketCategories',$marketList[$a]->marketId)}}"  class="btn btn-warning"><i class="fa fa-th-large"></i></a></td>
+                                            <td><a href="{{route('showDiscount',$marketList[$a]->marketId)}}" class="btn btn-success"><span class="fa fa-percent"></span></a></td>
                                             <td> <a  href="{{route('showEditMarketID',$marketList[$a]->marketId)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
                                             <td>
                                                 <form action="{{route('deleteMarket')}}" method="post">
@@ -72,7 +75,6 @@
                                         </tr>
                                         <?php  $a++; }
                                         ?>
-
                                     </table>
                                 </div>
                                 <!-- /.card-body -->

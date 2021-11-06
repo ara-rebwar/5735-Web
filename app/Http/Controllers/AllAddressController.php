@@ -14,11 +14,9 @@ class AllAddressController extends Controller
     public function insertLocation(Request $request){
         $request->validate([
             'place1'=>'required|string',
-            'place2'=>'required|string'
         ]);
         $allAddress = new All_Address();
         $allAddress->place1=$request->place1;
-        $allAddress->place2=$request->place2;
         $allAddress->save();
 
         return redirect(route('showLocation'))->with('insertLocationMsg','Location Inserted Successfully');
@@ -43,13 +41,11 @@ class AllAddressController extends Controller
 
     public function UpdateLocation(Request $request){
         $request->validate([
-            'place1'=>'required|string',
-            'place2'=>'required|string'
+            'place1'=>'required|string'
         ]);
 
         $allAddress=All_Address::find($request->locationId);
         $allAddress->place1=$request->place1;
-        $allAddress->place2=$request->place2;
         $allAddress->save();
         return redirect(route('showEditLocation',$request->locationId))->with('updateLocationMsg','Location Updated Successfully');
 

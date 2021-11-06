@@ -51,8 +51,18 @@
                                 while ($a<count($addressList)){  ?>
                                 <tr>
                                     <td>{{$addressList[$a]->id}}</td>
-                                    <td>{{$addressList[$a]->place1}}</td>
-                                    <td>{{$addressList[$a]->place2}}</td>
+                                    <td>
+                                        @foreach($locations as $location)
+                                            @if($location->id == $addressList[$a]->place1)
+                                                {{$location->place1}}
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                    <td>@foreach($locations as $location)
+                                            @if($location->id == $addressList[$a]->place2)
+                                                {{$location->place1}}
+                                        @endif
+                                        @endforeach</td>
                                     <td>{{$addressList[$a]->price}}</td>
 
                                     <td> <a  href="{{route('showEditAddress',$addressList[$a]->id)}}"  class="btn btn-primary"><i class="fa fa-edit"></i></a></td>

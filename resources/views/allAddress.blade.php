@@ -43,10 +43,10 @@
                             <label for="exampleInputEmail1">First Location</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Location" name="place1">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Second Location</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Second Location" name="place2">
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            <label for="exampleInputEmail1">Second Location</label>--}}
+{{--                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Second Location" name="place2">--}}
+{{--                        </div>--}}
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>

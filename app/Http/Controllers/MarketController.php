@@ -3,130 +3,118 @@
 namespace App\Http\Controllers;
 
 use App\Models\All_Address;
+use App\Models\Day;
+use App\Models\discount_market;
+use App\Models\MarketCategory;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\market;
 use App\Models\media;
 use Illuminate\Support\Facades\DB;
-use App\Models\MC;
 use App\Models\Category;
 use App\Models\Type;
 
 class MarketController extends Controller
 {
-
     public function show()
     {
+        $marketImages = DB::select('select media.id,url from markets inner join media on markets.image  = media.id ');
         $data['category'] = Category::all();
         $data['type'] = Type::all();
         $data['address']=DB::select('select * from all__addresses');
-        return view('markets', compact('data'));
+        return view('markets', compact('data','marketImages'));
     }
-
     public function insert(Request $request)
     {
-
         $request->validate([
             'marketName' => 'required|string',
-            'marketRate' => 'required|numeric',
             'marketAddress' => 'required',
-            'marketDescription' => 'required|string',
             'marketPhone' => 'required|numeric',
-            'marketInformation' => 'required|string',
             'marketClosed' => 'required',
-            'marketImageName' => 'required|string',
-            'marketURL' => 'required',
-            'marketThumb' => 'required|string',
-            'marketimageSize' => 'required|numeric',
-            'marketIcon' => 'required',
             'type'=>'required',
-            'is_by_5735'=>'required'
+            'has_product'=>'required',
         ]);
         $market = new market();
         $media = new media();
-
-        $mc = new MC();
-        $i = 0;
-        $mcId = count($mc::all());
         $cats = $request->category;
-
-
-        $media->name = $request->marketImageName;
+        $i = 0;
         $media->url = $request->marketURL;
-        $media->thumb = $request->marketThumb;
-        $media->size = $request->marketimageSize;
-        $media->icon = $request->marketIcon;
-
         $file = $request->file('marketURL');
-        $ext = $file->getClientOriginalExtension();
-        $fileName = time() . '.' . $ext;
-        $file->move('images/market_image/', $fileName);
-        $fileName = 'http://phplaravel-559223-1799886.cloudwaysapps.com/images/market_image/' . $fileName;
-        $media->url = $fileName;
-
-
+        if ($file){
+            $ext = $file->getClientOriginalExtension();
+            $fileName = time() . '.' . $ext;
+            $file->move('images/market_image/', $fileName);
+//        $fileName = 'http://62.201.253.178:89/images/market_image/' . $fileName;
+            $fileName = 'http://localhost:8000/images/market_image/' . $fileName;
+            $media->url = $fileName;
+        }else{
+            $media->url = $request->chosenImageMarket;
+        }
         $media->save();
-        $mediaID = DB::select('select id from media where name = ?  and thumb = ? and icon = ? and size = ?   ', [$request->marketImageName, $request->marketThumb, $request->marketIcon, $request->marketimageSize]);
+        $iconMedia = new media();
+        if ($request->hasFile('marketIconImage')){
+            $file = $request->file('marketIconImage');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = time() . '.' . $ext;
+            $file->move('images/icons/', $fileName);
+//        $fileName = 'http://62.201.253.178:89/images/icons/' . $fileName;
+            $fileName = 'http://localhost:8000/images/icons/' . $fileName;
+            $iconMedia->url = $fileName;
+        }else{
+            $iconMedia->url = $request->chosenImageIcon;
+        }
+        $iconMedia->save();
         $market->name = $request->marketName;
-        $market->image = $mediaID[0]->id;
-        $market->rate = $request->marketRate;
+        $market->image = $media->id;
         $market->address = $request->marketAddress;
-        $market->description = $request->marketDescription;
-        $market->phone = $request->marketPhone;
-        $market->mobile = "hi";
-        $market->information = $request->marketInformation;
-        $market->deliveryFee = -1;
-        $market->adminCommission = -1;
-        $market->defaultTax = -1;
-        $market->latitude = -1;
-        $market->longitude = -1;
+        $market->mobile1 = $request->marketPhone;
+        $market->mobile2 = $request->marketPhone2;
+
         $market->closed = (int)$request->marketClosed;
-        $market->availableForDelivery = 0;
-        $market->deliveryRange = -1;
-        $market->distance = -1;
         $market->type = $request->type;
-        $market->is_by_5735=$request->is_by_5735;
+        if ($request->has_product == 1){
+            $market->has_product =1;
+        }else{
+            $market->has_product=0;
+        }
+        $market->MSSQL_ID=0;
+        $market->icon=$iconMedia->id;
         $market->save();
         $has_product=Type::find($request->type);
-        if ($has_product->has_product == 1){
+//        if ($has_product->has_product == 1){
             while ($i < count($cats)) {
-                $mc = new MC();
-                $mcId++;
-                $mc->id = $mcId;
-                $mc->mid = $market->id;
-                $mc->cid = $cats[$i];
+                $mc = new MarketCategory();
+                $mc->market_id = $market->id;
+                $mc->category_id = $cats[$i];
                 $mc->save();
                 $i++;
             }
-        }
+//        }
         return redirect(route('showMarket'))->with('marketSuccessMsg', 'information inserted');
     }
     public function selectmarketId($id)
     {
-        $data = DB::select("select * from markets inner join media on markets.image=media.id and markets.id = ? ", [$id]);
-        $media = DB::select("select media.id, media.url,media.thumb,media.icon,media.size from markets inner join media on markets.image = media.id");
-        for ($a = 0; $a < count($data); $a++) {
-            $data[$a]->image = $media[$a];
-        }
+        $data = DB::select("select *,markets.id as id from markets inner join media on markets.image=media.id and markets.id = ? ", [$id]);
+        $media = DB::select("select media.id, media.url,media.thumb,media.size from markets inner join media on markets.image = media.id and markets.id = ?",[$id]);
+        $data[0]->image = $media[0];
         return response()->json($data);
     }
     public function selectAll()
     {
         $data = DB::select("select * from markets ");
-        $media = DB::select("select media.id, media.url,media.thumb,media.icon,media.size from markets inner join media on markets.image = media.id");
+        $media = DB::select("select media.id, media.url,media.thumb,media.size from markets inner join media on markets.image = media.id");
+
         for ($a = 0; $a < count($data); $a++) {
             $data[$a]->image = $media[$a];
+            $data[$a]->discount = DB::select('select * from discount_markets inner join days on discount_markets.day_of_week  = days.id  inner join discount_types on discount_types.id = discount_markets.discount_id where  discount_markets.created_at IN  (select max(created_at) from discount_markets where discount_markets.market_id = ? ) ',[$data[$a]->id]);
         }
         return response()->json($data);
-
     }
-
     public function fetchAllData($id)
     {
 //    $data=DB::select("select *,products.image as productImage from products where id = ? ",[$id]);
 //    $data[0]->image=media::find($data[0]->image);
-//
 //    return $data;
-
         $data = DB::select('select * from products where market = ? ', [$id]);
         $a = 0;
         while ($a < count($data)) {
@@ -135,10 +123,7 @@ class MarketController extends Controller
 //            print_r('Rows: ' . $data[$a]);
 //            print_r('image: ' . media::find($data[$a]->image));
         }
-
-
         return $data;
-
     }
 
     public function showMarketList()
@@ -148,117 +133,83 @@ class MarketController extends Controller
     }
 
     public function ShowEditMarket($id)
-    {   $data['address']=All_Address::all();
-        $data['marketInfo']= DB::select('select *,markets.name as marketName,markets.id as marketId,media.id as imageId from markets inner join media on media.id = markets.image and markets.id= ?  ', [$id]);
+    {
+        $data['category'] = Category::all();
+        $data['type'] = Type::all();
+        $data['address']=All_Address::all();
+        $data['icon']=DB::select('select * from markets inner join media on media.id = markets.icon and markets.id = ? ',[$id]);
+        $data['categories']=DB::select('select * from market_categories where market_id = ? ',[$id]);
+        $data['marketInfo']= DB::select('select *,markets.name as marketName,markets.id as marketId,media.id as imageId from markets inner join media on media.id = markets.image  inner join market_categories on markets.id = market_categories.market_id and markets.id= ?  ',[$id]);
         return view('editMarket', compact('data'));
     }
 
-
     public function updateMarket(Request $request, $id)
     {
-
         $request->validate([
             'marketName' => 'required|string',
-            'marketRate' => 'required|numeric',
             'marketAddress' => 'required',
-            'marketDescription' => 'required|string',
-            'marketPhone' => 'required|numeric',
-            'marketInformation' => 'required|string',
+            'marketMobile1' => 'required|numeric',
             'marketClosed' => 'required',
-            'marketImageName' => 'required|string',
-            'marketThumb' => 'required|string',
-            'marketimageSize' => 'required|numeric',
-            'marketIcon' => 'required',
             'type'=>'required',
-            'is_by_5735'=>'required'
+            'has_product'=>'required',
         ]);
+            $media = media::find($request->mediaId);
+            $file = $request->file('marketURL');
+            if ($file){
+                $ext = $file->getClientOriginalExtension();
+                $fileName = time() . '.' . $ext;
+                $file->move('images/market_image/', $fileName);
+                $fileName ='http://62.201.253.178:89/images/market_image/' . $fileName;
+                $media->url = $fileName;
+            }
+            $media->save();
 
-        $media = media::find($request->mediaId);
 
-
-        $media->name = $request->marketImageName;
-        $media->thumb = $request->marketThumb;
-        $media->icon = $request->marketIcon;
-        $media->size = $request->marketimageSize;
-
-
-        $file = $request->file('marketURL');
+        $mediaIcon =media::find($request->IconImageId);
+        $file = $request->file('marketIconImage');
         if ($file){
             $ext = $file->getClientOriginalExtension();
             $fileName = time() . '.' . $ext;
-            $file->move('images/market_image/', $fileName);
-            $fileName = 'http://phplaravel-559223-1799886.cloudwaysapps.com/images/market_image/' . $fileName;
+            $file->move('images/icons/', $fileName);
+            $fileName ='http://62.201.253.178:89/images/icons/' . $fileName;
             $media->url = $fileName;
         }
-        $media->save();
+        $mediaIcon->save();
         $market = market::find($request->marketId);
         $market->name = $request->marketName;
-        $market->rate = $request->marketRate;
         $market->address = $request->marketAddress;
-        $market->description = $request->marketDescription;
-        $market->phone = $request->marketPhone;
-        $market->mobile = -1;
-        $market->information = $request->marketInformation;
-        $market->deliveryFee = -1;
-        $market->adminCommission = -1;
-        $market->defaultTax = -1;
-        $market->latitude = "hi";
-        $market->longitude = "hi";
+        $market->mobile1 = $request->marketMobile1;
+        $market->mobile2 = $request->marketPhone2;
         $market->closed = $request->marketClosed;
-        $market->availableForDelivery = 0;
-        $market->deliveryRange = -1;
-        $market->distance = -1;
         $market->type=$request->type;
-        $market->is_by_5735=$request->is_by_5735;
+        if ($request->has_product == 1){
+            $market->has_product=$request->has_product;
+        }else{
+            $market->has_product=$request->has_product;
+        }
+        $market->MSSQL_ID=0;
         $market->save();
-
-
-
-
+        $cats=$request->category;
+        $i=0;
+        DB::delete("delete from market_categories where market_id = ? ",[$request->marketId]);
+        while ($i < count($cats)) {
+            $mc =new MarketCategory();
+            $mc->market_id = $market->id;
+            $mc->category_id = $cats[$i];
+            $mc->save();
+            $i++;
+        }
         return redirect(route('showEditMarketID', $request->marketId))->with('updateMarketMsg', 'Information Updated Successfully');
-
-
     }
-
     public function delete(Request $request)
     {
-        $marketId = $request->marketId;
-        $mediaId = $request->mediaId;
-
-
-        $slideMediaId = DB::select('select media from slides where market = ? ', [$marketId]);
-        $s = 0;
-        DB::delete('delete from slides where market = ? ', [$marketId]);
-        while ($s < count($slideMediaId)) {
-
-            DB::delete('delete from media where id = ? ', [$slideMediaId[$s]->media]);
-            $s++;
-        }
-
-        $productMediaId = DB::select('select image from products where market = ? ', [$marketId]);
-
-        $p = 0;
-        DB::delete('delete from products where market = ? ', [$marketId]);
-        while ($p < count($productMediaId)) {
-
-            DB::delete('delete from media where id  = ? ', [$productMediaId[$p]->image]);
-            $p++;
-        }
-
-
-        $marketMediaId = DB::select('select image from markets where id = ? ', [$marketId]);
-        $m = 0;
-        DB::delete('delete from markets where id = ? ', [$marketId]);
-        while ($m < count($marketMediaId)) {
-            DB::delete('delete from media where id = ? ', [$marketMediaId[$m]->image]);
-            $m++;
-        }
-        //market
-        //media
+        DB::delete('delete from products where market = ? ',[(int)$request->marketId]);
+        DB::delete('delete from discount_markets where market_id = ? ',[(int)$request->marketId]);
+        DB::delete('delete from market_categories where market_id = ? ',[(int)$request->marketId]);
+        DB::delete('delete from slides where market = ? ',[(int)$request->marketId]);
+        DB::delete('delete from markets where id  = ? ',[(int)$request->marketId]);
         return redirect(route('showMarketList'))->with('deleteMarketMsg', 'Market Deleted Successfully');
     }
-
-
     public function updateClosed(Request $request)
     {
         $id = $request->id;
@@ -285,9 +236,62 @@ class MarketController extends Controller
             }else{
                 $data->is_by_5735=0;
             }
-
         }
         $data->save();
         return "updated";
     }
+
+
+    public function  showDiscount($id){
+        $days= Day::all();
+        $products=DB::select('select id,products.name  from  products where products.market = ? ',[$id]);
+        $market_id=$id;
+        $discountList=DB::select('select *,discount_markets.id as id from discount_markets inner join discount_types  on discount_markets.discount_id = discount_types.id inner join markets on markets.id = discount_markets.market_id inner join days on days.id =  discount_markets.day_of_week and discount_markets.market_id = ? ',[$id]);
+        return view('discount',compact(['days','products','market_id','discountList']));
+    }
+
+    public function second(){
+//        $database= DB::connection('mysql2')->table('user')->exists();
+////        $database->newQuery("insert into user values('shkar')");
+//        $database
+        if (DB::connection('mysql2')->table('user')->insert([["id"=>1,"name"=>"aa"]]))
+            dd("success");
+
+    }
+    public function showMarketProductsID($id){
+
+
+        $categories  = DB::select('select * from market_categories inner join categories on market_categories.category_id = categories.id and market_categories.market_id = ? ',[$id]);
+        return view('products',compact('categories','id'));
+
+    }
+
+    public function test(Request $request){
+        $order = new Order();
+        $order->user =$request->user;
+        $order->market = $request->market;
+        $order->products=$request->products;
+        $order->from = $request->from;
+        $order->to = $request->to;
+        $order->delivery_price=$request->delivery_price;
+        $order->product_price = $request->product_price;
+        $order->save();
+
+
+        $serverName = "WIN-PQQFGC147DA";
+        $uid = "kurdity";
+        $pwd = "5735kurdity2020";
+        $databaseName = "TestDB";
+
+
+        $connectionInfo = array( "UID"=>$uid,
+            "PWD"=>$pwd,
+            "Database"=>$databaseName);
+
+        /* Connect using SQL Server Authentication. */
+        $conn = sqlsrv_connect( $serverName, $connectionInfo);
+    }
+
+
+
 }

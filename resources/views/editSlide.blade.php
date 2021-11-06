@@ -17,28 +17,21 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    @if(session('slideInsertSuccessMsg'))
-        <div class=" alert alert-success" style="margin:1% 1.4%;">
-            {{session('slideInsertSuccessMsg')}}
-        </div>
-    @endif
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-
-
             <div class="">
-
                 <div class="col-mid-12">
-
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Edit Slide Form</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" method="post" action="" enctype="multipart/form-data">
+                        <form role="form" method="post" action="{{route('updateSlide')}}" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="slideID" value="{{$data['slide'][0]->id}}">
+                            <input type="hidden" name="mediaID" value="{{$data['slide'][0]->media}}">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Select Market</label>
@@ -53,12 +46,10 @@
                                         <option value="<?php echo $data['market'][$a]->id; ?>"><?php echo $data['market'][$a]->name; ?></option>
                                     <?php    }
                                             ?>
-
                                         <?php
                                         $a++;
                                         }
                                         ?>
-
                                     </select>
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideMarket'){{$message}}@enderror</label>
                                 </div>
@@ -66,7 +57,13 @@
                                     <label for="exampleInputPassword1">Select Product</label>
                                     <select class="form-control" name="slideProduct" id="slideProduct">
                                         <option disabled selected >None</option>
-
+                                        @foreach($data['slideProduct'] as $slide)
+                                            @if($slide->product == $data['slide'][0]->product)
+                                                <option value="{{$slide->product}}" selected>{{$data['slide'][0]->name}}</option>
+                                            @else
+                                                <option value="{{$slide->product}}" >{{$data['slide'][0]->name}}</option>
+                                            @endif
+                                        @endforeach
                                     </select>
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideProduct'){{$message}}@enderror</label>
                                 </div>
@@ -74,16 +71,6 @@
                                     <label> Description</label>
                                     <input type="text"  class="form-control" placeholder="Write Description" name="slideDescription" value="{{$data['slide'][0]->text}}">
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideDescription'){{$message}}@enderror</label>
-                                </div>
-                                <div class="form-group">
-                                    <label> Image Name</label>
-                                    <input type="text"  class="form-control" placeholder="Enter Image Name" name="slideImageName" value="{{$data['slide'][0]->imageName}}">
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideImageName'){{$message}}@enderror</label>
-                                </div>
-                                <div class="form-group">
-                                    <label>Image Thumb</label>
-                                    <input type="text"  class="form-control" placeholder="Enter Image Thumb" name="slideImageThumb" value="{{$data['slide'][0]->thumb}}">
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideImageThumb'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group">
                                     <label> Image </label>
@@ -94,26 +81,12 @@
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideImage'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group">
-                                    <label> Image Size</label>
-                                    <input type="text"  class="form-control" placeholder="Enter Image Size" name="slideImageSize" value="{{$data['slide'][0]->size}}">
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideImageSize'){{$message}}@enderror</label>
-                                </div>
-                                <div class="form-group">
-                                    <label> Icon</label>
-                                    <input type="text"  class="form-control" placeholder="Enter Image Icon" name="slideImageIcon" value="{{$data['slide'][0]->icon}}">
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideImageIcon'){{$message}}@enderror</label>
-                                </div>
-                                <div class="form-group">
                                     <label> Order Number</label>
                                     <input type="text"  class="form-control" placeholder="Enter Order Number" name="slideOrderNumber" value="{{$data['slide'][0]->order}}">
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideOrderNumber'){{$message}}@enderror</label>
                                 </div>
-
-
-
                             </div>
                             <!-- /.card-body -->
-
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>

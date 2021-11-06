@@ -32,102 +32,93 @@ class SlideController extends Controller
             'slideMarket'=>'required',
             'slideProduct'=>'required',
             'slideOrderNumber'=>'required|numeric',
-            'slideImageName'=>'required|string',
-            'slideImageThumb'=>'required|string',
-            'slideImageIcon'=>'required|string',
-            'slideImageSize'=>'required|numeric',
             'slideImage'=>'required',
         ]);
         $media = new media();
         $slide= new slide();
-
-        $media->name=$request->slideImageName;
-//        $media->url=$request->slideImage;
-        $media->thumb=$request->slideImageThumb;
-        $media->icon=$request->slideImageIcon;
-        $media->size=$request->slideImageSize;
-
         $file=$request->file('slideImage');
         $ext=$file->getClientOriginalExtension();
         $fileName=time().'.'.$ext;
         $file->move('images/slides_image/',$fileName);
-        $fileName='http://phplaravel-559223-1799886.cloudwaysapps.com/images/slides_image/'.$fileName;
+        $fileName='http://62.201.253.178:89/images/slides_image/'.$fileName;
         $media->url=$fileName;
         $media->save();
-        $data=DB::select('select id from media where name= ?  and  url = ? ',[$request->slideImageName,$fileName]);
-
-
         $slide->text=$request->slideDescription;
-        $slide->media=$data[0]->id;
+        $slide->media=$media->id;
         $slide->market=$request->slideMarket;
         $slide->product=$request->slideProduct;
         $slide->order=$request->slideOrderNumber;
-
         $slide->save();
-
         return redirect(route('showSlides'))->with('slideInsertSuccessMsg','Slide Inserted Successfully');
-
-
-
     }
-
     public function selectProduct($id){
-
         $id=$_GET['data'];
-
-
         $data=DB::select('select products.id,products.name,products.market from products where products.market = ? ',[$id]);
-
         return json_encode($data);
     }
-
-
     public function showSlideList(){
-        $slideList=DB::select('select slides.id as slideId,products.name as slideProduct, markets.name as slideMarket ,text ,slides.order,media.id as mediaId from slides inner join products on products.id=slides.product inner join markets on markets.id=slides.market inner join media on media.id = slides.media ');
+        $slideList =DB::select('select *,slides.id as slideId ,products.name as slideProduct , markets.name as slideMarket ,media.id as mediaId from slides inner join media on slides.media = media.id  inner join products on products.id = slides.product inner join markets on markets.id = slides.market');
         return view('slideList',compact('slideList'));
     }
-
-    public function showEditSlideID($id){
+    public function showEditSlideID($slide,$market,$product){
         $data['market']=market::all();
-//        $data['product']=product::all();
-        $data['slide']=DB::select('select *,media.name as imageName,slides.market as slideMarket from slides inner join markets on markets.id =slides.market inner join media on slides.media=media.id and slides.id = ?  ',[$id]);
-
+        $data['slideProduct'] = DB::select('select * from slides inner join products on products.id  = slides.product where slides.market = ? and slides.product = ?  ',[$market,$product]);
+        $data['slide']=DB::select('select *,slides.market as slideMarket,slides.id as id from slides inner join markets on markets.id =slides.market inner join media on slides.media=media.id and slides.id = ?  ',[$slide]);
         return view('editSlide',compact('data'));
+
     }
     protected function delete(Request $request)
     {
         $id=$request->slideId;
         $mediaId=$request->mediaId;
-
-
-        $media=media::destroy($mediaId);
-        $slide=slide::destroy($id);
+        media::destroy($mediaId);
+        slide::destroy($id);
         return redirect(route('showSlideList'))->with('deleteSlideMsg','Slide Deleted Successfully');
-
     }
-
-
     public function selectAll(){
-//        $slides=DB::select('select *,products.name as productName,markets.name as marketName,media.name as imageName from slides inner join products on products.id=slides.product inner join markets on markets.id=slides.market inner join media on media.id=slides.media');
-//        return response()->json($slides);
         $i=0;
         $data=slide::all();
         while($i<count($data)){
-
-//            $media=DB::select('select * from media where id = ? ',[$data[$i]->media]);
             $data[$i]->media=media::find($data[$i]->media);
             $data[$i]->product=product::find($data[$i]->product);
             $data[$i]->market=market::find($data[$i]->market);
 
             $i++;
         }
-
         return response()->json($data);
-
     }
 
     public function selectSlideById($id){
         $slide=slide::find($id);
         return response()->json($slide);
+    }
+
+    public function updateSlide(Request $request){
+        $request->validate([
+            'slideMarket'=>'required',
+            'slideProduct'=>'required',
+            'slideDescription'=>'required',
+            'slideOrderNumber'=>'required',
+        ]);
+        $slide = slide::find($request->slideID);
+        $slide->order = $request->slideOrderNumber;
+        $slide->text = $request->slideDescription;
+        $slide->product = $request->slideProduct;
+        $slide->market = $request->slideMarket;
+        $slide->save();
+        $media = media::find($request->mediaID);
+        if ($request->slideImage != null){
+            $file=$request->file('slideImage');
+            $ext=$file->getClientOriginalExtension();
+            $fileName=time().'.'.$ext;
+            $file->move('images/slides_image/',$fileName);
+            $fileName='http://62.201.253.178:89/images/slides_image/'.$fileName;
+            $media->url=$fileName;
+        }else{
+            $media->url = $media->url;
+        }
+        $media->save();
+        $slide->save();
+        return redirect(route('showSlideList'))->with('slideupdateSuccessMsg','Slide Inserted Successfully');
     }
 }

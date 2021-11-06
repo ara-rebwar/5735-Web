@@ -9,7 +9,7 @@ class confirmationMSGListener
 {
     /**
      * Create the event listener.
-     *
+     * 
      * @return void
      */
     public function __construct()
@@ -25,7 +25,7 @@ class confirmationMSGListener
      */
     public function handle($event)
     {
-      $sid    = env( 'TWILIO_SID' );
+       $sid    = env( 'TWILIO_SID' );
        $token  = env( 'TWILIO_TOKEN' );
        $client = new Client( $sid, $token );
       //  // In production, these should be environment variables. E.g.:

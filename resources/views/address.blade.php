@@ -41,11 +41,23 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">First Location</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Location" name="place1">
+{{--                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Location" name="place1">--}}
+                            <select name="place1" class="form-control">
+                                <option disabled selected>None</option>
+                                @foreach($locations as $location)
+                                    <option value="{{$location->id}}">{{$location->place1}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Second Location</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Second Location" name="place2">
+{{--                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Second Location" name="place2">--}}
+                            <select name="place2" class="form-control">
+                                <option disabled selected>None</option>
+                                @foreach($locations as $location)
+                                    <option value="{{$location->id}}">{{$location->place1}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Price</label>

@@ -43,34 +43,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
-{{--            <li class="nav-item d-none d-sm-inline-block">--}}
-{{--                <a href="index3.html" class="nav-link">Home</a>--}}
-{{--            </li>--}}
-{{--            <li class="nav-item d-none d-sm-inline-block">--}}
-{{--                <a href="#" class="nav-link">Contact</a>--}}
-{{--            </li>--}}
         </ul>
-
-        <!-- SEARCH FORM -->
-{{--        <form class="form-inline ml-3">--}}
-{{--            <div class="input-group input-group-sm">--}}
-{{--                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">--}}
-{{--                <div class="input-group-append">--}}
-{{--                    <button class="btn btn-navbar" type="submit">--}}
-{{--                        <i class="fas fa-search"></i>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </form>--}}
-
-{{--        <!-- Right navbar links -->--}}
-{{--        <ul class="navbar-nav ml-auto">--}}
-{{--            <!-- Messages Dropdown Menu -->--}}
-
-{{--            <!-- Notifications Dropdown Menu -->--}}
-
-
-{{--        </ul>--}}
     </nav>
     <!-- /.navbar -->
 
@@ -119,33 +92,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <p>Markets List</p>
                                 </a>
                             </li>
-
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon far fa-store"></i>
-                            <p>
-                                Product
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('showProduct')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Product</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('showProductList')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Products List</p>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
+{{--                    <li class="nav-item has-treeview">--}}
+{{--                        <a href="{{route('showProductList')}}" class="nav-link">--}}
+{{--                            <i class="nav-icon far fa-store"></i>--}}
+{{--                            <p>--}}
+{{--                                Product List--}}
+{{--                                <i class="fas fa-angle-left right"></i>--}}
+{{--                            </p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-store"></i>
@@ -242,54 +199,54 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon far fa-store"></i>
-                            <p>
-                                Address
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('showAddress')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Address</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('showAddressList')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Address List</p>
-                                </a>
-                            </li>
+{{--                    <li class="nav-item has-treeview">--}}
+{{--                        <a href="#" class="nav-link">--}}
+{{--                            <i class="nav-icon far fa-store"></i>--}}
+{{--                            <p>--}}
+{{--                                Address--}}
+{{--                                <i class="fas fa-angle-left right"></i>--}}
+{{--                            </p>--}}
+{{--                        </a>--}}
+{{--                        <ul class="nav nav-treeview">--}}
+{{--                            <li class="nav-item">--}}
+{{--                                <a href="{{route('showAddress')}}" class="nav-link">--}}
+{{--                                    <i class="far fa-circle nav-icon"></i>--}}
+{{--                                    <p>Add Address</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                            <li class="nav-item">--}}
+{{--                                <a href="{{route('showAddressList')}}" class="nav-link">--}}
+{{--                                    <i class="far fa-circle nav-icon"></i>--}}
+{{--                                    <p>Address List</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
 
-                        </ul>
-                    </li>
+{{--                        </ul>--}}
+{{--                    </li>--}}
 
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon far fa-store"></i>
-                            <p>
-                                Location
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('showLocation')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Location</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('showLocationList')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Location List</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+{{--                    <li class="nav-item has-treeview">--}}
+{{--                        <a href="#" class="nav-link">--}}
+{{--                            <i class="nav-icon far fa-store"></i>--}}
+{{--                            <p>--}}
+{{--                                Location--}}
+{{--                                <i class="fas fa-angle-left right"></i>--}}
+{{--                            </p>--}}
+{{--                        </a>--}}
+{{--                        <ul class="nav nav-treeview">--}}
+{{--                            <li class="nav-item">--}}
+{{--                                <a href="{{route('showLocation')}}" class="nav-link">--}}
+{{--                                    <i class="far fa-circle nav-icon"></i>--}}
+{{--                                    <p>Add Location</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                            <li class="nav-item">--}}
+{{--                                <a href="{{route('showLocationList')}}" class="nav-link">--}}
+{{--                                    <i class="far fa-circle nav-icon"></i>--}}
+{{--                                    <p>Location List</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
@@ -371,6 +328,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </ul>
                     </li>
+
+
+
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-store"></i>
+                            <p>
+                                My Users
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('showUpdateType')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add User</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('showUpdateTypeList')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Users List</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -430,11 +415,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             "responsive": true,
             "autoWidth": false,
         });
-
     });
 </script>
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 <script>
     $(document).ready(function(){
@@ -444,9 +426,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             tokenSeparators: ['/',',',';'," "]
         });
     })
-
-
-
 </script>
 
 </body>
