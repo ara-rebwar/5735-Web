@@ -25,18 +25,8 @@ class CustomerController extends Controller
     }
   public function insert(Request $request)
  {
-
-
-//     $request->validate([
-//         'name'=>'required|string',
-//         'password'=>'required',
-//         'phone'=>'required|max:11',
-//         'api_token'=>'required',
-//         'device_token'=>'required'
-//     ]);
    $customer =new customer();
    $customer->name=$request->name;
-//   $customer->password="uuhiuhi"
    $customer->phone=$request->phone;
    $customer->alternative_number=$request->alternative_number;
    $customer->device_token=$request->device_token;
@@ -45,8 +35,6 @@ class CustomerController extends Controller
    $customer->address=$request->address;
    $customer->save();
     return $customer->id;
-
-
  }
 
  public function selectAll($id){
@@ -55,11 +43,7 @@ class CustomerController extends Controller
  }
 
      public function updateCustomerAPI(Request $request){
-
           $customer =customer::where("phone",$request->phone)->first();
-
-//          return $customer;
-
           $customer->name=$request->name;
           $customer->password=$request->password;
           $customer->phone=$request->phone;

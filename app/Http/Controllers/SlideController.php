@@ -11,19 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class SlideController extends Controller
 {
+    public $url = "http://localhost:8000/images";
     public function show(){
+        $marketImages = DB::select('select media.id,url from markets inner join media on markets.image  = media.id ');
         $data=array();
         $data['markets']=DB::select('select id,name from markets');
-//        $data['products']=array();
-//        for ($a=0;$a<count($data['markets']);$a++){
-//            $data['products'][$a]=DB::select('select products.id,products.name from products where products.market = ? ',[$data['markets'][$a]->id]);
-//
-//
-//        }
         $data['products']=DB::select('select products.id,products.name,products.market from products ');
-
-
-        return view('slides',compact('data'));
+        return view('slides',compact('data','marketImages'));
     }
 
     public function insert(Request $request){
@@ -32,16 +26,20 @@ class SlideController extends Controller
             'slideMarket'=>'required',
             'slideProduct'=>'required',
             'slideOrderNumber'=>'required|numeric',
-            'slideImage'=>'required',
         ]);
         $media = new media();
         $slide= new slide();
-        $file=$request->file('slideImage');
-        $ext=$file->getClientOriginalExtension();
-        $fileName=time().'.'.$ext;
-        $file->move('images/slides_image/',$fileName);
-        $fileName='http://62.201.253.178:89/images/slides_image/'.$fileName;
-        $media->url=$fileName;
+        if ($request->slidePriority == "0"){
+            $file=$request->file('slideImage');
+            $ext=$file->getClientOriginalExtension();
+            $fileName=time().'.'.$ext;
+            $file->move('images/slides_image/',$fileName);
+            $fileName=$this->url.'/slides_image/'.$fileName;
+            $media->url=$fileName;
+
+        }else{
+            $media->url = $request->chosenImageSlide;
+        }
         $media->save();
         $slide->text=$request->slideDescription;
         $slide->media=$media->id;
@@ -61,10 +59,12 @@ class SlideController extends Controller
         return view('slideList',compact('slideList'));
     }
     public function showEditSlideID($slide,$market,$product){
+        $marketImages = DB::select('select media.id,url from markets inner join media on markets.image  = media.id ');
         $data['market']=market::all();
-        $data['slideProduct'] = DB::select('select * from slides inner join products on products.id  = slides.product where slides.market = ? and slides.product = ?  ',[$market,$product]);
+        $data['slideProduct'] = DB::select('select * from markets inner join products on markets.id = products.market and markets.id = ? ',[$market]);
+//        $data['slideProduct'] = DB::select('select * from slides inner join products on products.id  = slides.product where slides.market = ? and slides.product = ?  ',[$market,$product]);
         $data['slide']=DB::select('select *,slides.market as slideMarket,slides.id as id from slides inner join markets on markets.id =slides.market inner join media on slides.media=media.id and slides.id = ?  ',[$slide]);
-        return view('editSlide',compact('data'));
+        return view('editSlide',compact('data','marketImages'));
 
     }
     protected function delete(Request $request)
@@ -112,7 +112,7 @@ class SlideController extends Controller
             $ext=$file->getClientOriginalExtension();
             $fileName=time().'.'.$ext;
             $file->move('images/slides_image/',$fileName);
-            $fileName='http://62.201.253.178:89/images/slides_image/'.$fileName;
+            $fileName=$this->url.'/slides_image/'.$fileName;
             $media->url=$fileName;
         }else{
             $media->url = $media->url;

@@ -11,39 +11,33 @@ use App\Models\media;
 use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
-//  public function show(){
-//      $category = Category::all();
-//    $data['market']=market::all();
-//    $data['type']=Type::all();
-//
-//
-//    return view('products',compact('data','category'));
-//  }
-//    public function show1(){
-//        $market=market::all();
-//
-//        return view('products',compact('market'));
-//    }
+    public $url = "http://localhost:8000/images";
   public function insert(Request $request){
       $request->validate([
           'productName'=>'required|string',
           'productPrice'=>'required|numeric',
           'productDescription'=>'required|string',
           'productIngredients'=>'required|string',
-          'productURL'=>'required',
+
           'category'=>'required'
       ]);
       $product = new product();
       $media =new media();
-      $file=$request->file('productURL');
-      if ($file){
-          $ext=$file->getClientOriginalExtension();
-          $fileName=time().'.'.$ext;
-          $file->move('images/product_image/',$fileName);
-          $fileName='http://62.201.253.178:89/images/product_image/'.$fileName;
-          $media->url=$fileName;
-          $media->save();
+      if ($request->productPriority == "0"){
+          $file=$request->file('productURL');
+          if ($file){
+              $ext=$file->getClientOriginalExtension();
+              $fileName=time().'.'.$ext;
+              $file->move('images/product_image/',$fileName);
+              $fileName=$this->url.'/product_image/'.$fileName;
+              $media->url=$fileName;
+
+          }
+      }else{
+          $media->url = $request->chosenImageProduct;
       }
+      $media->save();
+
       $product->name=$request->productName;
       $product->price=$request->productPrice;
       $product->image=$media->id;
@@ -58,44 +52,43 @@ class ProductController extends Controller
       $productList=DB::select('select *,products.id as productId,products.name as productName,media.id as mediaId from products inner join markets on markets.id=market inner join media on media.id = products.image');
       return view('productList',compact('productList'));
   }
-
   public function showEditProduct($id){
+      $marketImages = DB::select('select media.id,url from markets inner join media on markets.image  = media.id ');
       $data['markets']=market::all();
       $data['product']=DB::select('select *,products.id as productId,products.name as productName,media.id as imageId from products inner join media on products.image=media.id inner join  markets on markets.id=products.market  and products.id = ? ' ,[$id]);
-        return view('editProduct',compact('data'));
+      $categories = DB::select('select * from market_categories inner join categories on market_categories.category_id = categories.id and market_categories.market_id = ? ',[$data['product'][0]->market]);
+      return view('editProduct',compact('data','marketImages','categories'));
   }
-  public function updateProductId(Request $request,$id){
-
+  public function updateProductId(Request $request){
       $request->validate([
           'productName'=>'required|string',
           'productPrice'=>'required|numeric',
           'productDescription'=>'required|string',
           'productIngredients'=>'required|string',
           'productMarket'=>'required',
-          'productURL'=>'required'
       ]);
-
       $media=media::find($request->mediaId);
-      $file=$request->file('productURL');
-      if ($file){
-          $ext=$file->getClientOriginalExtension();
-          $fileName=time().'.'.$ext;
-          $file->move('images/product_image/',$fileName);
-          $fileName='http://62.201.253.178:89/images/product_image/'.$fileName;
-          $media->url=$fileName;
-          $media->save();
+      if ($request->productPriority == "0"){
+          $file=$request->file('productURL');
+          if ($file){
+              $ext=$file->getClientOriginalExtension();
+              $fileName=time().'.'.$ext;
+              $file->move('images/product_image/',$fileName);
+              $fileName=$this->url.'/product_image/'.$fileName;
+              $media->url=$fileName;
+          }
+      }else{
+          $media->url = $request->chosenImageProduct;
       }
-    $product=product::find($id);
+    $media->save();
+    $product=product::find($request->productId);
     $product->name=$request->productName;
     $product->price=$request->productPrice;
     $product->description=$request->productDescription;
     $product->ingredients=$request->productIngredients;
     $product->market=$request->productMarket;
     $product->save();
-
-    return redirect(route('showEditProductID',$id))->with('updateProductMsg','Information Updated Successfully');
-
-
+    return redirect(route('showEditProductID',$request->productId))->with('updateProductMsg','Information Updated Successfully');
   }
 
   public function delete(Request $request){
@@ -116,7 +109,8 @@ class ProductController extends Controller
   return view('productList',compact('productList','id'));
   }
   public function showAddProduct($id){
+      $marketImages = DB::select('select media.id,url from markets inner join media on markets.image  = media.id ');
       $categories  =  Category::all();
-      return view('products',compact('id','categories'));
+      return view('products',compact('id','categories','marketImages'));
   }
 }

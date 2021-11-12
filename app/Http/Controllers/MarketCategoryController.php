@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class MarketCategoryController extends Controller
 {
+    public $url="http://62.201.253.178:89/images";
     public function show(){
         return view('marketCategory.marketCategory');
     }
@@ -29,7 +30,7 @@ class MarketCategoryController extends Controller
             $ext = $file->getClientOriginalExtension();
             $fileName = time() . '.' . $ext;
             $file->move('images/marketCategory_image/', $fileName);
-            $fileName = 'http://62.201.253.178:89/images/marketCategory_image/' . $fileName;
+            $fileName = $this->url.'/marketCategory_image/' . $fileName;
             $media->url = $fileName;
             $media->save();
             $marketCategory =new MarketCategory();

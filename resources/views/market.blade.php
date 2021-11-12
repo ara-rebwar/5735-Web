@@ -29,10 +29,6 @@
               <div class="items">
                   <input type="text" name="marketRate" value=""class="form-control" placeholder="rate">
               </div>
-              <div class="items">
-
-
-              </div>
             </div>
             <!-- //row1 -->
             <div class="rows">

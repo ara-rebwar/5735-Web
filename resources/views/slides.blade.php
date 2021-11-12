@@ -69,17 +69,66 @@
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideDescription'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group">
-                                    <label> Image </label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile" name="slideImage">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideImage'){{$message}}@enderror</label>
-                                </div>
-                                <div class="form-group">
                                     <label> Order Number</label>
                                     <input type="text"  class="form-control" placeholder="Enter Order Number" name="slideOrderNumber">
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideOrderNumber'){{$message}}@enderror</label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label> Image </label>
+                                    <div class="custom-file">
+                                        <button class="btn btn-success" type="button"  id="slideImage">Select Slide Image <i class="fa fa-paperclip mx-2"></i> </button>
+                                    </div>
+{{--                                    //////////////--}}
+                                    <div id="fileUpload" style="display: none;justify-content: center;align-items: center;width: 100%;height: 100%;position:fixed;top: 0;left: 0;z-index: 3;background: rgba(255,255,255,0.8);">
+                                        <div class="card" style="width:50%;height: 80%;background:#f8f9fa;">
+                                            <div class="card-header " style="display: flex;justify-content: center;align-items: center;">
+                                                <h1 class="card-title ">Upload File</h1>
+                                                <button type="button" class="close" style="position:absolute;right:10px;" id="closeBtn" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="card-header fileInput">
+                                                <div class="input-group ">
+                                                    <div class="custom-file ">
+                                                        <input type="file" class="custom-file-input" id="exampleInputFile" name="slideImage">
+                                                        <input type="hidden" id="slidePriority" value="0">
+                                                        <label class="custom-file-label" for="exampleInputFile1">Select Slide Image</label>
+                                                    </div>
+                                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideImage'){{$message}}@enderror</label>
+                                                </div>
+                                            </div>
+
+                                            <div style="height: 100%;overflow-y: scroll;">
+                                                <div class="card-body" style="">
+                                                    <div class="headline alert bg-gradient-primary " >Icon Images</div>
+                                                    <div class="row " style="display: flex;justify-content: center;">
+                                                        @foreach($marketImages as $image)
+                                                            <div class="col-md-2 imageContainer img-thumbnail rounded m-2">
+                                                                <img src="{{$image->url}}" class="rounded my-2 chooseImage" style="width: 100%;transition: 0.5s ease;" id="{{$image->id}}">
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <input type="hidden" name="chosenImageSlide" id="chosenImageSlide">
+                                                <button type="button" class="btn btn-primary" id="saveBtn">Save
+                                                    <i class="fa fa-save mx-2"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+{{--                                    //////////////--}}
+
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src=""  id="slide_Image_src" class="img-thumbnail rounded">
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -110,7 +159,7 @@
 
                 $.ajax({
 
-                    url:"/slides/{id}",
+                    url:"/public/slides/{id}",
                     type:"GET",
                     data:{data:id},
                     success:function(data){
@@ -131,6 +180,68 @@
 
             });
         });
+
+
+
+        // $(document).ready(function () {
+        //     $('#has_product').on('change', function () {
+        //         var $data = $('#has_product option:selected').data('foo');
+        //         if ($data == "1") {
+        //             $('#category_selection').attr('disabled', false);
+        //         } else {
+        //             $('#category_selection').attr('disabled', true);
+        //         }
+        //     })
+        // })
+        $('#closeBtn').on('click', function () {
+            $('#fileUpload').css('display', 'none');
+            $('.chooseImage').css('border', 'none');
+        })
+
+        $('#saveBtn').on('click', function () {
+            $('#fileUpload').css('display', 'none');
+            $('.chooseImage').css('border', 'none');
+        })
+
+        var buttons = document.getElementsByClassName("fileButton");
+        document.getElementById('slideImage').addEventListener("click", function () {
+            ara('chosenImageSlide','slide_Image_src','slidePriority');
+        });
+        $('#slideImage').on('change',function(){
+            readURL(this,'slide_Image_src');
+            $('#slidePriority').attr('value','0');
+            alertify.notify('Image Selected ...', 'success', 5, function(){  console.log('dismissed'); });
+            $('#fileUpload').css('display','none');
+        })
+        function  ara(name,imgSrc,priority) {
+            var isFirst = true;
+            document.getElementById('fileUpload').style.display = "flex";
+            document.querySelectorAll('.chooseImage').forEach(item => {
+                item.addEventListener("click", event => {
+                    if (!isFirst) {
+                        return;
+                    }
+                    document.getElementById(priority).setAttribute('value','1');
+                    document.getElementById('fileUpload').style.display="none";
+                    document.getElementById(name).setAttribute('value', item.getAttribute('src'));
+                    document.getElementById(imgSrc).setAttribute('src',item.getAttribute('src'));
+                    alertify.notify('Image Selected ...', 'success', 5, function(){  console.log('dismissed'); });
+                    isFirst = false;
+                })
+            });
+        }
+
+        function readURL(input,image) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $("#"+image).attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
 
 @endsection

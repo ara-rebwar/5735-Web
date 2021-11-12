@@ -42,7 +42,6 @@ Route::post('/checkCategoryImage',[CategoryController::class,'checkCategory']);
 Route::get('/market_type/{id}',[TypeController::class,'selectMarketID']);
 Route::get('/market_category/{id}',[CategoryController::class,'marketCategoryID'])->name('marketCategoryID');
 Route::post('/is_by_5735',[MarketController::class,'UpdateIsBy5735']);
-
 Route::get('/addresses',[AccountController::class,'selectAllApi']);
 Route::post('/addresses',[AccountController::class,'selectAddressId']);
 Route::post('/update_customer',[CustomerController::class,'updateCustomerAPI']);

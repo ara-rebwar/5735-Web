@@ -83,7 +83,7 @@ Route::post('/categoryList',[CategoryController::class,'delete'])->name('deleteC
 
 
 
-Route::get('/slides/{id}',[App\Http\Controllers\SlideController::class, 'selectProduct'])->name('showproductId');
+Route::get('/public/slides/{id}',[App\Http\Controllers\SlideController::class, 'selectProduct'])->name('showproductId');
 Route::post('/slides',[App\Http\Controllers\SlideController::class, 'insert'])->name('insertSlides');
 
 

@@ -28,6 +28,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -252,51 +260,67 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-store"></i>
                             <p>
-                                Update Type
+                                Update Status
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('showUpdateType')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Update Type</p>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon far fa-store"></i>
+                                    <p>
+                                        Update Type
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{route('showUpdateType')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Update Type</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('showUpdateTypeList')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Update Type List</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{route('showUpdateTypeList')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Update Type List</p>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon far fa-store"></i>
+                                    <p>
+                                        Update Date
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{route('showUpdatedDate')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Update Date</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('showUpdatedDateList')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Update Date List</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
                             </li>
 
                         </ul>
                     </li>
 
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon far fa-store"></i>
-                            <p>
-                                Update Date
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('showUpdatedDate')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Update Date</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('showUpdatedDateList')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Update Date List</p>
-                                </a>
-                            </li>
 
-                        </ul>
-                    </li>
+
+
+
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
