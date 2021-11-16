@@ -36,7 +36,9 @@
                         <!-- form start -->
                         <form role="form" action="{{route('updateProductId')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
-                            <input type="hidden" name="mediaId" value="{{$data['product'][0]->imageId}}">
+                            @if($data['product'][0]->image != null)
+                                <input type="hidden" name="mediaId" value="{{$data['product'][0]->imageId}}">
+                            @endif
                             <input type="hidden" name="productId" value="{{$data['product'][0]->productId}}">
                             <div class="card-body">
                                 <div class="row">
@@ -107,7 +109,11 @@
                                                 <div class="input-group ">
                                                     <div class="custom-file ">
                                                         <input type="file" class="custom-file-input " id="productURL"  name="productURL">
-                                                        <input type="hidden" id="productPriority" value="0">
+                                                        @if($data['product'][0]->image == null)
+                                                            <input type="hidden" id="productPriority" value="3" name="productPriority">
+                                                        @else
+                                                            <input type="hidden" id="productPriority" value="2" name="productPriority">
+                                                        @endif
                                                         <label class="custom-file-label" for="exampleInputFile1">Select Product Image</label>
                                                     </div>
                                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productURL'){{$message}}@enderror</label>
@@ -127,9 +133,12 @@
                                                 </div>
                                             </div>
                                             <div class="card-footer">
+                                                @if($data['product'][0]->image == null)
+                                                    <input type="hidden" name="imageNull" value="1">
+                                                @endif
                                                 <input type="hidden" name="chosenImageProduct" id="chosenImageProduct">
-                                                <button type="button" class="btn btn-primary" id="saveBtn">Save
-                                                    <i class="fa fa-save mx-2"></i></button>
+                                                <button type="button" class="btn btn-primary" id="saveBtn">Save<i class="fa fa-save mx-2"></i></button>
+                                                <button type="button" class="btn btn-warning" id="resetImageBtn"> <i class=" fa fa-undo"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -152,7 +161,11 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <img src="{{$data['product'][0]->url}}"  id="product_Image_src" class="img-thumbnail rounded">
+                                        @if($data['product'][0]->image != null)
+                                            <img src="{{$data['product'][0]->url}}"  id="product_Image_src" class="img-thumbnail rounded">
+                                        @else
+                                            <img src=""  id="product_Image_src" class="img-thumbnail rounded">
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -219,9 +232,14 @@
             $('.chooseImage').css('border', 'none');
         })
 
-            $('#saveBtn').on('click', function () {
+        $('#saveBtn').on('click', function () {
             $('#fileUpload').css('display', 'none');
             $('.chooseImage').css('border', 'none');
+        })
+        $('#resetImageBtn').on('click',function(){
+            $('#productPriority').attr('value',"3");
+            alertify.notify('Image Unselected ...', 'warning', 5, function(){  console.log('dismissed'); });
+            $('#product_Image_src').attr('src','');
         })
 
             var buttons = document.getElementsByClassName("fileButton");

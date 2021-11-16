@@ -62,10 +62,10 @@ class SlideController extends Controller
         $marketImages = DB::select('select media.id,url from markets inner join media on markets.image  = media.id ');
         $data['market']=market::all();
         $data['slideProduct'] = DB::select('select * from markets inner join products on markets.id = products.market and markets.id = ? ',[$market]);
-//        $data['slideProduct'] = DB::select('select * from slides inner join products on products.id  = slides.product where slides.market = ? and slides.product = ?  ',[$market,$product]);
         $data['slide']=DB::select('select *,slides.market as slideMarket,slides.id as id from slides inner join markets on markets.id =slides.market inner join media on slides.media=media.id and slides.id = ?  ',[$slide]);
-        return view('editSlide',compact('data','marketImages'));
-
+        $data['marketProduct'] = DB::select('select * from products where market = ?  ',[$market]);
+        $slideInfo = DB::select('select * from slides where market  = ? and product = ? and id = ? ',[$market,$product,$slide]);
+        return view('editSlide',compact('data','marketImages','slideInfo'));
     }
     protected function delete(Request $request)
     {

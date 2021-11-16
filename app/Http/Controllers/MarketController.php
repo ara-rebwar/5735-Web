@@ -7,6 +7,8 @@ use App\Models\Day;
 use App\Models\discount_market;
 use App\Models\MarketCategory;
 use App\Models\Order;
+use App\Models\User;
+use Google\Cloud\Build\V1\Hash;
 use Illuminate\Http\Request;
 use App\Models\market;
 use App\Models\media;
@@ -274,6 +276,12 @@ class MarketController extends Controller
         $conn = sqlsrv_connect( $serverName, $connectionInfo);
     }
 
+    public function checkPassword(Request $request){
+        $user = User::find($request->userId);
 
-
+        if (\Illuminate\Support\Facades\Hash::check($request->checkPassword,$user->password)){
+            return 1;
+        }
+        return 0;
+    }
 }

@@ -29,21 +29,16 @@
     @endif
     <div class="content">
         <div class="container-fluid">
-
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Add Account Form</h3>
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
                     <div class="card-body">
                         <div class="row">
-
                             <div class="col-md-4 my-2" >
                                 <form role="form" method="post" action="{{route('insertDiscount')}}">
                                 @csrf
                                 <input type="hidden" name="market_id" value="{{$market_id}}">
-
                                 <p for="">Select Discount Time</p>
                                 <div class="form-group">
                                     <label for="">Discount Type</label>
@@ -54,23 +49,19 @@
                                     <input type="text" name="rate" class="form-control" placeholder="Discount Rate" >
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Day of Week</label>
-                                    <select class="form-control" id="exampleFormControlSelect1" name="day">
-                                        <option disabled selected>None</option>
+                                    <select class="mul-select form-control" multiple="true" style="width: 100%" name="days[]" id="days_selection">
                                         <?php
                                         $a=0;
                                         while($a<count($days)){?>
-                                        <option value="{{$days[$a]->id}}">{{$days[$a]->day}}</option>
-                                   <?php     $a++;}
+                                        <option value="{{$days[$a]->id}}" style="text-transform: capitalize;">{{$days[$a]->day}}</option>
+                                        <?php     $a++;}
                                         ?>
                                     </select>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Start Time</label>
                                     <input type="time" name="start_time" id="aa" class="form-control">
                                 </div>
-
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">End Time</label>
                                     <input type="time" name="end_time" id="" class="form-control">
@@ -80,8 +71,6 @@
                                 </div>
                                 </form>
                             </div>
-
-
                             <div class="col-md-8 my-2">
                                 <div>
                                     <p for="">Discount List</p>
@@ -116,28 +105,15 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-
-
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
                     <!-- /.card-body -->
-
-
-
             </div>
-
-
-
         </div>
     </div>
-
-
 
 @endsection

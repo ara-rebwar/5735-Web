@@ -57,11 +57,11 @@
                                     <label for="exampleInputPassword1">Select Product</label>
                                     <select class="form-control" name="slideProduct" id="slideProduct">
                                         <option disabled selected >None</option>
-                                        @foreach($data['slideProduct'] as $slide)
-                                            @if($slide->id == $data['slide'][0]->product)
-                                                <option value="{{$slide->id}}" selected>{{$data['slide'][0]->name}}</option>
+                                        @foreach($data['marketProduct'] as $product)
+                                            @if($product->id == $slideInfo[0]->product)
+                                                <option value="{{$product->id}}" selected>{{$product->name}}</option>
                                             @else
-                                                <option value="{{$data['slide'][0]->product}}" >{{$data['slide'][0]->name}}</option>
+                                                <option value="{{$product->id}}" >{{$product->name}}</option>
                                             @endif
                                         @endforeach
                                     </select>

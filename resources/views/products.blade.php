@@ -86,7 +86,7 @@
                                                     <div class="input-group ">
                                                         <div class="custom-file ">
                                                             <input type="file" class="custom-file-input " id="productURL"  name="productURL">
-                                                            <input type="hidden" id="productPriority" value="0">
+                                                            <input type="hidden" id="productPriority" value="2" name="productPriority">
                                                             <label class="custom-file-label" for="exampleInputFile1">Select Product Image</label>
                                                         </div>
                                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productURL'){{$message}}@enderror</label>
@@ -107,8 +107,8 @@
                                                 </div>
                                                 <div class="card-footer">
                                                     <input type="hidden" name="chosenImageProduct" id="chosenImageProduct">
-                                                    <button type="button" class="btn btn-primary" id="saveBtn">Save
-                                                        <i class="fa fa-save mx-2"></i></button>
+                                                    <button type="button" class="btn btn-primary" id="saveBtn">Save<i class="fa fa-save mx-2"></i></button>
+                                                    <button type="button" class="btn btn-warning" id="resetImageBtn"> <i class=" fa fa-undo"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -165,12 +165,15 @@
             $('#fileUpload').css('display', 'none');
             $('.chooseImage').css('border', 'none');
         })
-
         $('#saveBtn').on('click', function () {
             $('#fileUpload').css('display', 'none');
             $('.chooseImage').css('border', 'none');
         })
-
+        $('#resetImageBtn').on('click',function(){
+            $('#productPriority').attr('value',"2");
+            alertify.notify('Image Unselected ...', 'warning', 5, function(){  console.log('dismissed'); });
+            $('#product_Image_src').attr('src','');
+        })
         var buttons = document.getElementsByClassName("fileButton");
         document.getElementById('productImage').addEventListener("click", function () {
             ara('chosenImageProduct','product_Image_src','productPriority');
