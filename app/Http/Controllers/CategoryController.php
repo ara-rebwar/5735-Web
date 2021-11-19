@@ -16,6 +16,7 @@ class CategoryController extends Controller
     public function insert(Request $request){
         $category=new Category();
         $category->category_name=$request->category;
+        $category->category_name_kurdish=$request->categoryKurdish;
         $category->save();
         return redirect(route('showCategory'))->with('categorySuccessMsg','Category Inserted Successfully');
     }

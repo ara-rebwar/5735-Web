@@ -69,6 +69,11 @@
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideDescription'){{$message}}@enderror</label>
                                 </div>
                                 <div class="form-group">
+                                    <label> Description in Kurdish</label>
+                                    <input type="text"  class="form-control" placeholder="Write Description" name="slideDescriptionKurdish">
+                                    <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideDescriptionKurdish'){{$message}}@enderror</label>
+                                </div>
+                                <div class="form-group">
                                     <label> Order Number</label>
                                     <input type="text"  class="form-control" placeholder="Enter Order Number" name="slideOrderNumber">
                                     <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('slideOrderNumber'){{$message}}@enderror</label>

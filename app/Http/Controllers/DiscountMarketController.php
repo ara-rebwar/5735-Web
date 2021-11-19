@@ -21,22 +21,15 @@ class DiscountMarketController extends Controller
             $discount_type->type_name=$request->discount_type;
             $discount_type->rate=$request->rate;
             $discount_type->save();
-//            foreach($request->days_selection as $days) {
-//                $discount_market =  new discount_market();
-//                $discount_market->market_id= $request->market_id;
-//                $discount_market->discount_id= $discount_type->id;
-//                $discount_market->day_of_week= $days;
-//                $discount_market->start_time= $request->start_time;
-//                $discount_market->end_time =  $request->end_time;
-//                $discount_market->save();
-//            }
-
-//            $market =  market::find($request->market_id);
-//            $market->discount = $discount_market->id;
-//            $market->save();
-
-            //discount aka naika
-
+            foreach($request->days as $day) {
+                $discount_market =  new discount_market();
+                $discount_market->market_id= $request->market_id;
+                $discount_market->discount_id= $discount_type->id;
+                $discount_market->day_of_week= $day;
+                $discount_market->start_time= $request->start_time;
+                $discount_market->end_time =  $request->end_time;
+                $discount_market->save();
+            }
         }catch (\Exception $e){
         }
         return redirect(route('showDiscount',$request->market_id))->with('success','Information Inserted Successfully');

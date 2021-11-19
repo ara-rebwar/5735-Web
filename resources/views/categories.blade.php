@@ -44,36 +44,11 @@
                             <label for="exampleInputEmail1">Category Name</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Category" name="category">
                         </div>
-{{--                        <div class="form-group">--}}
-{{--                            <label for="exampleInputEmail1">Image Name</label>--}}
-{{--                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Name" name="imageName">--}}
-{{--                        </div>--}}
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Category Name in Kurdish</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Category In Kurdish" name="categoryKurdish">
+                        </div>
 
-
-{{--                        <div class="form-group">--}}
-{{--                            <label for="exampleInputEmail1">Image Thumb</label>--}}
-{{--                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Thumb" name="thumb">--}}
-{{--                        </div>--}}
-
-
-{{--                        <div class="form-group">--}}
-{{--                            <label for="exampleInputEmail1">Image Icon</label>--}}
-{{--                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Icon" name="icon">--}}
-{{--                        </div>--}}
-
-{{--                        <div class="form-group">--}}
-{{--                            <label for="exampleInputEmail1">Image size</label>--}}
-{{--                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Image Icon" name="size">--}}
-{{--                        </div>--}}
-{{--                        <div class="form-group">--}}
-{{--                            <label for="exampleInputFile">Select Image</label>--}}
-{{--                            <div class="input-group">--}}
-{{--                                <div class="custom-file">--}}
-{{--                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="url">--}}
-{{--                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                     </div>
                     <!-- /.card-body -->
 

@@ -46,6 +46,7 @@ class TypeController extends Controller
         $media->url=$fileName;
         $media->save();
         $type->types=$request->types;
+        $type->type_kurdish = $request->types_kurdish;
         $type->image=$media->id;
         $type->save();
         return redirect(route('showType'))->with('successTypeMsg','Type Inserted Successfully');

@@ -81,6 +81,7 @@ class MarketController extends Controller
         }else{
             $market->has_product=0;
         }
+        $market->name_kurdish = $request->marketNameKurdish;
         $market->MSSQL_ID=0;
         $market->icon=$iconMedia->id;
         $market->save();
@@ -283,5 +284,52 @@ class MarketController extends Controller
             return 1;
         }
         return 0;
+    }
+
+    public function is_decimal($n) {
+        // Note that floor returns a float
+        return is_numeric($n) && floor($n) != $n;
+    }
+    public function marketSection(Request $request){
+        $sectionNumber  = 3;
+        $newMarkets = array();
+        $markets = DB::select('select * from markets where type = ? ',[$request->type]);
+        if (count($markets)  > 5){
+            $i=0;
+            $y=0;
+            $z=0;
+            $count = intval(count($markets)/$sectionNumber);
+            if (!$this->is_decimal(count($markets)/$sectionNumber)){
+                while ($i<$sectionNumber){
+                    while($y <$count){
+                        if (array_key_exists($z,$markets)){
+                            $newMarkets[$i][$y]=$markets[$z];
+                            $y++;
+                            $z++;
+                        }else{
+                            break;
+                        }
+                    }
+                    $y=0;
+                    $i++;
+                }
+            }else{
+                $sectionNumber++;
+                while ($i<$sectionNumber){
+                    while($y <$count){
+                        if (array_key_exists($z,$markets)){
+                            $newMarkets[$i][$y]=$markets[$z];
+                            $y++;
+                            $z++;
+                        }else{
+                            break;
+                        }
+                    }
+                    $y=0;
+                    $i++;
+                }
+            }
+        }
+        return $newMarkets[($request->section_number - 1)];
     }
 }

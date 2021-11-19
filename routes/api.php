@@ -48,6 +48,7 @@ Route::post('/update_customer',[CustomerController::class,'updateCustomerAPI']);
 Route::post('/updateDates',[\App\Http\Controllers\UpdatedDateController::class,'getUpdateDate']);
 Route::get('/discount/{id}',[\App\Http\Controllers\DiscountMarketController::class,'showDiscountProduct']);
 Route::get('/firestoreApi/{string}',[\App\Http\Controllers\FirebaseController::class,'index']);
+Route::post('/marketSection',[MarketController::class,'marketSection']);
 
 Route::post('/addTask',[MarketController::class,'test']);
 

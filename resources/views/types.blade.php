@@ -43,6 +43,10 @@
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Type Name" name="types">
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Type Name in Kurdish</label>
+                            <input type="text" class="form-control"  placeholder="Enter Type Name in Kurdish" name="types_kurdish">
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputFile">Select Image</label>
                             <div class="input-group">
                                 <div class="custom-file">

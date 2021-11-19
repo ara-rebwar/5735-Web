@@ -101,7 +101,13 @@
                                     </div>
                                 </div>
                                 <div class="row justify-content-start  h-100">
-                                    <div class="form-group  col-md-6">
+                                    <div class="form-group col-md-4">
+                                        <input type="text" class="form-control"
+                                               placeholder="Write Market Name In Kurdish" name="marketNameKurdish">
+                                        <label style="padding:0px;margin: 0px;font-size: 12px;"
+                                               class="text-danger">@error('marketNameKurdish'){{$message}}@enderror</label>
+                                    </div>
+                                    <div class="form-group  col-md-4">
                                         <select name="type" class="form-control" id="type_Selection">
                                             <option disabled selected>Select Type</option>
                                             <?php
@@ -113,7 +119,7 @@
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <select name="has_product" class="form-control" id="has_product">
                                             <option disabled selected>Has Product?</option>
                                             <option value="0" data-foo="0">No</option>

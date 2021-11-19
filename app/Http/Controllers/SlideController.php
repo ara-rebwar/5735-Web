@@ -43,6 +43,7 @@ class SlideController extends Controller
         $media->save();
         $slide->text=$request->slideDescription;
         $slide->media=$media->id;
+        $slide->description_kurdish=$request->slideDescriptionKurdish;
         $slide->market=$request->slideMarket;
         $slide->product=$request->slideProduct;
         $slide->order=$request->slideOrderNumber;
