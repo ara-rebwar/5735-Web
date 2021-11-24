@@ -70,7 +70,6 @@ Route::post('/updateSlide',[SlideController::class,'updateSlide'])->name('update
 Route::post('/slideList',[SlideController::class,'delete'])->name('deleteSlide');
 
 
-
 //--------------------------------------------Category Route-------------------------------------------------//
 Route::get('/categories',[CategoryController::class,'index'])->name('showCategory');
 Route::post('/categories',[CategoryController::class,'insert'])->name('insertCategory');
@@ -80,17 +79,8 @@ Route::post('/EditCategory',[CategoryController::class,'update'])->name('updateC
 Route::post('/categoryList',[CategoryController::class,'delete'])->name('deleteCategory');
 
 
-
-
-
 Route::get('/public/slides/{id}',[App\Http\Controllers\SlideController::class, 'selectProduct'])->name('showproductId');
 Route::post('/slides',[App\Http\Controllers\SlideController::class, 'insert'])->name('insertSlides');
-
-
-
-
-
-
 
 
 //--------------------------------------------Account Route-------------------------------------------------//
@@ -114,9 +104,6 @@ Route::post('/EditType',[\App\Http\Controllers\TypeController::class,'updateType
 
 
 
-
-
-
 //--------------------------------------------Address Route-------------------------------------------------//
 
 Route::get('/address',[AddressController::class,'index'])->name('showAddress');
@@ -126,10 +113,7 @@ Route::post('/AddressList',[AddressController::class,'delete'])->name('deleteAdd
 Route::get('/EditAddress/{id}',[AddressController::class,'showEditAddress'])->name('showEditAddress');
 Route::post('/EditAddress',[AddressController::class,'UpdateAddress'])->name('UpdateAddress');
 
-
-
 //--------------------------------------------Location Route-------------------------------------------------//
-
 // Location  =   All_Address
 Route::get('/location',[AllAddressController::class,'index'])->name('showLocation');
 Route::post('/location',[AllAddressController::class,'insertLocation'])->name('insertLocation');
@@ -137,8 +121,6 @@ Route::get('/locationList',[AllAddressController::class,'selectAll'])->name('sho
 Route::post('locationList',[AllAddressController::class,'delete'])->name('deleteLocation');
 Route::get('/EditLocation/{id}',[AllAddressController::class,'showEditLocation'])->name('showEditLocation');
 Route::post('/EditLocation',[AllAddressController::class,'UpdateLocation'])->name('UpdateLocation');
-
-
 
 
 //--------------------------------------------Update Type Route-------------------------------------------------//
@@ -149,11 +131,6 @@ Route::post('updateTypeList',[UpdateTypeController::class,'delete'])->name('dele
 Route::get('/EditUpdateType/{id}',[UpdateTypeController::class,'showEditUpdateType'])->name('showEditUpdateType');
 Route::post('/EditUpdateType',[UpdateTypeController::class,'UpdateUpdateType'])->name('UpdateUpdateType');
 
-
-
-
-
-
 //--------------------------------------------Updated_date Route-------------------------------------------------//
 Route::get('/updatedDate',[UpdatedDateController::class,'index'])->name('showUpdatedDate');
 Route::post('/updateDate',[UpdatedDateController::class,'insertUpdateDate'])->name('insertUpdateDate');
@@ -161,9 +138,6 @@ Route::get('/updateDateList',[UpdatedDateController::class,'selectAll'])->name('
 Route::post('/updateDateList',[UpdatedDateController::class,'delete'])->name('deleteUpdatedDate1');
 Route::get('/EditUpdateDate/{id}',[UpdatedDateController::class,'showEditUpdatedDate'])->name('showEditUpdatedDate');
 Route::post('/EditUpdateDate',[UpdatedDateController::class,'UpdateUpdateDate'])->name('UpdateUpdateDate');
-
-
-
 
 //----------------------------------------CHECK PASSWORD FOR DELETE MARKETS--------------------------------//
 Route::post('/checkPassword',[MarketController::class,'checkPassword'])->name('checkPassword');

@@ -8,6 +8,8 @@ use App\Models\discount_market;
 use App\Models\MarketCategory;
 use App\Models\Order;
 use App\Models\User;
+use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Google\Cloud\Build\V1\Hash;
 use Illuminate\Http\Request;
 use App\Models\market;
@@ -104,10 +106,27 @@ class MarketController extends Controller
     }
     public function selectAll()
     {
+        $carbon = CarbonImmutable::now()->locale('ar');
+
+
         $data = DB::select("select * from markets ");
         for ($a = 0; $a < count($data); $a++) {
+            $array  =  array();
             $data[$a]->image = media::find($data[$a]->image);
-            $data[$a]->discount = DB::select('select start_time,end_time,discount_markets.created_at,discount_markets.updated_at,day,type_name,rate from discount_markets inner join days on discount_markets.day_of_week  = days.id  inner join discount_types on discount_types.id = discount_markets.discount_id where  discount_markets.created_at IN  (select max(created_at) from discount_markets where discount_markets.market_id = ? ) ',[$data[$a]->id]);
+            $discounts  = DB::select('select * from discount_markets inner join days on days.id = discount_markets.day_of_week  and  market_id = ? ',[$data[$a]->id]);
+            $now  = $carbon::now()->setTimezone('Asia/Baghdad')->format('H:i');
+            if (count($discounts) >= 1){
+                foreach ($discounts as $discount){
+                    if ((int)$discount->index_number  ==  $carbon->dayOfWeek){
+                        if ($now >= $discount->start_time && $now <= $discount->end_time){
+                           array_push($array,$discount);
+                        }
+                    }
+                }
+            }
+            if (count($array)>=1){
+                $data[$a]->discount = $array;
+            }
         }
         return response()->json($data);
     }
@@ -276,60 +295,35 @@ class MarketController extends Controller
         /* Connect using SQL Server Authentication. */
         $conn = sqlsrv_connect( $serverName, $connectionInfo);
     }
-
     public function checkPassword(Request $request){
         $user = User::find($request->userId);
-
         if (\Illuminate\Support\Facades\Hash::check($request->checkPassword,$user->password)){
             return 1;
         }
         return 0;
     }
-
     public function is_decimal($n) {
         // Note that floor returns a float
         return is_numeric($n) && floor($n) != $n;
     }
     public function marketSection(Request $request){
-        $sectionNumber  = 3;
-        $newMarkets = array();
-        $markets = DB::select('select * from markets where type = ? ',[$request->type]);
-        if (count($markets)  > 5){
-            $i=0;
-            $y=0;
-            $z=0;
-            $count = intval(count($markets)/$sectionNumber);
-            if (!$this->is_decimal(count($markets)/$sectionNumber)){
-                while ($i<$sectionNumber){
-                    while($y <$count){
-                        if (array_key_exists($z,$markets)){
-                            $newMarkets[$i][$y]=$markets[$z];
-                            $y++;
-                            $z++;
-                        }else{
-                            break;
-                        }
-                    }
-                    $y=0;
-                    $i++;
-                }
-            }else{
-                $sectionNumber++;
-                while ($i<$sectionNumber){
-                    while($y <$count){
-                        if (array_key_exists($z,$markets)){
-                            $newMarkets[$i][$y]=$markets[$z];
-                            $y++;
-                            $z++;
-                        }else{
-                            break;
-                        }
-                    }
-                    $y=0;
-                    $i++;
-                }
+        $newMarket  =array();
+        $markets =DB::select('select * from markets where type = ? ',[$request->type]);
+        $y=0;
+        $z=0;
+        $i=0;
+        while ($i<count($markets)){
+            if ($y==20){
+                $y=0;
+                $z++;
             }
-        }
-        return $newMarkets[($request->section_number - 1)];
+            if (array_key_exists($i,$markets)){
+                $newMarket[$z][$y]=$markets[$i];
+            }else{
+                break;
+            }
+        $y++;
+        $i++;}
+        return $newMarket[$request->section-1];
     }
 }
