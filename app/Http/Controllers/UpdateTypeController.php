@@ -39,6 +39,7 @@ class UpdateTypeController extends Controller
         ]);
         $data =UpdateType::find($request->updateTypeId);
         $data->type=$request->updateType;
+        $data->type_kurdish =$request->updateTypeKurdish;
         $data->save();
         return redirect(route('showEditUpdateType',$request->updateTypeId))->with('updateUpdateTypeMsg','Update type Updated Successfully');
     }

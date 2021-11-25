@@ -81,27 +81,39 @@
                                             <tr>
                                                 <th>Type</th>
                                                 <th>Rate</th>
-                                                <th>Market</th>
                                                 <th>Start</th>
                                                 <th>End</th>
+                                                <th>Days</th>
                                                 <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+
                                         @foreach($discountList as $discount)
                                             <tr>
                                                 <td>{{$discount->type_name}}</td>
                                                 <td>{{$discount->rate}}</td>
-                                                <td>{{$discount->name}}</td>
                                                 <td>{{$discount->start_time}}</td>
                                                 <td>{{$discount->end_time}}</td>
                                                 <td>
-                                                    <form action="{{route('deleteDiscount')}}" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="marketId" value="{{$discount->market_id}}">
-                                                        <input type="hidden" name="discountId" value="{{$discount->id}}">
-                                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash "></i></button>
-                                                    </form>
+                                                    <div class="dropdown show">
+                                                        <a class="btn btn-secondary  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Days
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                            @foreach($discount->discount_days as $days)
+                                                                <a class="dropdown-item" href="#">{{$days->day}}</a>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                <form action="{{route('deleteDiscount')}}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="marketId" value="{{$discount->market_id}}">
+                                                    <input type="hidden" name="discountId" value="{{$discount->id}}">
+                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash "></i></button>
+                                                </form>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Day;
 use App\Models\discount_market;
 use App\Models\discount_type;
+use App\Models\DiscountDayofweek;
 use App\Models\market;
 use App\Models\media;
 use App\Models\product_discount;
@@ -16,22 +17,24 @@ use voku\helper\ASCII;
 class DiscountMarketController extends Controller
 {
     public function insertDiscount(Request $request){
-        try {
+
             $discount_type=new discount_type();
             $discount_type->type_name=$request->discount_type;
             $discount_type->rate=$request->rate;
             $discount_type->save();
-            foreach($request->days as $day) {
-                $discount_market =  new discount_market();
-                $discount_market->market_id= $request->market_id;
-                $discount_market->discount_id= $discount_type->id;
-                $discount_market->day_of_week= $day;
-                $discount_market->start_time= $request->start_time;
-                $discount_market->end_time =  $request->end_time;
-                $discount_market->save();
+
+            $discount_market = new discount_market();
+            $discount_market->market_id= $request->market_id;
+            $discount_market->discount_id= $discount_type->id;
+            $discount_market->start_time= $request->start_time;
+            $discount_market->end_time =  $request->end_time;
+            $discount_market->save();
+            foreach ($request->days as $day){
+                $discount_day_of_week = new DiscountDayofweek();
+                $discount_day_of_week->discount_market_id = $discount_market->id;
+                $discount_day_of_week->day_id  = $day;
+                $discount_day_of_week->save();
             }
-        }catch (\Exception $e){
-        }
         return redirect(route('showDiscount',$request->market_id))->with('success','Information Inserted Successfully');
     }
 
@@ -77,7 +80,9 @@ class DiscountMarketController extends Controller
 
 
     public function deleteDiscount(Request $request){
-        discount_market::destroy($request->discountId);
+//        DB::delete('delete from discount_dayofweeks where discount_market_id = ? and id =  ? ',[$request->discountId,$request->discount_dayofweeksID]);
+//        discount_market::destroy($request->discountId);
+
         return redirect(route('showDiscount',$request->marketId))->with('deleteMsg','Deleted Successfully');
     }
 }

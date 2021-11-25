@@ -75,6 +75,7 @@ class TypeController extends Controller
         $media->save();
         $type=Type::find($request->typeID);
         $type->types=$request->types;
+        $type->type_kurdish=$request->types_kurdish;
         $type->save();
         return redirect(route('showEditType',$request->typeID))->with('updateTypeMsg','Type Updated Successfully');
     }

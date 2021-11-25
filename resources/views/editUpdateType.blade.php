@@ -44,6 +44,10 @@
                             <label for="exampleInputEmail1">Update Type</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Update Type" name="updateType" value="{{$data->type}}">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Update Type in Kurdish</label>
+                            <input type="text" class="form-control"  placeholder="Enter Update Type in Kurdish" name="updateTypeKurdish" value="{{$data->type_kurdish}}">
+                        </div>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>

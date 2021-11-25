@@ -113,7 +113,8 @@ class MarketController extends Controller
         for ($a = 0; $a < count($data); $a++) {
             $array  =  array();
             $data[$a]->image = media::find($data[$a]->image);
-            $discounts  = DB::select('select * from discount_markets inner join days on days.id = discount_markets.day_of_week  and  market_id = ? ',[$data[$a]->id]);
+//            $discounts  = DB::select('select * from discount_markets inner join days on days.id = discount_markets.day_of_week  and  market_id = ? ',[$data[$a]->id]);
+            $discounts = discount_market::join('days','days.id','=','discount_markets.day_of_week')->where('discount_markets.market_id',$data[$a]->id)->get();
             $now  = $carbon::now()->setTimezone('Asia/Baghdad')->format('H:i');
             if (count($discounts) >= 1){
                 foreach ($discounts as $discount){
@@ -203,6 +204,7 @@ class MarketController extends Controller
         $market->mobile1 = $request->marketMobile1;
         $market->mobile2 = $request->marketPhone2;
         $market->closed = $request->marketClosed;
+        $market->name_kurdish = $request->marketNameKurdish;
         $market->type=$request->type;
         if ($request->has_product == 1){
             $market->has_product=$request->has_product;
@@ -261,10 +263,13 @@ class MarketController extends Controller
     }
     public function  showDiscount($id){
         $days= Day::all();
-        $products=DB::select('select id,products.name  from  products where products.market = ? ',[$id]);
         $market_id=$id;
-        $discountList=DB::select('select *,discount_markets.id as id from discount_markets inner join discount_types  on discount_markets.discount_id = discount_types.id inner join markets on markets.id = discount_markets.market_id inner join days on days.id =  discount_markets.day_of_week and discount_markets.market_id = ? ',[$id]);
-        return view('discount',compact(['days','products','market_id','discountList']));
+        $discountList=DB::select('select *,discount_markets.id as id from discount_markets inner join discount_types  on discount_markets.discount_id = discount_types.id    where  discount_markets.market_id = ? ',[5]);
+        foreach ($discountList as $discount){
+            $discount->discount_days= DB::select('select * from discount_dayofweeks  inner join days on days.id = discount_dayofweeks.day_id where discount_market_id = ? ',[$discount->id]);
+        }
+//        dd($discountList);
+        return view('discount',compact(['days','market_id','discountList']));
     }
     public function second(){
         if (DB::connection('mysql2')->table('user')->insert([["id"=>1,"name"=>"aa"]]))

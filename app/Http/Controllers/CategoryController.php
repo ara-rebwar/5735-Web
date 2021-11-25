@@ -32,6 +32,7 @@ class CategoryController extends Controller
     public function update(Request $request){
         $category=Category::find($request->categoryId);
         $category->category_name=$request->category;
+        $category->category_name_kurdish=$request->categoryKurdish;
         $category->save();
         return redirect(route('showEditCategory',$request->categoryId))->with('updateCategoryMsg','Category Updated Successfully');
     }
