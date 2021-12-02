@@ -106,19 +106,19 @@ class MarketController extends Controller
     }
     public function selectAll()
     {
-        $carbon = CarbonImmutable::now()->locale('ar');
-
-
+        $carbon = CarbonImmutable::now()->locale('en');
         $data = DB::select("select * from markets ");
         for ($a = 0; $a < count($data); $a++) {
             $array  =  array();
             $data[$a]->image = media::find($data[$a]->image);
 //            $discounts  = DB::select('select * from discount_markets inner join days on days.id = discount_markets.day_of_week  and  market_id = ? ',[$data[$a]->id]);
-            $discounts = discount_market::join('days','days.id','=','discount_markets.day_of_week')->where('discount_markets.market_id',$data[$a]->id)->get();
+//            $discounts = discount_market::join('days','days.id','=','discount_markets.day_of_week')->where('discount_markets.market_id',$data[$a]->id)->get();
+            $discounts   = DB::select('select * from discount_markets inner join discount_dayofweeks on discount_dayofweeks.discount_market_id = discount_markets.id inner join days on discount_dayofweeks.day_id = days.id where discount_markets.market_id  = ?  ',[$data[$a]->id]);
             $now  = $carbon::now()->setTimezone('Asia/Baghdad')->format('H:i');
+            $today = CarbonImmutable::now()->setTimezone('Asia/Baghdad');
             if (count($discounts) >= 1){
                 foreach ($discounts as $discount){
-                    if ((int)$discount->index_number  ==  $carbon->dayOfWeek){
+                    if ((int)$discount->index_number  ==  $today->dayOfWeek){
                         if ($now >= $discount->start_time && $now <= $discount->end_time){
                            array_push($array,$discount);
                         }
@@ -268,7 +268,7 @@ class MarketController extends Controller
         foreach ($discountList as $discount){
             $discount->discount_days= DB::select('select * from discount_dayofweeks  inner join days on days.id = discount_dayofweeks.day_id where discount_market_id = ? ',[$discount->id]);
         }
-//        dd($discountList);
+
         return view('discount',compact(['days','market_id','discountList']));
     }
     public function second(){

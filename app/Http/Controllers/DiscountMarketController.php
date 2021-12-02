@@ -66,10 +66,17 @@ class DiscountMarketController extends Controller
     }
 
     public function showDiscountProduct($id){
-        $discount  =  DB::select('select * from  discount_markets  inner join markets on markets.id = discount_markets.market_id and discount_markets.market_id  = ?',[$id]);
+        $discount  =  DB::select('select *,discount_markets.id as id from  discount_markets  inner join markets on markets.id = discount_markets.market_id and discount_markets.market_id  = ?',[$id]);
         $count=0;
         while ($count < count($discount)){
-            $discount[$count]->day_of_week = Day::find($discount[$count]->day_of_week);
+            $discount_days = DiscountDayofweek::where('discount_market_id',$discount[$count]->id)->get();
+            $discount[$count]->discounts = $discount_days;
+            $days = $discount[$count]->discounts;
+            $days_array =array();
+            foreach($days as $day){
+                 array_push($days_array,Day::find($day->day_id));
+            }
+            $day->day_id = $days_array;
             $discount[$count]->discount_id  = discount_type::find($discount[$count]->discount_id);
             $discount[$count]->image = media::find($discount[$count]->image);
             $discount[$count]->icon = media::find($discount[$count]->icon);
@@ -77,12 +84,9 @@ class DiscountMarketController extends Controller
         }
         return $discount;
     }
-
-
     public function deleteDiscount(Request $request){
-//        DB::delete('delete from discount_dayofweeks where discount_market_id = ? and id =  ? ',[$request->discountId,$request->discount_dayofweeksID]);
-//        discount_market::destroy($request->discountId);
-
+        DB::delete('delete from discount_dayofweeks where discount_market_id = ? ',[$request->discountId]);
+        discount_market::destroy($request->discountId);
         return redirect(route('showDiscount',$request->marketId))->with('deleteMsg','Deleted Successfully');
     }
 }

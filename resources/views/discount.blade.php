@@ -102,7 +102,7 @@
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                             @foreach($discount->discount_days as $days)
-                                                                <a class="dropdown-item" href="#">{{$days->day}}</a>
+                                                                <a class="dropdown-item" style="text-transform: uppercase">{{$days->day}}</a>
                                                             @endforeach
                                                         </div>
                                                     </div>
