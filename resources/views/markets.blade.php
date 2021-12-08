@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
+{{--    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>--}}
     <style>
         .imageContainer{
             transition: 0.5s ease;
@@ -48,35 +48,37 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="form-group col-md-4">
+                                        <label class="form-label">Market name</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Write Market Name" name="marketName">
                                         <label style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketName'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group col-md-4">
+                                        <label class="form-label">Address</label>
                                         <select name="marketAddress" id="" class="form-control">
                                             <option disabled selected>Select Address</option>
                                             <?php
                                             $aa = 0;
                                             while ($aa < count($data['address'])){?>
-                                            <option
-                                                value="{{$data['address'][$aa]->id}}">{{$data['address'][$aa]->place1}}</option>
+                                            <option value="{{$data['address'][$aa]->id}}" style="text-transform: capitalize">{{$data['address'][$aa]->place1}}</option>
                                             <?php    $aa++; }
                                             ?>
                                         </select>
                                         <label style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketAddress'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group col-md-4">
+                                        <label class="form-label">First Phone number</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Write Phone Number" name="marketPhone">
                                         <label style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketPhone'){{$message}}@enderror</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control" id="exampleInputEmail1"
-                                               placeholder="Write Phone Second Number" name="marketPhone2">
-                                        <label style="padding:0px;margin: 0px;font-size: 12px;"
-                                               class="text-danger">@error('marketPhone2'){{$message}}@enderror</label>
+                                        <label class="form-label">Second Phone number</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Write Phone Second Number" name="marketPhone2">
+                                        <label style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketPhone2'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group col-md-4">
+                                        <label class="form-label">Is closed ? </label>
                                         <select class="form-control" name="marketClosed">
                                             <option disabled selected>Is Market Closed ?</option>
                                             <option value="1">Yes</option>
@@ -88,6 +90,7 @@
 
                                     <div class="col  col-md-4">
                                         <div class="form-group">
+                                            <label class="form-label">Category</label>
                                             <select class="mul-select form-control" multiple="true" style="width: 100%" name="category[]" id="category_selection">
                                                 <?php
                                                 $i = 0;
@@ -102,10 +105,12 @@
                                 </div>
                                 <div class="row justify-content-start  h-100">
                                     <div class="form-group col-md-4">
+                                        <label class="form-label">Market name Kurdish</label>
                                         <input type="text" class="form-control" placeholder="Write Market Name In Kurdish" name="marketNameKurdish">
                                         <label style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketNameKurdish'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group  col-md-4">
+                                        <label class="form-label">Type</label>
                                         <select name="type" class="form-control" id="type_Selection">
                                             <option disabled selected>Select Type</option>
                                             <?php
@@ -118,6 +123,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
+                                        <label class="form-label">Has product ? </label>
                                         <select name="has_product" class="form-control" id="has_product">
                                             <option disabled selected>Has Product?</option>
                                             <option value="0" data-foo="0">No</option>
@@ -148,6 +154,7 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
+
                                                         <div class="card-header fileInput">
                                                             <div class="input-group ">
                                                                 <div class="custom-file ">
@@ -213,6 +220,7 @@
             </div>
         </div><!-- /.container-fluid -->
     </div>
+
     <script>
         $(document).ready(function () {
             $('#has_product').on('change', function () {
@@ -285,6 +293,21 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
+
+    </script>
+
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script>
+        const inputElement = document.getElementById('marketURL');
+        // Create a FilePond instance
+
+
+        const pond = FilePond.create(inputElement);
+        FilePond.setOption({
+            server : '/'
+        })
+
     </script>
 @endsection
 

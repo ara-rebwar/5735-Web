@@ -12,7 +12,9 @@ class TypeController extends Controller
 {
     public $url = "http://62.201.253.178:89/images";
     public function index(){
-        return view('types');
+        $marketImages = DB::select('select media.id,url from markets inner join media on markets.image  = media.id ');
+
+        return view('types',compact('marketImages'));
     }
     public function selectTypeId(Request $request){
         $id=$request->id;

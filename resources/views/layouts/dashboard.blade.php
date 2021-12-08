@@ -17,6 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -36,10 +37,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
-
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        /*.nav-item a p {*/
+        /*    color:orange;*/
+        /*}*/
+        .nav-sidebar> .nav-item:hover > .nav-link {
+            background: rgba(255,108,0,0.7);
+            color: white;
+        }
+    </style>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -56,21 +67,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <aside class="main-sidebar sidebar-light-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
-            <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                 style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <a href="index3.html" class=" py-4 px-3" style="display: flex;justify-content: center;align-items: center;">
+            <img src="{{asset('images/5735.png')}}" alt="AdminLTE Logo" class="brand-image px-2" style="width: 75px;height: 50px;">
         </a>
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="user-panel  mt-3 pb-3 mb-3 d-flex justify-content-start align-items-center">
                 <div class="image">
-                    <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+                    <img src="{{asset('dist/img/avatar.png')}}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
+                    <a href="#" class="d-block">Market 1</a>
                 </div>
             </div>
 
@@ -79,8 +88,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item has-treeview" >
+                        <a href="#" class="nav-link" >
                             <i class="nav-icon far fa-store"></i>
                             <p>
                                 Markets
@@ -102,16 +111,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         </ul>
                     </li>
-{{--                    <li class="nav-item has-treeview">--}}
-{{--                        <a href="{{route('showProductList')}}" class="nav-link">--}}
-{{--                            <i class="nav-icon far fa-store"></i>--}}
-{{--                            <p>--}}
-{{--                                Product List--}}
-{{--                                <i class="fas fa-angle-left right"></i>--}}
-{{--                            </p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-                    <li class="nav-item has-treeview">
+                    <li class="nav-item has-treeview" >
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-store"></i>
                             <p>
@@ -207,55 +207,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </ul>
                     </li>
-{{--                    <li class="nav-item has-treeview">--}}
-{{--                        <a href="#" class="nav-link">--}}
-{{--                            <i class="nav-icon far fa-store"></i>--}}
-{{--                            <p>--}}
-{{--                                Address--}}
-{{--                                <i class="fas fa-angle-left right"></i>--}}
-{{--                            </p>--}}
-{{--                        </a>--}}
-{{--                        <ul class="nav nav-treeview">--}}
-{{--                            <li class="nav-item">--}}
-{{--                                <a href="{{route('showAddress')}}" class="nav-link">--}}
-{{--                                    <i class="far fa-circle nav-icon"></i>--}}
-{{--                                    <p>Add Address</p>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-item">--}}
-{{--                                <a href="{{route('showAddressList')}}" class="nav-link">--}}
-{{--                                    <i class="far fa-circle nav-icon"></i>--}}
-{{--                                    <p>Address List</p>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
-
-{{--                        </ul>--}}
-{{--                    </li>--}}
-
-{{--                    <li class="nav-item has-treeview">--}}
-{{--                        <a href="#" class="nav-link">--}}
-{{--                            <i class="nav-icon far fa-store"></i>--}}
-{{--                            <p>--}}
-{{--                                Location--}}
-{{--                                <i class="fas fa-angle-left right"></i>--}}
-{{--                            </p>--}}
-{{--                        </a>--}}
-{{--                        <ul class="nav nav-treeview">--}}
-{{--                            <li class="nav-item">--}}
-{{--                                <a href="{{route('showLocation')}}" class="nav-link">--}}
-{{--                                    <i class="far fa-circle nav-icon"></i>--}}
-{{--                                    <p>Add Location</p>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-item">--}}
-{{--                                <a href="{{route('showLocationList')}}" class="nav-link">--}}
-{{--                                    <i class="far fa-circle nav-icon"></i>--}}
-{{--                                    <p>Location List</p>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
-{{--                        </ul>--}}
-{{--                    </li>--}}
-
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-store"></i>
@@ -432,6 +383,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <script src="{{asset('src/jquery.slim.min.js')}}"></script>
 <script src="{{asset('src/jquery.multi-select.js')}}"></script>
+
+
 
 <script>
     $(function () {

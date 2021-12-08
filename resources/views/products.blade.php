@@ -176,7 +176,7 @@
         })
         var buttons = document.getElementsByClassName("fileButton");
         document.getElementById('productImage').addEventListener("click", function () {
-            ara('chosenImageProduct','product_Image_src','productPriority');
+            ara('chosenImageurl','url_Image_src','urlPriority');
         });
         $('#productURL').on('change',function(){
             readURL(this,'product_Image_src');

@@ -141,3 +141,11 @@ Route::post('/EditUpdateDate',[UpdatedDateController::class,'UpdateUpdateDate'])
 
 //----------------------------------------CHECK PASSWORD FOR DELETE MARKETS--------------------------------//
 Route::post('/checkPassword',[MarketController::class,'checkPassword'])->name('checkPassword');
+
+//Route::prefix('Admin')->group(function(){
+//    //admin routes
+//});
+//
+//Route::prefix('User')->group(function (){
+//    //users routes
+//});

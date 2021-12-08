@@ -28,6 +28,9 @@
             <div class="row">
 
                 <div class="col-md-12">
+                    @if($data['marketInfo'] == null)
+                        <div class="alert alert-warning text-center">There is something wrong !!!</div>
+                    @else
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Edit Market Form</h3>
@@ -221,6 +224,7 @@
                             </div>
                         </form>
                     </div>
+                    @endif
                 </div>
             </div>
         </div><!-- /.container-fluid -->
