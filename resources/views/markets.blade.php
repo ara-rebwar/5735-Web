@@ -109,6 +109,11 @@
                                         <input type="text" class="form-control" placeholder="Write Market Name In Kurdish" name="marketNameKurdish">
                                         <label style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketNameKurdish'){{$message}}@enderror</label>
                                     </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="form-label">Market name Arabic</label>
+                                        <input type="text" class="form-control" placeholder="Write Market Name In Arabic" name="marketNameArabic">
+                                        <label style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketNameArabic'){{$message}}@enderror</label>
+                                    </div>
                                     <div class="form-group  col-md-4">
                                         <label class="form-label">Type</label>
                                         <select name="type" class="form-control" id="type_Selection">
@@ -122,7 +127,9 @@
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-4">
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
                                         <label class="form-label">Has product ? </label>
                                         <select name="has_product" class="form-control" id="has_product">
                                             <option disabled selected>Has Product?</option>

@@ -1,5 +1,4 @@
 @extends('layouts.dashboard')
-
 @section('content')
     <div class="content-header">
         <div class="container-fluid">
@@ -61,10 +60,30 @@
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Ingredients" name="productIngredients">
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productIngredients'){{$message}}@enderror</label>
                                     </div>
-
-{{--                                    ////////////////////--}}
-
-
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleInputEmail1">Product Name Kurdish</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Write Product Name in Kurdish" name="productNameKurdish">
+                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productNameKurdish'){{$message}}@enderror</label>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleInputEmail1">Product Name Arabic</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Write Product Name in Arabic" name="productNameArabic">
+                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productNameArabic'){{$message}}@enderror</label>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="row" style="margin-left:10px">
+                                    <div class="form-group col-md-4" >
+                                        <label for="exampleInputEmail1">Select Category</label>
+                                        <select name="category" id="category" class="form-control">
+                                            <option disabled selected>Select Category</option>
+                                            @foreach($categories as $data)
+                                                <option value="{{$data->id}}">{{$data->category_name}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productimageSize'){{$message}}@enderror</label>
+                                    </div>
+                                    {{--                                    ////////////////////--}}
                                     <div class="form-group col-md-4">
                                         <label for="exampleInputEmail1">Image URL</label>
                                         <div class="input-group">
@@ -72,8 +91,6 @@
                                                 <button class="btn btn-success" type="button"  id="productImage">Select Product Image <i class="fa fa-paperclip mx-2"></i> </button>
                                             </div>
                                         </div>
-
-
                                         <div id="fileUpload" style="display: none;justify-content: center;align-items: center;width: 100%;height: 100%;position:fixed;top: 0;left: 0;z-index: 3;background: rgba(255,255,255,0.8);">
                                             <div class="card" style="width:50%;height: 80%;background:#f8f9fa;">
                                                 <div class="card-header " style="display: flex;justify-content: center;align-items: center;">
@@ -112,22 +129,8 @@
                                                 </div>
                                             </div>
                                         </div>
-{{--                                        ////////////////////////////--}}
-                                    </div>
+                                        {{--                                        ////////////////////////////--}}
                                 </div>
-                                <div class="row">
-                                    <div class="form-group col-md-6" >
-                                        <label for="exampleInputEmail1">Select Category</label>
-                                        <select name="category" id="category" class="form-control">
-                                            <option disabled selected>Select Category</option>
-                                            @foreach($categories as $data)
-                                                <option value="{{$data->id}}">{{$data->category_name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productimageSize'){{$message}}@enderror</label>
-                                    </div>
-                                </div>
-
                                 <div class="row">
                                     <div class="col-md-2">
                                         <img src=""  id="product_Image_src" class="img-thumbnail rounded">
@@ -142,15 +145,11 @@
                     </div>
                     <!-- /.card -->
                 </div>
-
-
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
-
     <script>
-
         $(document).ready(function () {
             $('#has_product').on('change', function () {
                 var $data = $('#has_product option:selected').data('foo');
@@ -201,7 +200,6 @@
                 })
             });
         }
-
         function readURL(input,image) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -209,10 +207,8 @@
                 reader.onload = function (e) {
                     $("#"+image).attr('src', e.target.result);
                 }
-
                 reader.readAsDataURL(input.files[0]);
             }
         }
     </script>
-
 @endsection

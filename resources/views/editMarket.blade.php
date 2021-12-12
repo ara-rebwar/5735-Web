@@ -44,10 +44,12 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="form-group col-md-4" >
+                                        <label class="form-label">Market Name</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Write Market Name" name="marketName" value="{{$data['marketInfo'][0]->marketName}}">
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketName'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group col-md-4" >
+                                        <label class="form-label">Market Address</label>
                                         <select name="marketAddress" class="form-control">
                                             <option disabled selected>Select Address</option>
                                             <?php $addressCount=0;
@@ -62,16 +64,19 @@
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketAddress'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group col-md-4" >
+                                        <label class="form-label">Phone 1</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone Number" name="marketMobile1" value="{{$data['marketInfo'][0]->mobile1}}">
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketMobile1'){{$message}}@enderror</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-4">
+                                        <label class="form-label">Phone 2 </label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Write Phone Second Number" name="marketPhone2" value="{{$data['marketInfo'][0]->mobile2}}">
                                         <label style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketPhone2'){{$message}}@enderror</label>
                                     </div>
                                     <div class="form-group col-md-4">
+                                        <label class="form-label">is Market closed ?</label>
                                         <select class="form-control" name="marketClosed">
                                             <option disabled selected>Is Closed?</option>
                                             <?php
@@ -88,6 +93,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label class="form-label">Category</label>
                                             <select class="mul-select form-control" multiple="multiple" style="width: 100%" name="category[]" id="category_selection">
                                                 <?php
                                                     $categories =array();
@@ -105,10 +111,17 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-4">
+                                        <label class="form-label">Market Name Kurdish</label>
                                         <input type="text" class="form-control" placeholder="Write Market Name In Kurdish" name="marketNameKurdish" value="{{$data['marketInfo'][0]->name_kurdish}}">
                                         <label style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketNameKurdish'){{$message}}@enderror</label>
                                     </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="form-label">Market Name Arabic</label>
+                                        <input type="text" class="form-control" placeholder="Write Market Name In Arabic" name="marketNameArabic" value="{{$data['marketInfo'][0]->name_arabic}}">
+                                        <label style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('marketNameArabic'){{$message}}@enderror</label>
+                                    </div>
                                     <div class="form-group  col-md-4" >
+                                        <label class="form-label">Market Type</label>
                                         <select name="type" class="form-control" id="type_Selection" >
                                             <option disabled selected >Select Type</option>
                                             <?php
@@ -123,7 +136,10 @@
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-4">
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label class="form-label">Has product ?</label>
                                         <select name="has_product" class="form-control">
                                             <option disabled selected>Has Product</option>
                                             <?php

@@ -46,6 +46,8 @@ class ProductController extends Controller
       $product->ingredients=$request->productIngredients;
       $product->market=(int)$request->marketID;
       $product->category=(int)$request->category;
+      $product->name_kurdish = $request->productNameKurdish;
+      $product->name_arabic = $request->productNameArabic;
       $product->save();
       return redirect(route('showMarketProductByID',$request->marketID))->with('successProductMsg','product inserted successfully');
   }
@@ -125,6 +127,8 @@ class ProductController extends Controller
     $product->description=$request->productDescription;
     $product->ingredients=$request->productIngredients;
     $product->market=$request->productMarket;
+    $product->name_kurdish = $request->productNameKurdish;
+    $product->name_arabic = $request->productNameArabic;
     $product->save();
     return redirect(route('showEditProductID',$request->productId))->with('updateProductMsg','Information Updated Successfully');
   }

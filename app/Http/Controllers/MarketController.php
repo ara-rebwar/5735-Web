@@ -84,6 +84,7 @@ class MarketController extends Controller
             $market->has_product=0;
         }
         $market->name_kurdish = $request->marketNameKurdish;
+        $market->name_arabic = $request->marketNameArabic;
         $market->MSSQL_ID=0;
         $market->icon=$iconMedia->id;
         $market->save();
@@ -205,6 +206,7 @@ class MarketController extends Controller
         $market->mobile2 = $request->marketPhone2;
         $market->closed = $request->marketClosed;
         $market->name_kurdish = $request->marketNameKurdish;
+        $market->name_arabic = $request->marketNameArabic;
         $market->type=$request->type;
         if ($request->has_product == 1){
             $market->has_product=$request->has_product;

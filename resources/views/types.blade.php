@@ -46,6 +46,10 @@
                             <label for="exampleInputEmail1">Type Name in Kurdish</label>
                             <input type="text" class="form-control"  placeholder="Enter Type Name in Kurdish" name="types_kurdish">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Type Name in Arabic</label>
+                            <input type="text" class="form-control"  placeholder="Enter Type Name in Arabic" name="types_arabic">
+                        </div>
 
                         {{--                                    ////////////////////--}}
 

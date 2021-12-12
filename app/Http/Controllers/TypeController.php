@@ -49,6 +49,7 @@ class TypeController extends Controller
         $media->save();
         $type->types=$request->types;
         $type->type_kurdish = $request->types_kurdish;
+        $type->type_arabic = $request->types_arabic;
         $type->image=$media->id;
         $type->save();
         return redirect(route('showType'))->with('successTypeMsg','Type Inserted Successfully');
@@ -78,6 +79,7 @@ class TypeController extends Controller
         $type=Type::find($request->typeID);
         $type->types=$request->types;
         $type->type_kurdish=$request->types_kurdish;
+        $type->type_arabic=$request->types_arabic;
         $type->save();
         return redirect(route('showEditType',$request->typeID))->with('updateTypeMsg','Type Updated Successfully');
     }

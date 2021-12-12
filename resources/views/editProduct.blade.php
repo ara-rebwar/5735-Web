@@ -158,6 +158,26 @@
                                         </select>
                                         <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('category'){{$message}}@enderror</label>
                                     </div>
+                                    <div class="form-group  col-md-4" >
+                                        <label for="exampleInputEmail1">Product Name Kurdish</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Name in Kurdish" name="productNameKurdish" value="{{$data['product'][0]->name_kurdish}}">
+                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productNameKurdish'){{$message}}@enderror</label>
+                                    </div>
+                                    <div class="form-group  col-md-4" >
+                                        <label for="exampleInputEmail1">Product Name Arabic</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Ingredients" name="productNameArabic" value="{{$data['product'][0]->name_arabic}}">
+                                        <label  style="padding:0px;margin: 0px;font-size: 12px;" class="text-danger">@error('productNameArabic'){{$message}}@enderror</label>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-2">

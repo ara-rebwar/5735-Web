@@ -50,6 +50,10 @@
                             <label for="exampleInputEmail1">Category Name in Kurdish</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Category In Kurdish" name="categoryKurdish" value="{{$category->category_name_kurdish}}">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Category Name in Arabic</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Category In Arabic" name="categoryArabic" value="{{$category->category_name_arabic}}">
+                        </div>
                     </div>
                     <!-- /.card-body -->
 

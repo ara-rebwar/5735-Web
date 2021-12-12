@@ -48,6 +48,10 @@
                             <label for="exampleInputEmail1">Category Name in Kurdish</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Category In Kurdish" name="categoryKurdish">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Category Name in Arabic</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Category In Arabic" name="categoryArabic">
+                        </div>
 
                     </div>
                     <!-- /.card-body -->

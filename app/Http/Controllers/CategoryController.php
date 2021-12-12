@@ -17,6 +17,7 @@ class CategoryController extends Controller
         $category=new Category();
         $category->category_name=$request->category;
         $category->category_name_kurdish=$request->categoryKurdish;
+        $category->category_name_arabic=$request->categoryArabic;
         $category->save();
         return redirect(route('showCategory'))->with('categorySuccessMsg','Category Inserted Successfully');
     }
@@ -33,6 +34,7 @@ class CategoryController extends Controller
         $category=Category::find($request->categoryId);
         $category->category_name=$request->category;
         $category->category_name_kurdish=$request->categoryKurdish;
+        $category->category_name_arabic=$request->categoryArabic;
         $category->save();
         return redirect(route('showEditCategory',$request->categoryId))->with('updateCategoryMsg','Category Updated Successfully');
     }
